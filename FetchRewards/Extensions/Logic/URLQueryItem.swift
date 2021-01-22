@@ -20,7 +20,7 @@ extension URLQueryItem {
     }
 
     static func create(from values: [AnyHashable: Any]) -> [URLQueryItem] {
-        return values.flatMap { element -> [URLQueryItem] in
+        values.flatMap { element -> [URLQueryItem] in
             if element.value is [AnyHashable: Any] { return [] }
             let key = element.key as? String ?? "String"
             if let values = element.value as? [Any] { return URLQueryItem.create(from: values, with: key) }

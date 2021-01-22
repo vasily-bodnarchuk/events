@@ -7,4 +7,6 @@
 
 import Foundation
 
-protocol EventListRepository: class { }
+protocol EventListRepository: class {
+    func getAll(completion: @escaping (Result<EventListJSONModel, Error>) -> Void) 
+}

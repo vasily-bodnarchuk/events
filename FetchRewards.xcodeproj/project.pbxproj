@@ -30,7 +30,6 @@
 		B880EC2825B8EC11006C5266 /* EventListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EC2725B8EC11006C5266 /* EventListRepository.swift */; };
 		B880EC2B25B8EC30006C5266 /* EventListRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EC2A25B8EC30006C5266 /* EventListRepositoryImpl.swift */; };
 		B880EC2E25B8EC4D006C5266 /* EventListServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EC2D25B8EC4D006C5266 /* EventListServiceImpl.swift */; };
-		B880EC3225B8F06B006C5266 /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EC3125B8F06B006C5266 /* EventListViewModel.swift */; };
 		B880EC3725B8F1A0006C5266 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EC3625B8F1A0006C5266 /* ViewModel.swift */; };
 		B880EC3B25B8F1AC006C5266 /* TableViewCellViewModelInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EC3A25B8F1AC006C5266 /* TableViewCellViewModelInterface.swift */; };
 		B880EC3E25B8F1E7006C5266 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EC3D25B8F1E7006C5266 /* Identifiable.swift */; };
@@ -40,7 +39,7 @@
 		B880EC5A25B9D88F006C5266 /* RouteProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EC5925B9D88F006C5266 /* RouteProperty.swift */; };
 		B880EC6225B9E5ED006C5266 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EC6125B9E5ED006C5266 /* UITableView.swift */; };
 		B880EC7425B9F4E6006C5266 /* TableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EC7325B9F4E6006C5266 /* TableViewCellViewModel.swift */; };
-		B880EC7725B9F78E006C5266 /* StackViewBasedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EC7625B9F78E006C5266 /* StackViewBasedTableViewCell.swift */; };
+		B880EC7725B9F78E006C5266 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EC7625B9F78E006C5266 /* TableViewCell.swift */; };
 		B880ECBF25BA7DCF006C5266 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ECBE25BA7DCF006C5266 /* NetworkService.swift */; };
 		B880ECC325BA7DE1006C5266 /* NetworkServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ECC225BA7DE1006C5266 /* NetworkServiceImpl.swift */; };
 		B880ECC725BA8250006C5266 /* Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ECC625BA8250006C5266 /* Decodable.swift */; };
@@ -52,11 +51,14 @@
 		B880ECE125BB1D17006C5266 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ECE025BB1D17006C5266 /* Endpoint.swift */; };
 		B880ECE525BB2378006C5266 /* ConfigurationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ECE425BB2378006C5266 /* ConfigurationService.swift */; };
 		B880ECE925BB2383006C5266 /* ConfigurationServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ECE825BB2383006C5266 /* ConfigurationServiceImpl.swift */; };
-		B880ECED25BB2A84006C5266 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ECEC25BB2A84006C5266 /* Array.swift */; };
 		B880ECF125BB2A97006C5266 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ECF025BB2A97006C5266 /* String.swift */; };
 		B880ECF425BB2AB1006C5266 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ECF325BB2AB1006C5266 /* URL.swift */; };
 		B880ECF725BB2AE2006C5266 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ECF625BB2AE2006C5266 /* Dictionary.swift */; };
 		B880ECFA25BB2B33006C5266 /* URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ECF925BB2B33006C5266 /* URLQueryItem.swift */; };
+		B880ED0325BB4B15006C5266 /* VenueJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED0225BB4B15006C5266 /* VenueJSONModel.swift */; };
+		B880ED0625BB64D8006C5266 /* DecodableDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED0525BB64D8006C5266 /* DecodableDate.swift */; };
+		B880ED0D25BB6B47006C5266 /* DefaultDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED0C25BB6B47006C5266 /* DefaultDateFormatter.swift */; };
+		B880ED1325BB7089006C5266 /* EventTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED1225BB7089006C5266 /* EventTableViewCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,7 +87,6 @@
 		B880EC2725B8EC11006C5266 /* EventListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListRepository.swift; sourceTree = "<group>"; };
 		B880EC2A25B8EC30006C5266 /* EventListRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListRepositoryImpl.swift; sourceTree = "<group>"; };
 		B880EC2D25B8EC4D006C5266 /* EventListServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListServiceImpl.swift; sourceTree = "<group>"; };
-		B880EC3125B8F06B006C5266 /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
 		B880EC3625B8F1A0006C5266 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		B880EC3A25B8F1AC006C5266 /* TableViewCellViewModelInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellViewModelInterface.swift; sourceTree = "<group>"; };
 		B880EC3D25B8F1E7006C5266 /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
@@ -95,7 +96,7 @@
 		B880EC5925B9D88F006C5266 /* RouteProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteProperty.swift; sourceTree = "<group>"; };
 		B880EC6125B9E5ED006C5266 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		B880EC7325B9F4E6006C5266 /* TableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellViewModel.swift; sourceTree = "<group>"; };
-		B880EC7625B9F78E006C5266 /* StackViewBasedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewBasedTableViewCell.swift; sourceTree = "<group>"; };
+		B880EC7625B9F78E006C5266 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		B880ECBE25BA7DCF006C5266 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		B880ECC225BA7DE1006C5266 /* NetworkServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceImpl.swift; sourceTree = "<group>"; };
 		B880ECC625BA8250006C5266 /* Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decodable.swift; sourceTree = "<group>"; };
@@ -107,11 +108,14 @@
 		B880ECE025BB1D17006C5266 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		B880ECE425BB2378006C5266 /* ConfigurationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationService.swift; sourceTree = "<group>"; };
 		B880ECE825BB2383006C5266 /* ConfigurationServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceImpl.swift; sourceTree = "<group>"; };
-		B880ECEC25BB2A84006C5266 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		B880ECF025BB2A97006C5266 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		B880ECF325BB2AB1006C5266 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		B880ECF625BB2AE2006C5266 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		B880ECF925BB2B33006C5266 /* URLQueryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLQueryItem.swift; sourceTree = "<group>"; };
+		B880ED0225BB4B15006C5266 /* VenueJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueJSONModel.swift; sourceTree = "<group>"; };
+		B880ED0525BB64D8006C5266 /* DecodableDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableDate.swift; sourceTree = "<group>"; };
+		B880ED0C25BB6B47006C5266 /* DefaultDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDateFormatter.swift; sourceTree = "<group>"; };
+		B880ED1225BB7089006C5266 /* EventTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,7 +255,6 @@
 			children = (
 				B880EC2025B8EBCF006C5266 /* EventListService.swift */,
 				B880EC2D25B8EC4D006C5266 /* EventListServiceImpl.swift */,
-				B880EC3125B8F06B006C5266 /* EventListViewModel.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -285,29 +288,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		B880EC4025B8F21B006C5266 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				B880EC4125B8F224006C5266 /* ViewModelCellBasedTableView.swift */,
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
 		B880EC4D25B8F395006C5266 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				B880EC4E25B8F3AF006C5266 /* ActivityIndicator */,
-				B880EC7625B9F78E006C5266 /* StackViewBasedTableViewCell.swift */,
+				B880EC7625B9F78E006C5266 /* TableViewCell.swift */,
+				B880EC4925B8F36E006C5266 /* ActivityIndicatorTableViewCellViewModel.swift */,
+				B880ED1225BB7089006C5266 /* EventTableViewCellViewModel.swift */,
 			);
 			path = TableViewCells;
-			sourceTree = "<group>";
-		};
-		B880EC4E25B8F3AF006C5266 /* ActivityIndicator */ = {
-			isa = PBXGroup;
-			children = (
-				B880EC4925B8F36E006C5266 /* ActivityIndicatorTableViewCellViewModel.swift */,
-			);
-			path = ActivityIndicator;
 			sourceTree = "<group>";
 		};
 		B880EC5825B9D750006C5266 /* Models */ = {
@@ -322,8 +310,8 @@
 		B880EC6025B9E5D7006C5266 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				B880EC6125B9E5ED006C5266 /* UITableView.swift */,
-				B880ECC625BA8250006C5266 /* Decodable.swift */,
+				B880ED0825BB6AAA006C5266 /* Logic */,
+				B880ED0925BB6AB6006C5266 /* UI */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -339,8 +327,7 @@
 		B880EC6725B9E697006C5266 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B880EC4D25B8F395006C5266 /* TableViewCells */,
-				B880EC4025B8F21B006C5266 /* Other */,
+				B880EC4125B8F224006C5266 /* ViewModelCellBasedTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -375,6 +362,7 @@
 			isa = PBXGroup;
 			children = (
 				B880EC6925B9E6AD006C5266 /* ViewControllers */,
+				B880EC4D25B8F395006C5266 /* TableViewCells */,
 				B880EC6725B9E697006C5266 /* Views */,
 				B880EC3525B8F188006C5266 /* ViewModels */,
 				B880EC6625B9E686006C5266 /* Protocols */,
@@ -385,13 +373,9 @@
 		B880ECCA25BA8325006C5266 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				B880ED0B25BB6B2C006C5266 /* DecodableDate */,
 				B880ECD725BA8B00006C5266 /* AppError.swift */,
 				B880ECCB25BA8334006C5266 /* CompactDecodableArray.swift */,
-				B880ECEC25BB2A84006C5266 /* Array.swift */,
-				B880ECF025BB2A97006C5266 /* String.swift */,
-				B880ECF325BB2AB1006C5266 /* URL.swift */,
-				B880ECF625BB2AE2006C5266 /* Dictionary.swift */,
-				B880ECF925BB2B33006C5266 /* URLQueryItem.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -401,6 +385,7 @@
 			children = (
 				B880ECD025BA85DA006C5266 /* EventListJSONModel.swift */,
 				B880ECD425BA85EC006C5266 /* EventJSONModel.swift */,
+				B880ED0225BB4B15006C5266 /* VenueJSONModel.swift */,
 			);
 			path = JSONModels;
 			sourceTree = "<group>";
@@ -421,6 +406,35 @@
 				B880ECE825BB2383006C5266 /* ConfigurationServiceImpl.swift */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		B880ED0825BB6AAA006C5266 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				B880ECF025BB2A97006C5266 /* String.swift */,
+				B880ECF325BB2AB1006C5266 /* URL.swift */,
+				B880ECF625BB2AE2006C5266 /* Dictionary.swift */,
+				B880ECF925BB2B33006C5266 /* URLQueryItem.swift */,
+				B880ECC625BA8250006C5266 /* Decodable.swift */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		B880ED0925BB6AB6006C5266 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B880EC6125B9E5ED006C5266 /* UITableView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		B880ED0B25BB6B2C006C5266 /* DecodableDate */ = {
+			isa = PBXGroup;
+			children = (
+				B880ED0525BB64D8006C5266 /* DecodableDate.swift */,
+				B880ED0C25BB6B47006C5266 /* DefaultDateFormatter.swift */,
+			);
+			path = DecodableDate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -495,12 +509,14 @@
 				B880EC2125B8EBCF006C5266 /* EventListService.swift in Sources */,
 				B880EB4425B71DAD006C5266 /* Core.swift in Sources */,
 				B880EC4225B8F224006C5266 /* ViewModelCellBasedTableView.swift in Sources */,
+				B880ED1325BB7089006C5266 /* EventTableViewCellViewModel.swift in Sources */,
 				B880ECC725BA8250006C5266 /* Decodable.swift in Sources */,
 				B880ECE525BB2378006C5266 /* ConfigurationService.swift in Sources */,
 				B880ECF725BB2AE2006C5266 /* Dictionary.swift in Sources */,
 				B880EB5425B72049006C5266 /* CoreImpl.swift in Sources */,
 				B880EC2825B8EC11006C5266 /* EventListRepository.swift in Sources */,
 				B880EB4925B71E25006C5266 /* ViewControllerFactory.swift in Sources */,
+				B880ED0325BB4B15006C5266 /* VenueJSONModel.swift in Sources */,
 				B880EC3725B8F1A0006C5266 /* ViewModel.swift in Sources */,
 				B880EC3B25B8F1AC006C5266 /* TableViewCellViewModelInterface.swift in Sources */,
 				B880EC7425B9F4E6006C5266 /* TableViewCellViewModel.swift in Sources */,
@@ -511,8 +527,7 @@
 				B880ECC325BA7DE1006C5266 /* NetworkServiceImpl.swift in Sources */,
 				B880ECD125BA85DA006C5266 /* EventListJSONModel.swift in Sources */,
 				B880EB7A25B73109006C5266 /* ServiceFactory.swift in Sources */,
-				B880ECED25BB2A84006C5266 /* Array.swift in Sources */,
-				B880EC7725B9F78E006C5266 /* StackViewBasedTableViewCell.swift in Sources */,
+				B880EC7725B9F78E006C5266 /* TableViewCell.swift in Sources */,
 				B880ECD825BA8B00006C5266 /* AppError.swift in Sources */,
 				B880EC4A25B8F36E006C5266 /* ActivityIndicatorTableViewCellViewModel.swift in Sources */,
 				B880EC2E25B8EC4D006C5266 /* EventListServiceImpl.swift in Sources */,
@@ -522,6 +537,7 @@
 				B880EC6225B9E5ED006C5266 /* UITableView.swift in Sources */,
 				B880EB2825B69B65006C5266 /* ViewController.swift in Sources */,
 				B880ECD525BA85EC006C5266 /* EventJSONModel.swift in Sources */,
+				B880ED0D25BB6B47006C5266 /* DefaultDateFormatter.swift in Sources */,
 				B880ECE125BB1D17006C5266 /* Endpoint.swift in Sources */,
 				B880ECCC25BA8334006C5266 /* CompactDecodableArray.swift in Sources */,
 				B880EB4C25B71E3F006C5266 /* ViewControllerType.swift in Sources */,
@@ -532,6 +548,7 @@
 				B880ECFA25BB2B33006C5266 /* URLQueryItem.swift in Sources */,
 				B880EB6F25B72F92006C5266 /* CoreLaunchingViewController.swift in Sources */,
 				B880EB8125B7D5BC006C5266 /* EventListViewController.swift in Sources */,
+				B880ED0625BB64D8006C5266 /* DecodableDate.swift in Sources */,
 				B880EB7325B73050006C5266 /* Factory.swift in Sources */,
 				B880ECE925BB2383006C5266 /* ConfigurationServiceImpl.swift in Sources */,
 				B880EB4125B71D62006C5266 /* RouterImpl.swift in Sources */,
@@ -539,7 +556,6 @@
 				B880EB7625B7305F006C5266 /* FactoryImpl.swift in Sources */,
 				B880EB7D25B731AC006C5266 /* ServiceFactoryImpl.swift in Sources */,
 				B880EB4F25B71EC1006C5266 /* ViewControllerFactoryImpl.swift in Sources */,
-				B880EC3225B8F06B006C5266 /* EventListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

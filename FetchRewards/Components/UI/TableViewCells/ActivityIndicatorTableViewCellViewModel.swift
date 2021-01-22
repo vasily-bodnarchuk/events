@@ -10,6 +10,7 @@ import UIKit
 // MARK: ViewModel
 
 class ActivityIndicatorTableViewCellViewModel: TableViewCellViewModel<ActivityIndicatorTableViewCell> {
+    
     override func getCell(for tableView: ViewModelCellBasedTableView, at indexPath: IndexPath,
                           delegate: TableViewCellDelegateInterface?) -> UITableViewCell? {
         tableView.dequeueReusableCell(forceUnwrap: TableViewCell.self,

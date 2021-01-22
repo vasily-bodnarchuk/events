@@ -31,6 +31,7 @@ extension NetworkServiceImpl: NetworkService {
         urlComponents.queryItems = urlQuery.toURLQueryItems()
         guard let url = urlComponents.url else { return }
         var request = URLRequest(url: url)
+        print("-- \(httpMethod.rawValue) \(url)")
         request.httpMethod = httpMethod.rawValue
         let task = session.dataTask(with: request) { data, response, error in
             var result: Result<T, Error>!
@@ -58,6 +59,7 @@ extension NetworkServiceImpl: NetworkService {
             
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: [])
+                //print("!!!! \(json)")
                 result = .success(try T(from: json) { _ in })
             } catch let error {
                 result = .failure(AppError.network(type: .nested(error: error)))
