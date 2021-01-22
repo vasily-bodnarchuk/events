@@ -61,6 +61,8 @@
 		B880ED0D25BB6B47006C5266 /* DefaultDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED0C25BB6B47006C5266 /* DefaultDateFormatter.swift */; };
 		B880ED1325BB7089006C5266 /* EventTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED1225BB7089006C5266 /* EventTableViewCellViewModel.swift */; };
 		B880ED2025BB7B94006C5266 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B880ED1F25BB7B94006C5266 /* .swiftlint.yml */; };
+		B880ED2425BB7E73006C5266 /* PerformerJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED2325BB7E73006C5266 /* PerformerJSONModel.swift */; };
+		B880ED2725BB8288006C5266 /* VerticalSpacingTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED2625BB8288006C5266 /* VerticalSpacingTableViewCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +124,8 @@
 		B880ED0C25BB6B47006C5266 /* DefaultDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDateFormatter.swift; sourceTree = "<group>"; };
 		B880ED1225BB7089006C5266 /* EventTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		B880ED1F25BB7B94006C5266 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		B880ED2325BB7E73006C5266 /* PerformerJSONModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformerJSONModel.swift; sourceTree = "<group>"; };
+		B880ED2625BB8288006C5266 /* VerticalSpacingTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSpacingTableViewCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,6 +324,7 @@
 			children = (
 				B880EC7625B9F78E006C5266 /* TableViewCell.swift */,
 				B880EC4925B8F36E006C5266 /* ActivityIndicatorTableViewCellViewModel.swift */,
+				B880ED2625BB8288006C5266 /* VerticalSpacingTableViewCellViewModel.swift */,
 				B880ED1225BB7089006C5266 /* EventTableViewCellViewModel.swift */,
 			);
 			path = TableViewCells;
@@ -412,6 +417,7 @@
 			children = (
 				B880ECD025BA85DA006C5266 /* EventListJSONModel.swift */,
 				B880ECD425BA85EC006C5266 /* EventJSONModel.swift */,
+				B880ED2325BB7E73006C5266 /* PerformerJSONModel.swift */,
 				B880ED0225BB4B15006C5266 /* VenueJSONModel.swift */,
 			);
 			path = JSONModels;
@@ -603,6 +609,7 @@
 				B880ED1325BB7089006C5266 /* EventTableViewCellViewModel.swift in Sources */,
 				B880ECC725BA8250006C5266 /* Decodable.swift in Sources */,
 				B880ECE525BB2378006C5266 /* ConfigurationService.swift in Sources */,
+				B880ED2725BB8288006C5266 /* VerticalSpacingTableViewCellViewModel.swift in Sources */,
 				B880ECF725BB2AE2006C5266 /* Dictionary.swift in Sources */,
 				B880EB5425B72049006C5266 /* CoreImpl.swift in Sources */,
 				B880EC2825B8EC11006C5266 /* EventListRepository.swift in Sources */,
@@ -624,6 +631,7 @@
 				B880EC2E25B8EC4D006C5266 /* EventListServiceImpl.swift in Sources */,
 				B880EC5A25B9D88F006C5266 /* RouteProperty.swift in Sources */,
 				B880EC2B25B8EC30006C5266 /* EventListRepositoryImpl.swift in Sources */,
+				B880ED2425BB7E73006C5266 /* PerformerJSONModel.swift in Sources */,
 				B880EB3E25B71D43006C5266 /* Router.swift in Sources */,
 				B880EC6225B9E5ED006C5266 /* UITableView.swift in Sources */,
 				B880EB2825B69B65006C5266 /* ViewController.swift in Sources */,

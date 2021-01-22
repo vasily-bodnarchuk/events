@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Nuke
 // MARK: ViewModel
 
 class EventTableViewCellViewModel: TableViewCellViewModel<EventTableViewCell> {
@@ -42,16 +42,30 @@ class EventTableViewCell: TableViewCell {
     private weak var titleLabel: UILabel!
     private weak var locationLabel: UILabel!
     private weak var dateLabel: UILabel!
+    private weak var eventImageView: UIImageView!
 
     override func setup() {
         super.setup()
         let stackView = UIStackView()
+        stackView.distribution = .fill
+        stackView.alignment = .top
+        stackView.spacing = 20
         contentView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        let leftRightSpacing: CGFloat = 16
         stackView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor).isActive = true
-        stackView.rightAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.rightAnchor).isActive = true
+        stackView.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor, constant: leftRightSpacing).isActive = true
         stackView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        stackView.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor).isActive = true
+        contentView.safeAreaLayoutGuide.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: leftRightSpacing).isActive = true
+
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        stackView.addArrangedSubview(imageView)
+        imageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
+        imageView.layer.cornerRadius = 6
+        imageView.clipsToBounds = true
+        eventImageView = imageView
 
         let verticalStackView = UIStackView()
         verticalStackView.axis = .vertical
@@ -83,5 +97,6 @@ class EventTableViewCell: TableViewCell {
         titleLabel.text = title
         locationLabel.text = location
         dateLabel.text = date
+        Nuke.loadImage(with: imageUrl, into: eventImageView)
     }
 }

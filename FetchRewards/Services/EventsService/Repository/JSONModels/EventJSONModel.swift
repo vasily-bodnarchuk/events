@@ -11,5 +11,6 @@ struct EventJSONModel: Decodable {
     let id: Int
     let title: String
     let venue: VenueJSONModel
+    let performers: CompactDecodableArray<PerformerJSONModel>
     let datetime_utc: DecodableDate<DefaultDateFormatter>
 }

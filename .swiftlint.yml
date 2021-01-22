@@ -1,0 +1,243 @@
+# all rules https://realm.github.io/SwiftLint/rule-directory.html
+# swiftlint autocorrect
+
+disabled_rules:
+
+# Complexity of function bodies should be limited.
+# https://realm.github.io/SwiftLint/cyclomatic_complexity.html
+- cyclomatic_complexity
+
+# Types should be nested at most 1 level deep, and functions should be nested at most 2 levels deep.
+# https://realm.github.io/SwiftLint/nesting.html
+- nesting
+
+# Force casts should be avoided.
+# https://realm.github.io/SwiftLint/force_cast.html
+- force_cast
+
+# Number of function parameters should be low.
+# https://realm.github.io/SwiftLint/function_parameter_count.html
+- function_parameter_count
+
+# Closure parameters should be on the same line as opening brace.
+# https://realm.github.io/SwiftLint/closure_parameter_position.html
+- closure_parameter_position
+
+# TODO: Remove this rule
+# Type bodies should not span too many lines.
+# https://realm.github.io/SwiftLint/type_body_length.html
+- type_body_length
+
+# TODO: Remove this rule
+# Functions bodies should not span too many lines.
+# https://realm.github.io/SwiftLint/function_body_length.html
+- function_body_length
+
+# TODO: Remove this rule
+# File Line Length
+# https://realm.github.io/SwiftLint/file_length.html
+- file_length
+
+# TODO: Remove this rule
+# TODOs and FIXMEs should be resolved.
+# https://realm.github.io/SwiftLint/todo.html
+- todo
+
+# TODO: Remove this rule
+# where clauses are preferred over a single if inside a for.
+# https://realm.github.io/SwiftLint/for_where.html
+- for_where
+
+
+# Enable rules not from the default set.
+opt_in_rules: # some rules are turned off by default, so you need to opt-in
+  
+  # Prefer checking isEmpty over comparing count to zero.
+  # https://realm.github.io/SwiftLint/empty_count.html
+  - empty_count
+
+  # Closure bodies should not span too many lines.
+  # https://realm.github.io/SwiftLint/closure_body_length.html
+  #- closure_body_length
+
+  # Closure end should have the same indentation as the line that started it.
+  # https://realm.github.io/SwiftLint/closure_end_indentation.html
+  #- closure_end_indentation
+
+  # Closure expressions should have a single space inside each brace.
+  # https://realm.github.io/SwiftLint/closure_spacing.html
+  - closure_spacing
+
+  # All elements in a collection literal should be vertically aligned
+  # https://realm.github.io/SwiftLint/collection_alignment.html
+  - collection_alignment
+
+  # Prefer contains over comparing filter(where:).count to 0.
+  # https://realm.github.io/SwiftLint/contains_over_filter_count.html
+  - contains_over_filter_count
+
+  # Prefer contains over using filter(where:).isEmpty
+  # https://realm.github.io/SwiftLint/contains_over_filter_is_empty.html
+  - contains_over_filter_is_empty
+
+  # Prefer contains over first(where:) != nil and firstIndex(where:) != nil.
+  # https://realm.github.io/SwiftLint/contains_over_first_not_nil.html
+  - contains_over_first_not_nil
+
+  # Prefer contains over range(of:) != nil and range(of:) == nil.
+  # https://realm.github.io/SwiftLint/contains_over_range_nil_comparison.html
+  - contains_over_range_nil_comparison
+
+  # Types used for hosting only static members should be implemented as a caseless enum to avoid instantiation.
+  # https://realm.github.io/SwiftLint/convenience_type.html
+  #- convenience_type
+
+  # Prefer checking isEmpty over comparing collection to an empty array or dictionary literal.
+  # https://realm.github.io/SwiftLint/empty_collection_literal.html
+  - empty_collection_literal
+
+  # Prefer checking isEmpty over comparing string to an empty string literal.
+  # https://realm.github.io/SwiftLint/empty_string.html
+  #- empty_string
+
+  # Number of associated values in an enum case should be low
+  # https://realm.github.io/SwiftLint/enum_case_associated_values_count.html
+  #- enum_case_associated_values_count
+
+  # Specifies how the types within a file should be ordered.
+  # https://realm.github.io/SwiftLint/file_types_order.html
+  #- file_types_order
+
+  # Prefer using .first(where:) over .filter { }.first in collections.
+  # https://realm.github.io/SwiftLint/first_where.html
+  - first_where
+
+  # Prefer flatMap over map followed by reduce([], +).
+  # https://realm.github.io/SwiftLint/flatmap_over_map_reduce.html
+  - flatmap_over_map_reduce
+
+  # Prefer to locate parameters with defaults toward the end of the parameter list.
+  # https://realm.github.io/SwiftLint/function_default_parameter_at_end.html
+  #- function_default_parameter_at_end
+
+  # Comparing two identical operands is likely a mistake.
+  # https://realm.github.io/SwiftLint/identical_operands.html
+  - identical_operands
+
+  # Prefer using .last(where:) over .filter { }.last in collections.
+  # https://realm.github.io/SwiftLint/last_where.html
+  - last_where
+
+  # Prefer using the isMultiple(of:) function instead of using the remainder operator (%).
+  # https://realm.github.io/SwiftLint/legacy_multiple.html
+  #- legacy_multiple
+
+  # Prefer using type.random(in:) over legacy functions.
+  # https://realm.github.io/SwiftLint/legacy_random.html
+  #- legacy_random
+
+  # Array and dictionary literal end should have the same indentation as the line that started it.
+  # https://realm.github.io/SwiftLint/literal_expression_end_indentation.html
+  - literal_expression_end_indentation
+
+  # Arguments should be either on the same line, or one per line.
+  # https://realm.github.io/SwiftLint/multiline_arguments.html
+  #- multiline_arguments
+
+  # Chained function calls should be either on the same line, or one per line.
+  # https://realm.github.io/SwiftLint/multiline_function_chains.html
+  #- multiline_function_chains
+
+  # Multiline literals should have their surrounding brackets in a new line.
+  # https://realm.github.io/SwiftLint/multiline_literal_brackets.html
+  #- multiline_literal_brackets
+
+  # Functions and methods parameters should be either on the same line, or one per line.
+  # https://realm.github.io/SwiftLint/multiline_parameters.html
+  #- multiline_parameters
+
+  # Operators should be surrounded by a single whitespace when they are being used.
+  # https://realm.github.io/SwiftLint/operator_usage_whitespace.html
+  #- operator_usage_whitespace
+
+  # Some overridden methods should always call super
+  # https://realm.github.io/SwiftLint/overridden_super_call.html
+  - overridden_super_call
+
+  # Combine multiple pattern matching bindings by moving keywords out of tuples.
+  # https://realm.github.io/SwiftLint/pattern_matching_keywords.html
+  #- pattern_matching_keywords
+
+  # Prefer Self over type(of: self) when accessing properties or calling methods.
+  # https://realm.github.io/SwiftLint/prefer_self_type_over_type_of_self.html
+  - prefer_self_type_over_type_of_self
+
+  # Prefer .zero over explicit init with zero parameters (e.g. CGPoint(x: 0, y: 0))
+  # https://realm.github.io/SwiftLint/prefer_zero_over_explicit_init.html
+  - prefer_zero_over_explicit_init
+
+  # IBOutlets should be private to avoid leaking UIKit to higher layers.
+  # https://realm.github.io/SwiftLint/private_outlet.html
+  #- private_outlet
+
+  # Prefer using min() or max() over sorted().first or sorted().last
+  # https://realm.github.io/SwiftLint/sorted_first_last.html
+  - sorted_first_last
+
+  # Prefer someBool.toggle() over someBool = !someBool.
+  # https://realm.github.io/SwiftLint/toggle_bool.html
+  - toggle_bool
+
+  # Prefer capturing references as weak to avoid potential crashes.
+  # https://realm.github.io/SwiftLint/unowned_variable_capture.html
+  - unowned_variable_capture
+
+  # Declarations should be referenced at least once within all files linted.
+  # https://realm.github.io/SwiftLint/unused_declaration.html
+  - unused_declaration
+
+  # All imported modules should be required to make the file compile.
+  # https://realm.github.io/SwiftLint/unused_import.html
+  - unused_import
+
+  # Function parameters should be aligned vertically if they’re in multiple lines in a method call.
+  # https://realm.github.io/SwiftLint/vertical_parameter_alignment_on_call.html
+  - vertical_parameter_alignment_on_call
+
+  # Don’t include vertical whitespace (empty line) before closing braces.
+  # https://realm.github.io/SwiftLint/vertical_whitespace_closing_braces.html
+  - vertical_whitespace_closing_braces
+
+  # The variable should be placed on the left, the constant on the right of a comparison operator.
+  # https://realm.github.io/SwiftLint/yoda_condition.html
+  - yoda_condition
+
+
+line_length: 200
+
+included:
+  - FetchRewards
+  
+# Type name should only contain alphanumeric characters, start with an uppercase character and span between 3 and 40 characters in length.
+# https://realm.github.io/SwiftLint/type_name.html
+type_name:
+  min_length: 3
+  max_length:
+    warning: 60
+    error: 60
+
+# TODO: remove identifier_name (use default settings)
+# Identifier names should only contain alphanumeric characters and start with a lowercase character or should only contain capital letters. In an exception to the above, variable names may start with a capital letter when they are declared static and immutable. Variable names should not be too long or too short.
+# https://realm.github.io/SwiftLint/identifier_name.html
+identifier_name:
+  min_length: 1  # TODO: update min_length to 2
+  max_length:
+    warning: 60
+    error: 60
+  allowed_symbols: "_"
+  
+# Tuples shouldn’t have too many members. Create a custom type instead.
+# https://realm.github.io/SwiftLint/large_tuple.html
+large_tuple:
+  warning: 3
+  error: 3

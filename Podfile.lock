@@ -1,0 +1,20 @@
+PODS:
+  - Nuke (9.2.4)
+  - SwiftLint (0.42.0)
+
+DEPENDENCIES:
+  - Nuke
+  - SwiftLint
+
+SPEC REPOS:
+  trunk:
+    - Nuke
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  Nuke: 44439f7a92e665a4f927ecd73cb51f91d93b0e0c
+  SwiftLint: 4fa9579c63416865179bc416f0a92d55f009600d
+
+PODFILE CHECKSUM: f4b44125f5a7ebe2237d898f9db3721278b8dac0
+
+COCOAPODS: 1.10.1

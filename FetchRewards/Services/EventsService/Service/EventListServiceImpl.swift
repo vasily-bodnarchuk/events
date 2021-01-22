@@ -16,21 +16,24 @@ class EventListServiceImpl {
 
 extension EventListServiceImpl: EventListService {
     func getAll(completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
-       // completion(.success([ActivityIndicatorTableViewCellViewModel()]))
         repository.getAll { result in
             switch result {
             case .failure(let error): DispatchQueue.main.async { completion(.failure(error)) }
             case .success(let value):
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat =  "EEEE, dd MMM yyyy hh:mm a"
-                let viewModels = value.events.elements.compactMap { (event) -> EventTableViewCellViewModel? in
-                    guard let date = event.datetime_utc.value else { return nil }
+                let viewModels = value.events.elements.flatMap { (event) -> [TableViewCellViewModelInterface] in
+                    guard let date = event.datetime_utc.value,
+                          let imageUrl = event.performers.elements.first?.image else { return [] }
                     let dateString = dateFormatter.string(from: date)
-                    return .init(id: event.id,
-                                 title: event.title,
-                                 location: event.venue.display_location,
-                                 date: dateString,
-                                 imageUrl: URL(string: "https://google.com")!)
+                    return [
+                        EventTableViewCellViewModel.init(id: event.id,
+                                                         title: event.title,
+                                                         location: event.venue.display_location,
+                                                         date: dateString,
+                                                         imageUrl: imageUrl),
+                        VerticalSpacingTableViewCellViewModel(height: 28)
+                    ]
                 }
                 DispatchQueue.main.async { completion(.success(viewModels)) }
             }
