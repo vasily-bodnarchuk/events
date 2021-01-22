@@ -19,7 +19,7 @@ class TableViewBasedViewController: UIViewController {
 
 extension TableViewBasedViewController {
     func createTableView(embedIn parentView: UIView) -> ViewModelCellBasedTableView {
-        let tableView = ViewModelCellBasedTableView ()
+        let tableView = ViewModelCellBasedTableView()
         tableView.tableFooterView = UIView()
         tableView.dataSource = self
         tableView.delegate = self

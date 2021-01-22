@@ -12,7 +12,6 @@ class ServiceFactoryImpl {
     lazy var networkService: NetworkService = NetworkServiceImpl(configurationService: configurationService)
 }
 
-
 extension ServiceFactoryImpl: ServiceFactory {
     func createEventListService() -> EventListService {
         EventListServiceImpl(repository: EventListRepositoryImpl(networkService: networkService))

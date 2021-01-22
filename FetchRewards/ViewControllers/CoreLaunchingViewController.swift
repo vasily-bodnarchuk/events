@@ -11,7 +11,7 @@ class CoreLaunchingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+
         let activityIndicatorView = UIActivityIndicatorView()
         activityIndicatorView.color = .gray
         activityIndicatorView.center = view.center

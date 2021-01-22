@@ -9,7 +9,7 @@ import Foundation
 
 enum AppError {
     case network(type: Enums.ErrorType)
-    
+
     class Enums {}
 }
 
@@ -17,7 +17,7 @@ extension AppError.Enums {
     enum ErrorType {
         case custom(message: String)
         case nested(error: Error)
-        
+
         var errorDescription: String? {
             switch self {
             case .custom(let message): return message

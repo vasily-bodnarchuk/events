@@ -8,14 +8,14 @@
 import UIKit
 
 class EventsListViewController: TableViewBasedViewController {
-    
+
     private let eventListService: EventListService
-    
+
     init(eventListService: EventListService) {
         self.eventListService = eventListService
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError() }
 

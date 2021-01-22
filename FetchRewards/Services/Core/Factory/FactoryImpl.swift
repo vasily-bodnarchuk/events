@@ -10,7 +10,7 @@ import UIKit
 class FactoryImpl {
     private var viewControllerFactory: ViewControllerFactory!
     private var _serviceFactory: ServiceFactory!
-    
+
     class func create() -> Factory {
         let factory = FactoryImpl()
         factory._serviceFactory = ServiceFactoryImpl()

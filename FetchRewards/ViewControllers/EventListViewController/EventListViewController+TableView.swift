@@ -7,7 +7,7 @@
 
 import UIKit
 
-//extension EventsListViewController {
+// extension EventsListViewController {
 //    func createTableView(embedIn parentView: UIView) -> ViewModelCellBasedTableView {
 //        let tableView = ViewModelCellBasedTableView ()
 //        tableView.tableFooterView = UIView()
@@ -21,14 +21,14 @@ import UIKit
 //        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 //        return tableView
 //    }
-//}
+// }
 //
-//extension EventsListViewController: UITableViewDataSource {
+// extension EventsListViewController: UITableViewDataSource {
 //    func numberOfSections(in tableView: UITableView) -> Int { viewModels.isEmpty ? 0 : 1 }
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { viewModels.count }
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        viewModels[indexPath.row].getCell(from: tableView.self as! ViewModelCellBasedTableView, at: indexPath, delegate: nil) ?? UITableViewCell()
 //    }
-//}
+// }
 //
-//extension EventsListViewController: UITableViewDelegate {}
+// extension EventsListViewController: UITableViewDelegate {}

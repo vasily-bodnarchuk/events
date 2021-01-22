@@ -36,36 +36,36 @@ extension NetworkServiceImpl: NetworkService {
         let task = session.dataTask(with: request) { data, response, error in
             var result: Result<T, Error>!
             defer { completion(result) }
-            
+
             if let error = error {
                 result = .failure(AppError.network(type: .nested(error: error)))
                 return
             }
-            
+
             if error != nil || data == nil {
                 result = .failure(AppError.network(type: .custom(message: "Client error!")))
                 return
             }
-            
+
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
                 result = .failure(AppError.network(type: .custom(message: "Server error!")))
                 return
             }
-            
+
             guard let mime = response.mimeType, mime == "application/json" else {
                 result = .failure(AppError.network(type: .custom(message: "Wrong MIME type!")))
                 return
             }
-            
+
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                //print("!!!! \(json)")
+                // print("!!!! \(json)")
                 result = .success(try T(from: json) { _ in })
             } catch let error {
                 result = .failure(AppError.network(type: .nested(error: error)))
             }
         }
-        
+
         task.resume()
     }
 }

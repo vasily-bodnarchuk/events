@@ -10,7 +10,7 @@ import Foundation
 enum ViewControllerType {
     case coreLaunchingScreen
     case events(_ type: Subtypes.Event)
-    
+
     class Subtypes {}
 }
 

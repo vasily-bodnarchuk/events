@@ -27,4 +27,3 @@ private struct Empty: Decodable { }
 extension UnkeyedDecodingContainer {
     mutating func skip() { _ = try? decode(Empty.self) }
 }
-

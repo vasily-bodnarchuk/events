@@ -12,10 +12,10 @@ class TableViewCell: UITableViewCell, Identifiable {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
     }
-    
+
     @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError() }
-    
+
     func setup() {
         selectionStyle = .none
     }

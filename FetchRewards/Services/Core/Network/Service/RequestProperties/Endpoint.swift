@@ -14,7 +14,7 @@ protocol EndpointComponent {
 enum Endpoint {
     case defaultApi(_ type: Enums.ApiVersion)
     class Enums {}
-    
+
     func getPath(hostFor: (Endpoint) -> String) -> String {
         let host = hostFor(self)
         switch self {
@@ -26,7 +26,7 @@ enum Endpoint {
 extension Endpoint.Enums {
     enum ApiVersion: EndpointComponent {
         case v2(_ type: ApiVersion2Paths)
-        
+
         var path: String {
             switch self {
             case .v2(let type): return "/2" + type.path
@@ -38,7 +38,7 @@ extension Endpoint.Enums {
 extension Endpoint.Enums {
     enum ApiVersion2Paths: EndpointComponent {
         case events
-        
+
         var path: String {
             switch self {
             case .events: return "/events"
@@ -46,4 +46,3 @@ extension Endpoint.Enums {
         }
     }
 }
-

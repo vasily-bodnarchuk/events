@@ -16,7 +16,7 @@ class EventTableViewCellViewModel: TableViewCellViewModel<EventTableViewCell> {
     let location: String
     let date: String
     let imageUrl: URL
-    
+
     init(id: Int, title: String, location: String, date: String, imageUrl: URL) {
         self.id = id
         self.title = title
@@ -24,7 +24,7 @@ class EventTableViewCellViewModel: TableViewCellViewModel<EventTableViewCell> {
         self.date = date
         self.imageUrl = imageUrl
     }
-    
+
     override func getCell(for tableView: ViewModelCellBasedTableView, at indexPath: IndexPath,
                           delegate: TableViewCellDelegateInterface?) -> UITableViewCell? {
         tableView.dequeueReusableCell(forceUnwrap: TableViewCell.self,
@@ -38,11 +38,11 @@ class EventTableViewCellViewModel: TableViewCellViewModel<EventTableViewCell> {
 // MARK: View
 
 class EventTableViewCell: TableViewCell {
-    
+
     private weak var titleLabel: UILabel!
     private weak var locationLabel: UILabel!
     private weak var dateLabel: UILabel!
-    
+
     override func setup() {
         super.setup()
         let stackView = UIStackView()
@@ -52,18 +52,23 @@ class EventTableViewCell: TableViewCell {
         stackView.rightAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.rightAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor).isActive = true
         stackView.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor).isActive = true
-        
+
         let verticalStackView = UIStackView()
         verticalStackView.axis = .vertical
         verticalStackView.spacing = 8
         stackView.addArrangedSubview(verticalStackView)
 
-        titleLabel = addArrangedLabel(to: verticalStackView, font: .systemFont(ofSize: 17, weight: .semibold), textColor: .black)
-        locationLabel = addArrangedLabel(to: verticalStackView, font: .systemFont(ofSize: 14, weight: .regular), textColor: .lightGray)
-        dateLabel = addArrangedLabel(to: verticalStackView, font: .systemFont(ofSize: 14, weight: .regular), textColor: .lightGray)
-
+        titleLabel = addArrangedLabel(to: verticalStackView,
+                                      font: .systemFont(ofSize: 17, weight: .semibold),
+                                      textColor: .black)
+        locationLabel = addArrangedLabel(to: verticalStackView,
+                                         font: .systemFont(ofSize: 14, weight: .regular),
+                                         textColor: .lightGray)
+        dateLabel = addArrangedLabel(to: verticalStackView,
+                                     font: .systemFont(ofSize: 14, weight: .regular),
+                                     textColor: .lightGray)
     }
-    
+
     private func addArrangedLabel(to stackView: UIStackView, font: UIFont, textColor: UIColor) -> UILabel {
         let label = UILabel()
         label.font = font
@@ -72,7 +77,7 @@ class EventTableViewCell: TableViewCell {
         stackView.addArrangedSubview(label)
         return label
     }
-    
+
     func set(id: Int, title: String, location: String, date: String, imageUrl: URL) {
         tag = id
         titleLabel.text = title

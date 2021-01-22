@@ -10,7 +10,7 @@ import UIKit
 class CoreImpl {
     fileprivate var router: Router!
     fileprivate var factory: Factory!
-    
+
     class func create() -> Core {
         let core = CoreImpl()
         let router = RouterImpl(delegate: core)
@@ -18,7 +18,7 @@ class CoreImpl {
         core.factory = FactoryImpl.create()
         return core
     }
-    
+
     private init() { }
 }
 
@@ -27,10 +27,8 @@ extension CoreImpl: Core {
        // router.route(to: .setRoot(type: .coreLaunchingScreen))
         router.route(to: .setRoot(type: .events(.all)),
                      properties: [.embedIn(type: .defaultNavigationController)])
-
     }
 }
-
 
 extension CoreImpl: RouterDelegate {
     func create(_ viewController: ViewControllerType, completion: @escaping ((UIViewController) -> Void)) {

@@ -14,21 +14,21 @@ protocol StaticDateFormatterInterface {
 enum DecodableDate<Formatter> where Formatter: StaticDateFormatterInterface {
     case value(Date)
     case error(DecodingError)
-    
+
     var value: Date? {
         switch self {
         case .value(let value): return value
         case .error: return nil
         }
     }
-    
+
     var error: DecodingError? {
         switch self {
         case .value: return nil
         case .error(let error): return error
         }
     }
-    
+
     enum DecodingError: Error {
         case wrongFormat(source: String, dateFormatter: DateFormatter)
         case decoding(error: Error)
@@ -41,7 +41,7 @@ extension DecodableDate: Decodable {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         return dateFormatter
     }
-    
+
     init(from decoder: Decoder) throws {
         do {
             let dateString = try decoder.singleValueContainer().decode(String.self)
@@ -55,4 +55,3 @@ extension DecodableDate: Decodable {
         }
     }
 }
-

@@ -28,16 +28,20 @@ extension ViewModelCellBasedTableView: TableViewCellViewModelRegistarable {
             registeredCellIdentifiers.insert(classToRegister.identifier)
         }
     }
-    
-    @available(*, deprecated, message: "use registerOnlyUnknownCells(with viewModels: [TableViewCellViewModel]) instead")
+
+    @available(*, deprecated,
+               message: "use registerOnlyUnknownCells(with viewModels: [TableViewCellViewModelInterface]) instead")
     override func register(_ nib: UINib?, forCellReuseIdentifier identifier: String) {}
-    
-    @available(*, deprecated, message: "use registerOnlyUnknownCells(with viewModels: [TableViewCellViewModel]) instead")
+
+    @available(*, deprecated,
+               message: "use registerOnlyUnknownCells(with viewModels: [TableViewCellViewModelInterface]) instead")
     override func register(_ nib: UINib?, forHeaderFooterViewReuseIdentifier identifier: String) { }
-    
-    @available(*, deprecated, message: "use registerOnlyUnknownCells(with viewModels: [TableViewCellViewModel]) instead")
+
+    @available(*, deprecated,
+               message: "use registerOnlyUnknownCells(with viewModels: [TableViewCellViewModelInterface]) instead")
     override func register(_ cellClass: AnyClass?, forCellReuseIdentifier identifier: String) {}
-    
-    @available(*, deprecated, message: "use registerOnlyUnknownCells(with viewModels: [TableViewCellViewModel]) instead")
+
+    @available(*, deprecated,
+               message: "use registerOnlyUnknownCells(with viewModels: [TableViewCellViewModelInterface]) instead")
     override func register(_ aClass: AnyClass?, forHeaderFooterViewReuseIdentifier identifier: String) {}
 }

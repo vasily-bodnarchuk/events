@@ -16,6 +16,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         core.launch()
         return true
     }
-
 }
-

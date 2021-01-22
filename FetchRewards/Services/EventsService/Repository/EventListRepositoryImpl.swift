@@ -11,9 +11,8 @@ class EventListRepositoryImpl: EventListRepository {
     private weak var networkService: NetworkService!
     init (networkService: NetworkService) {
         self.networkService = networkService
-
     }
-    
+
     func getAll(completion: @escaping (Result<EventListJSONModel, Error>) -> Void) {
         networkService.makeRequest(endpoint: .defaultApi(.v2(.events))) { (response: Result<EventListJSONModel, Error>) in
             switch response {
@@ -22,5 +21,4 @@ class EventListRepositoryImpl: EventListRepository {
             }
         }
     }
-
 }

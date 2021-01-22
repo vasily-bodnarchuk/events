@@ -8,22 +8,22 @@
 import UIKit
 
 class RouterImpl {
-    
+
     private lazy var window: UIWindow = {
         UIWindow(frame: UIScreen.main.bounds)
     }()
-    
+
     private weak var delegate: RouterDelegate!
-    
+
     init(delegate: RouterDelegate) {
         self.delegate = delegate
     }
-    
+
     private func setRoot(_ viewController: UIViewController) {
         window.rootViewController = viewController
         window.makeKeyAndVisible()
     }
-    
+
     private func createViewController(_ viewController: ViewControllerType,
                                       properties: [RouteProperty],
                                       completion: @escaping (UIViewController) -> Void) {

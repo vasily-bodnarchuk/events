@@ -23,7 +23,9 @@ extension UITableView {
         dequeueReusableCell(withIdentifier: T.identifier, for: indexPath) as? T
     }
 
-    func dequeueReusableCell<T: IdentifiableCell>(forceUnwrap aClass: T.Type, for indexPath: IndexPath, initital closure: ((T) -> Void)?) -> T! {
+    func dequeueReusableCell<T: IdentifiableCell>(forceUnwrap aClass: T.Type,
+                                                  for indexPath: IndexPath,
+                                                  initital closure: ((T) -> Void)?) -> T! {
         let cell = dequeueReusableCell(class: aClass, for: indexPath)!
         closure?(cell)
         return cell
