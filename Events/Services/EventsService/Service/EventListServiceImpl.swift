@@ -5,7 +5,7 @@
 //  Created by Vasily Bodnarchuk on 1/20/21.
 //
 
-import Foundation
+import UIKit
 
 class EventListServiceImpl {
     private let repository: EventListRepository
@@ -22,19 +22,21 @@ extension EventListServiceImpl: EventListService {
             case .success(let value):
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat =  "EEEE, dd MMM yyyy hh:mm a"
-                let viewModels = value.events.elements.flatMap { (event) -> [TableViewCellViewModelInterface] in
+                let verticalSpacing: CGFloat = 24
+                var viewModels = value.events.elements.flatMap { (event) -> [TableViewCellViewModelInterface] in
                     guard let date = event.datetime_utc.value,
                           let imageUrl = event.performers.elements.first?.image else { return [] }
                     let dateString = dateFormatter.string(from: date)
                     return [
+                        VerticalSpacingTableViewCellViewModel(height: verticalSpacing),
                         EventTableViewCellViewModel.init(id: event.id,
                                                          title: event.title,
                                                          location: event.venue.display_location,
                                                          date: dateString,
-                                                         imageUrl: imageUrl),
-                        VerticalSpacingTableViewCellViewModel(height: 28)
+                                                         imageUrl: imageUrl)
                     ]
                 }
+                viewModels.append(VerticalSpacingTableViewCellViewModel(height: verticalSpacing))
                 DispatchQueue.main.async { completion(.success(viewModels)) }
             }
         }

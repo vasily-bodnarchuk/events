@@ -216,7 +216,7 @@ opt_in_rules: # some rules are turned off by default, so you need to opt-in
 line_length: 200
 
 included:
-  - FetchRewards
+  - Events
   
 # Type name should only contain alphanumeric characters, start with an uppercase character and span between 3 and 40 characters in length.
 # https://realm.github.io/SwiftLint/type_name.html
