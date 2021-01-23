@@ -8,9 +8,11 @@
 import Foundation
 
 protocol EventListService: class {
-    func loadAll(searchBy keyword: String?, completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void)
-    func loadNextPageIfPossible(completion: @escaping (Result<LoadNextPageResult, Error>) -> Void)
-    func reload(completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void)
+    typealias Delegate = EventTableViewCellViewModelDelegate
+    func loadAll(searchBy keyword: String?, delegate: Delegate,
+                 completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void)
+    func loadNextPageIfPossible(delegate: Delegate, completion: @escaping (Result<LoadNextPageResult, Error>) -> Void)
+    func reload(delegate: Delegate, completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void)
 }
 
 enum LoadNextPageResult {

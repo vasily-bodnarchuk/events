@@ -7,19 +7,19 @@
 
 import UIKit
 
-class TableViewCellViewModel<T>: TableViewCellViewModelInterface where T: UITableViewCell & Identifiable {
+class TableViewCellViewModel<Cell>: TableViewCellViewModelInterface where Cell: UITableViewCell & Identifiable {
 
-    typealias TableViewCell = T
+    typealias TableViewCell = Cell
 
     func getCellClassForRegister(in tableView: ViewModelCellBasedTableView) -> (UITableViewCell & Identifiable).Type {
-        T.self
+        Cell.self
     }
 
     func getRowHight(for tableView: ViewModelCellBasedTableView, at indexPath: IndexPath) -> CGFloat { -1 }
 
-    func getCell(for tableView: ViewModelCellBasedTableView,
-                 at indexPath: IndexPath,
-                 delegate: TableViewCellDelegateInterface?) -> UITableViewCell? {
+    func getCell(for tableView: ViewModelCellBasedTableView, at indexPath: IndexPath) -> UITableViewCell? {
         UITableViewCell()
     }
+
+    func didSelect(rowAt indexPath: IndexPath, in tableView: ViewModelCellBasedTableView) { }
 }

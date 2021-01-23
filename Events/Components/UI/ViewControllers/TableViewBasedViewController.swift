@@ -16,7 +16,7 @@ class TableViewBasedViewController: UIViewController {
         tableView = createTableView(embedIn: view)
         tableView.addRefreshControll(actionTarget: self, action: #selector(pullToRefreshHandler))
     }
-    
+
     @objc func pullToRefreshHandler(_ refreshControl: UIRefreshControl) {
         tableView?.endRefreshing()
     }
@@ -47,7 +47,7 @@ extension TableViewBasedViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int { viewModels.isEmpty ? 0 : 1 }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { viewModels.count }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        viewModels[indexPath.row].getCell(for: tableView.self as! ViewModelCellBasedTableView, at: indexPath, delegate: nil) ?? UITableViewCell()
+        viewModels[indexPath.row].getCell(for: tableView.self as! ViewModelCellBasedTableView, at: indexPath) ?? UITableViewCell()
     }
 }
 
@@ -55,6 +55,12 @@ extension TableViewBasedViewController: UITableViewDataSource {
 
 extension TableViewBasedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        viewModels[indexPath.row].getRowHight(for: tableView.self as! ViewModelCellBasedTableView, at: indexPath)
+        guard let tableView = tableView as? ViewModelCellBasedTableView else { return -1 }
+        return viewModels[indexPath.row].getRowHight(for: tableView.self, at: indexPath)
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let tableView = tableView as? ViewModelCellBasedTableView else { return }
+        viewModels[indexPath.row].didSelect(rowAt: indexPath, in: tableView)
     }
 }

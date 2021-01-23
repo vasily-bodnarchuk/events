@@ -16,7 +16,5 @@ class TableViewCell: UITableViewCell, Identifiable {
     @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError() }
 
-    func setup() {
-        selectionStyle = .none
-    }
+    func setup() { selectionStyle = .none }
 }

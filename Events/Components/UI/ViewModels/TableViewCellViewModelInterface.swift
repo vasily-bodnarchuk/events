@@ -8,10 +8,11 @@
 import UIKit
 
 protocol TableViewCellViewModelInterface: ViewModel {
-    func getCellClassForRegister(in tableView: ViewModelCellBasedTableView) -> (UITableViewCell & Identifiable).Type
-    func getCell(for tableView: ViewModelCellBasedTableView, at indexPath: IndexPath,
-                 delegate: TableViewCellDelegateInterface?) -> UITableViewCell?
+    typealias IdentifiableTableViewCell = UITableViewCell & Identifiable
+    func getCellClassForRegister(in tableView: ViewModelCellBasedTableView) -> IdentifiableTableViewCell.Type
+    func getCell(for tableView: ViewModelCellBasedTableView, at indexPath: IndexPath) -> UITableViewCell?
     func getRowHight(for tableView: ViewModelCellBasedTableView, at indexPath: IndexPath) -> CGFloat
+    func didSelect(rowAt indexPath: IndexPath, in tableView: ViewModelCellBasedTableView)
 }
 
 extension TableViewCellViewModelInterface {

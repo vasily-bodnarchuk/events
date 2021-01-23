@@ -7,31 +7,42 @@
 
 import UIKit
 import Nuke
+
 // MARK: ViewModel
+
+protocol EventTableViewCellViewModelDelegate: ViewModelDelegate {
+    func didSelect(cell: EventTableViewCell, with viewModel: EventTableViewCellViewModel)
+}
 
 class EventTableViewCellViewModel: TableViewCellViewModel<EventTableViewCell> {
 
+    private weak var delegate: EventTableViewCellViewModelDelegate!
     let id: Int
     let title: String
     let location: String
     let date: String
     let imageUrl: URL
 
-    init(id: Int, title: String, location: String, date: String, imageUrl: URL) {
+    init(id: Int, title: String, location: String, date: String, imageUrl: URL, delegate: EventTableViewCellViewModelDelegate) {
         self.id = id
         self.title = title
         self.location = location
         self.date = date
         self.imageUrl = imageUrl
+        self.delegate = delegate
     }
 
-    override func getCell(for tableView: ViewModelCellBasedTableView, at indexPath: IndexPath,
-                          delegate: TableViewCellDelegateInterface?) -> UITableViewCell? {
+    override func getCell(for tableView: ViewModelCellBasedTableView, at indexPath: IndexPath) -> UITableViewCell? {
         tableView.dequeueReusableCell(forceUnwrap: TableViewCell.self,
                                       for: indexPath) { [weak self] cell in
             guard let self = self else { return }
             cell.set(id: self.id, title: self.title, location: self.location, date: self.date, imageUrl: self.imageUrl)
         }
+    }
+
+    override func didSelect(rowAt indexPath: IndexPath, in tableView: ViewModelCellBasedTableView) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? EventTableViewCell else { return }
+        delegate?.didSelect(cell: cell, with: self)
     }
 }
 

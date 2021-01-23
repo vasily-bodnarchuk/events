@@ -12,20 +12,13 @@ import UIKit
 class VerticalSpacingTableViewCellViewModel: TableViewCellViewModel<VerticalSpacingTableViewCell> {
     let height: CGFloat
 
-    init(height: CGFloat) {
-        self.height = height
+    init(height: CGFloat) { self.height = height }
+
+    override func getCell(for tableView: ViewModelCellBasedTableView, at indexPath: IndexPath) -> UITableViewCell? {
+        tableView.dequeueReusableCell(forceUnwrap: TableViewCell.self, for: indexPath) { _ in }
     }
 
-    override func getCell(for tableView: ViewModelCellBasedTableView, at indexPath: IndexPath,
-                          delegate: TableViewCellDelegateInterface?) -> UITableViewCell? {
-        tableView.dequeueReusableCell(forceUnwrap: TableViewCell.self,
-                                      for: indexPath) { _ in
-        }
-    }
-
-    override func getRowHight(for tableView: ViewModelCellBasedTableView, at indexPath: IndexPath) -> CGFloat {
-        height
-    }
+    override func getRowHight(for tableView: ViewModelCellBasedTableView, at indexPath: IndexPath) -> CGFloat { height }
 }
 
 // MARK: View

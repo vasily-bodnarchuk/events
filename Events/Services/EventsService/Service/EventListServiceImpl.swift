@@ -18,14 +18,17 @@ class EventListServiceImpl {
 
 extension EventListServiceImpl: EventListService {
 
-    func loadAll(searchBy keyword: String?, completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
+    func loadAll(searchBy keyword: String?, delegate: Delegate,
+                 completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
         hasNextPage.waitSet(value: 1)
         getAllRequestKeyword.waitSet(value: keyword)
         completion(.success([ActivityIndicatorTableViewCellViewModel()]))
-        reload(completion: completion)
+        reload(delegate: delegate, completion: completion)
     }
 
-    private func _loadAll(page: Int, completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
+    private func _loadAll(page: Int,
+                          delegate: Delegate,
+                          completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
         let keyword: String? = getAllRequestKeyword.waitGet().notQueueSafeValue
         _getAllRequestIsWaitingToBeExecuted.waitSet(value: false)
 
@@ -50,7 +53,7 @@ extension EventListServiceImpl: EventListService {
                                                          title: event.title,
                                                          location: event.venue.display_location,
                                                          date: dateString,
-                                                         imageUrl: imageUrl),
+                                                         imageUrl: imageUrl, delegate: delegate),
                         VerticalSpacingTableViewCellViewModel(height: verticalSpacing)
                     ]
                 }
@@ -62,12 +65,12 @@ extension EventListServiceImpl: EventListService {
         }
     }
 
-    func loadNextPageIfPossible(completion: @escaping (Result<LoadNextPageResult, Error>) -> Void) {
+    func loadNextPageIfPossible(delegate: Delegate, completion: @escaping (Result<LoadNextPageResult, Error>) -> Void) {
         guard let page = hasNextPage.waitGet().notQueueSafeValue else {
             DispatchQueue.main.async { completion(.success(.alreadyLoadedLastPage)) }
             return
         }
-        _loadAll(page: page) { result in
+        _loadAll(page: page, delegate: delegate) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error): completion(.failure(error))
@@ -77,7 +80,7 @@ extension EventListServiceImpl: EventListService {
         }
     }
 
-    func reload(completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
+    func reload(delegate: Delegate, completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
         hasNextPage.waitSet(value: 1)
         var isItTimeToMakeRequest = false
         _getAllRequestIsWaitingToBeExecuted.waitSet { isWaiting -> Bool in
@@ -87,7 +90,7 @@ extension EventListServiceImpl: EventListService {
 
         guard isItTimeToMakeRequest else { return }
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
-            self?._loadAll(page: 1, completion: completion)
+            self?._loadAll(page: 1, delegate: delegate, completion: completion)
         }
     }
 }

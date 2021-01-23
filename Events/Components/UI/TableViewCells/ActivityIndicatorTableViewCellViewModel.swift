@@ -11,12 +11,9 @@ import UIKit
 
 class ActivityIndicatorTableViewCellViewModel: TableViewCellViewModel<ActivityIndicatorTableViewCell> {
 
-    override func getCell(for tableView: ViewModelCellBasedTableView, at indexPath: IndexPath,
-                          delegate: TableViewCellDelegateInterface?) -> UITableViewCell? {
+    override func getCell(for tableView: ViewModelCellBasedTableView, at indexPath: IndexPath) -> UITableViewCell? {
         tableView.dequeueReusableCell(forceUnwrap: TableViewCell.self,
-                                      for: indexPath) { cell in
-            cell.activityIndicatorView.startAnimating()
-        }
+                                      for: indexPath) { $0.activityIndicatorView.startAnimating() }
     }
 
     override func getRowHight(for tableView: ViewModelCellBasedTableView, at indexPath: IndexPath) -> CGFloat {

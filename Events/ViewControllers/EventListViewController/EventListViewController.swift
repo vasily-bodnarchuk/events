@@ -47,7 +47,7 @@ class EventsListViewController: TableViewBasedViewController {
     }
 
     @objc override func pullToRefreshHandler(_ refreshControl: UIRefreshControl) {
-        eventListService.reload { [weak self] response in
+        eventListService.reload(delegate: self) { [weak self] response in
             self?.setViewModels(from: response) { self?.tableView.endRefreshing() }
         }
     }
@@ -93,7 +93,7 @@ extension EventsListViewController {
     }
 
     func makeSearchRequest(keyword: String? = nil, completion: (() -> Void)? = nil) {
-        eventListService.loadAll(searchBy: keyword) { [weak self] result in
+        eventListService.loadAll(searchBy: keyword, delegate: self) { [weak self] result in
             self?.setViewModels(from: result, completion: completion)
         }
     }
@@ -102,7 +102,8 @@ extension EventsListViewController {
 extension EventsListViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         activityIndicator?.start { [weak self] in
-            self?.eventListService.loadNextPageIfPossible { result in
+            guard let self = self else { return }
+            self.eventListService.loadNextPageIfPossible(delegate: self) { [weak self] result in
                 guard let self = self else { return }
                 defer { self.activityIndicator?.stop() }
                 switch result {
@@ -119,5 +120,11 @@ extension EventsListViewController {
                 }
             }
         }
+    }
+}
+
+extension EventsListViewController: EventTableViewCellViewModelDelegate {
+    func didSelect(cell: EventTableViewCell, with viewModel: EventTableViewCellViewModel) {
+        print("!!!!!!!")
     }
 }

@@ -48,4 +48,3 @@ class RefreshControl: UIRefreshControl {
         sendActions(for: .valueChanged)
     }
 }
-

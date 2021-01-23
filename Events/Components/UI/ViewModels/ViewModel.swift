@@ -8,4 +8,4 @@
 import Foundation
 
 protocol ViewModel {}
-protocol TableViewCellDelegateInterface: class { }
+protocol ViewModelDelegate: class { }
