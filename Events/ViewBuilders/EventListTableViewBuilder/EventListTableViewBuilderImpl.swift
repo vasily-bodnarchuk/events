@@ -1,29 +1,28 @@
 //
-//  EventListServiceImpl.swift
-//  FetchRewards
+//  EventListTableViewBuilderImpl.swift
+//  Events
 //
-//  Created by Vasily Bodnarchuk on 1/20/21.
+//  Created by Vasily Bodnarchuk on 1/23/21.
 //
 
 import UIKit
 
-class EventListServiceImpl {
-    private let repository: EventListRepository
+class EventListTableViewBuilderImpl: EventListTableViewBuilder {
+    private let eventListService: EventListService
     private var _getAllRequestIsWaitingToBeExecuted = AtomicValue(value: false)
     private var getAllRequestKeyword = AtomicValue<String?>(value: nil)
     private var hasNextPage = AtomicValue<Int?>(value: 1)
 
-    init(repository: EventListRepository) { self.repository = repository }
+    init(eventListService: EventListService) { self.eventListService = eventListService }
 }
 
-extension EventListServiceImpl: EventListService {
-
-    func loadAll(searchBy keyword: String?, delegate: Delegate,
-                 completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
+extension EventListTableViewBuilderImpl {
+    func getViewModelsForTheFirstPage(searchEventsBy keyword: String?, delegate: Delegate,
+                                      completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
         hasNextPage.waitSet(value: 1)
         getAllRequestKeyword.waitSet(value: keyword)
         completion(.success([ActivityIndicatorTableViewCellViewModel()]))
-        reload(delegate: delegate, completion: completion)
+        reloadViewModels(delegate: delegate, completion: completion)
     }
 
     private func _loadAll(page: Int,
@@ -32,7 +31,7 @@ extension EventListServiceImpl: EventListService {
         let keyword: String? = getAllRequestKeyword.waitGet().notQueueSafeValue
         _getAllRequestIsWaitingToBeExecuted.waitSet(value: false)
 
-        repository._loadAll(searchBy: keyword, page: page) { result in
+        eventListService.load(searchBy: keyword, page: page) { result in
             switch result {
             case .failure(let error): DispatchQueue.main.async { completion(.failure(error)) }
             case .success(let value):
@@ -65,7 +64,7 @@ extension EventListServiceImpl: EventListService {
         }
     }
 
-    func loadNextPageIfPossible(delegate: Delegate, completion: @escaping (Result<LoadNextPageResult, Error>) -> Void) {
+    func getViewModelsForTheNextPage(delegate: Delegate, completion: @escaping (Result<LoadNextPageResult, Error>) -> Void) {
         guard let page = hasNextPage.waitGet().notQueueSafeValue else {
             DispatchQueue.main.async { completion(.success(.alreadyLoadedLastPage)) }
             return
@@ -80,7 +79,7 @@ extension EventListServiceImpl: EventListService {
         }
     }
 
-    func reload(delegate: Delegate, completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
+    func reloadViewModels(delegate: Delegate, completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
         hasNextPage.waitSet(value: 1)
         var isItTimeToMakeRequest = false
         _getAllRequestIsWaitingToBeExecuted.waitSet { isWaiting -> Bool in

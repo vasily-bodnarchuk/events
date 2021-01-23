@@ -74,6 +74,12 @@
 		B880ED5925BBDFD9006C5266 /* ReloadCompletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED5825BBDFD9006C5266 /* ReloadCompletable.swift */; };
 		B880ED5C25BC9D0F006C5266 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED5B25BC9D0F006C5266 /* EventViewController.swift */; };
 		B880ED6325BCBEE0006C5266 /* RouterImpl+VisibleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED6225BCBEE0006C5266 /* RouterImpl+VisibleViewController.swift */; };
+		B880ED6A25BCD504006C5266 /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED6925BCD504006C5266 /* EventService.swift */; };
+		B880ED6D25BCD523006C5266 /* EventServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED6C25BCD523006C5266 /* EventServiceImpl.swift */; };
+		B880ED7225BCDC71006C5266 /* EventListTableViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED7125BCDC71006C5266 /* EventListTableViewBuilder.swift */; };
+		B880ED7625BCDCEB006C5266 /* EventListTableViewBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED7525BCDCEB006C5266 /* EventListTableViewBuilderImpl.swift */; };
+		B880ED7C25BCDF12006C5266 /* ViewBuilderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED7B25BCDF12006C5266 /* ViewBuilderFactory.swift */; };
+		B880ED8025BCDF1B006C5266 /* ViewBuilderFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED7F25BCDF1B006C5266 /* ViewBuilderFactoryImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +154,12 @@
 		B880ED5825BBDFD9006C5266 /* ReloadCompletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadCompletable.swift; sourceTree = "<group>"; };
 		B880ED5B25BC9D0F006C5266 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		B880ED6225BCBEE0006C5266 /* RouterImpl+VisibleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouterImpl+VisibleViewController.swift"; sourceTree = "<group>"; };
+		B880ED6925BCD504006C5266 /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
+		B880ED6C25BCD523006C5266 /* EventServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventServiceImpl.swift; sourceTree = "<group>"; };
+		B880ED7125BCDC71006C5266 /* EventListTableViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListTableViewBuilder.swift; sourceTree = "<group>"; };
+		B880ED7525BCDCEB006C5266 /* EventListTableViewBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListTableViewBuilderImpl.swift; sourceTree = "<group>"; };
+		B880ED7B25BCDF12006C5266 /* ViewBuilderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilderFactory.swift; sourceTree = "<group>"; };
+		B880ED7F25BCDF1B006C5266 /* ViewBuilderFactoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilderFactoryImpl.swift; sourceTree = "<group>"; };
 		C4B18B36154502DAF3A41980 /* Pods-Events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.release.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.release.xcconfig"; sourceTree = "<group>"; };
 		E90FD79328B62888CA80E4B9 /* Pods_Events.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Events.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -207,6 +219,8 @@
 			children = (
 				B880EB6C25B72F43006C5266 /* ViewControllers */,
 				B880EB3925B71CC6006C5266 /* Services */,
+				B880ED6F25BCDBB2006C5266 /* ViewBuilders */,
+				B880EB3A25B71CEF006C5266 /* Core */,
 				B880EC3425B8F17B006C5266 /* Components */,
 				B880EC6025B9E5D7006C5266 /* Extensions */,
 				B880EB2325B69B65006C5266 /* AppDelegate.swift */,
@@ -221,8 +235,7 @@
 		B880EB3925B71CC6006C5266 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B880EC1D25B8EB65006C5266 /* EventsService */,
-				B880EB3A25B71CEF006C5266 /* Core */,
+				B880ED7825BCDD0A006C5266 /* Data */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -254,6 +267,7 @@
 		B880EB3C25B71D21006C5266 /* Factory */ = {
 			isa = PBXGroup;
 			children = (
+				B880ED7A25BCDEF4006C5266 /* ViewBuilderFactory */,
 				B880EB4725B71E00006C5266 /* ViewControllerFactory */,
 				B880EB4625B71DD8006C5266 /* ServiceFactory */,
 				B880EB7225B73050006C5266 /* Factory.swift */,
@@ -300,13 +314,13 @@
 			path = EventListViewController;
 			sourceTree = "<group>";
 		};
-		B880EC1D25B8EB65006C5266 /* EventsService */ = {
+		B880EC1D25B8EB65006C5266 /* EventListService */ = {
 			isa = PBXGroup;
 			children = (
 				B880EC1E25B8EB86006C5266 /* Service */,
 				B880EC1F25B8EB98006C5266 /* Repository */,
 			);
-			path = EventsService;
+			path = EventListService;
 			sourceTree = "<group>";
 		};
 		B880EC1E25B8EB86006C5266 /* Service */ = {
@@ -515,6 +529,58 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		B880ED6625BCC404006C5266 /* EventService */ = {
+			isa = PBXGroup;
+			children = (
+				B880ED6725BCC415006C5266 /* Service */,
+			);
+			path = EventService;
+			sourceTree = "<group>";
+		};
+		B880ED6725BCC415006C5266 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				B880ED6925BCD504006C5266 /* EventService.swift */,
+				B880ED6C25BCD523006C5266 /* EventServiceImpl.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		B880ED6F25BCDBB2006C5266 /* ViewBuilders */ = {
+			isa = PBXGroup;
+			children = (
+				B880ED7025BCDBE7006C5266 /* EventListTableViewBuilder */,
+			);
+			path = ViewBuilders;
+			sourceTree = "<group>";
+		};
+		B880ED7025BCDBE7006C5266 /* EventListTableViewBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				B880ED7125BCDC71006C5266 /* EventListTableViewBuilder.swift */,
+				B880ED7525BCDCEB006C5266 /* EventListTableViewBuilderImpl.swift */,
+			);
+			path = EventListTableViewBuilder;
+			sourceTree = "<group>";
+		};
+		B880ED7825BCDD0A006C5266 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B880ED6625BCC404006C5266 /* EventService */,
+				B880EC1D25B8EB65006C5266 /* EventListService */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		B880ED7A25BCDEF4006C5266 /* ViewBuilderFactory */ = {
+			isa = PBXGroup;
+			children = (
+				B880ED7B25BCDF12006C5266 /* ViewBuilderFactory.swift */,
+				B880ED7F25BCDF1B006C5266 /* ViewBuilderFactoryImpl.swift */,
+			);
+			path = ViewBuilderFactory;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -648,6 +714,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B880ED7625BCDCEB006C5266 /* EventListTableViewBuilderImpl.swift in Sources */,
+				B880ED6A25BCD504006C5266 /* EventService.swift in Sources */,
 				B880ED4A25BBCA77006C5266 /* MetaJSONModel.swift in Sources */,
 				B880EC2125B8EBCF006C5266 /* EventListService.swift in Sources */,
 				B880EB4425B71DAD006C5266 /* Core.swift in Sources */,
@@ -661,8 +729,10 @@
 				B880EB5425B72049006C5266 /* CoreImpl.swift in Sources */,
 				B880EC2825B8EC11006C5266 /* EventListRepository.swift in Sources */,
 				B880EB4925B71E25006C5266 /* ViewControllerFactory.swift in Sources */,
+				B880ED8025BCDF1B006C5266 /* ViewBuilderFactoryImpl.swift in Sources */,
 				B880ED0325BB4B15006C5266 /* VenueJSONModel.swift in Sources */,
 				B880EC3725B8F1A0006C5266 /* ViewModel.swift in Sources */,
+				B880ED7C25BCDF12006C5266 /* ViewBuilderFactory.swift in Sources */,
 				B880EC3B25B8F1AC006C5266 /* TableViewCellViewModelInterface.swift in Sources */,
 				B880EC7425B9F4E6006C5266 /* TableViewCellViewModel.swift in Sources */,
 				B880EB6625B72253006C5266 /* Route.swift in Sources */,
@@ -695,6 +765,7 @@
 				B880ED4D25BBCC46006C5266 /* LoadMoreActivityIndicator.swift in Sources */,
 				B880EB4C25B71E3F006C5266 /* ViewControllerType.swift in Sources */,
 				B880ECDD25BB1D00006C5266 /* HTTPMethod.swift in Sources */,
+				B880ED6D25BCD523006C5266 /* EventServiceImpl.swift in Sources */,
 				B880ED5625BBDC4F006C5266 /* UIScrollView.swift in Sources */,
 				B880ECF425BB2AB1006C5266 /* URL.swift in Sources */,
 				B880ECBF25BA7DCF006C5266 /* NetworkService.swift in Sources */,
@@ -708,6 +779,7 @@
 				B880ECE925BB2383006C5266 /* ConfigurationServiceImpl.swift in Sources */,
 				B880EB4125B71D62006C5266 /* RouterImpl.swift in Sources */,
 				B880EB2425B69B65006C5266 /* AppDelegate.swift in Sources */,
+				B880ED7225BCDC71006C5266 /* EventListTableViewBuilder.swift in Sources */,
 				B880EB7625B7305F006C5266 /* FactoryImpl.swift in Sources */,
 				B880EB7D25B731AC006C5266 /* ServiceFactoryImpl.swift in Sources */,
 				B880EB4F25B71EC1006C5266 /* ViewControllerFactoryImpl.swift in Sources */,

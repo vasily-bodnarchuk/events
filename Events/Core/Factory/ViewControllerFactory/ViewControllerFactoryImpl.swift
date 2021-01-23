@@ -16,15 +16,19 @@ class ViewControllerFactoryImpl {
 
 extension ViewControllerFactoryImpl: ViewControllerFactory {
     func create(_ viewController: ViewControllerType, completion: @escaping ((UIViewController) -> Void)) {
-        var newViewController: UIViewController
+        var newViewController: UIViewController!
         switch viewController {
         case .coreLaunchingScreen: newViewController = CoreLaunchingViewController()
         case .events(let type):
             switch type {
-            case .all: newViewController = EventsListViewController(eventListService: delegate!.serviceFactory.createEventListService(),
-                                                                    router: delegate.router)
-            case .specific(let id):
+            case .all:
+                let eventListService = delegate!.serviceFactory.createEventListService()
+                let eventListTableViewBuilder = delegate!.viewBuilderFactory.createEventListTableViewBuilder(eventListService: eventListService)
+                newViewController = EventsListViewController(eventListTableViewBuilder: eventListTableViewBuilder,
+                                                             router: delegate.router)
+            case let .alreadyLoadedEvent(id, title, location, date, imageUrl):
                 newViewController = EventViewController()
+                newViewController.title = title
             }
         }
         completion(newViewController)

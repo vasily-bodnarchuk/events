@@ -10,12 +10,12 @@ import UIKit
 class EventsListViewController: TableViewBasedViewController {
 
     private weak var router: Router!
-    private let eventListService: EventListService
+    private let tableViewBuilder: EventListTableViewBuilder
     private var keyboardNotifications: KeyboardNotifications!
     private var activityIndicator: LoadMoreActivityIndicator?
 
-    init(eventListService: EventListService, router: Router) {
-        self.eventListService = eventListService
+    init(eventListTableViewBuilder: EventListTableViewBuilder, router: Router) {
+        self.tableViewBuilder = eventListTableViewBuilder
         self.router = router
         super.init(nibName: nil, bundle: nil)
     }
@@ -49,7 +49,7 @@ class EventsListViewController: TableViewBasedViewController {
     }
 
     @objc override func pullToRefreshHandler(_ refreshControl: UIRefreshControl) {
-        eventListService.reload(delegate: self) { [weak self] response in
+        tableViewBuilder.reloadViewModels(delegate: self) { [weak self] response in
             self?.setViewModels(from: response) { self?.tableView.endRefreshing() }
         }
     }
@@ -95,7 +95,7 @@ extension EventsListViewController {
     }
 
     func makeSearchRequest(keyword: String? = nil, completion: (() -> Void)? = nil) {
-        eventListService.loadAll(searchBy: keyword, delegate: self) { [weak self] result in
+        tableViewBuilder.getViewModelsForTheFirstPage(searchEventsBy: keyword, delegate: self) { [weak self] result in
             self?.setViewModels(from: result, completion: completion)
         }
     }
@@ -105,7 +105,7 @@ extension EventsListViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         activityIndicator?.start { [weak self] in
             guard let self = self else { return }
-            self.eventListService.loadNextPageIfPossible(delegate: self) { [weak self] result in
+            self.tableViewBuilder.getViewModelsForTheNextPage(delegate: self) { [weak self] result in
                 guard let self = self else { return }
                 defer { self.activityIndicator?.stop() }
                 switch result {
@@ -127,6 +127,11 @@ extension EventsListViewController {
 
 extension EventsListViewController: EventTableViewCellViewModelDelegate {
     func didSelect(cell: EventTableViewCell, with viewModel: EventTableViewCellViewModel) {
-        router.route(to: .push(when: .always(type: ViewControllerType.events(.specific(id: viewModel.id)), animated: true)))
+        router.route(to: .push(when: .always(type: .events(.alreadyLoadedEvent(id: viewModel.id,
+                                                                               title: viewModel.title,
+                                                                               location: viewModel.location,
+                                                                               date: viewModel.date,
+                                                                               imageUrl: viewModel.imageUrl)),
+                                             animated: true)))
     }
 }
