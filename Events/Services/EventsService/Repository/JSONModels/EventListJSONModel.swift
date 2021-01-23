@@ -9,4 +9,5 @@ import Foundation
 
 struct EventListJSONModel: Decodable {
     let events: CompactDecodableArray<EventJSONModel>
+    let meta: MetaJSONModel
 }

@@ -26,6 +26,7 @@ class ActivityIndicatorTableViewCellViewModel: TableViewCellViewModel<ActivityIn
 // MARK: View
 
 class ActivityIndicatorTableViewCell: TableViewCell {
+    private weak var activityIndicatorView: UIActivityIndicatorView!
     override func setup() {
         super.setup()
         let activityIndicatorView = UIActivityIndicatorView()
@@ -33,6 +34,12 @@ class ActivityIndicatorTableViewCell: TableViewCell {
         activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         activityIndicatorView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         activityIndicatorView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        activityIndicatorView.startAnimating()
+        self.activityIndicatorView = activityIndicatorView
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
         activityIndicatorView.startAnimating()
     }
 }

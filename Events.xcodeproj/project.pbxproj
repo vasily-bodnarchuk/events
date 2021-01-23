@@ -66,6 +66,9 @@
 		B880ED3725BBB3F7006C5266 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED3625BBB3F7006C5266 /* UIColor.swift */; };
 		B880ED4225BBBA3D006C5266 /* UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED4125BBBA3D006C5266 /* UISearchBar.swift */; };
 		B880ED4525BBBBF0006C5266 /* KeyboardNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED4425BBBBF0006C5266 /* KeyboardNotifications.swift */; };
+		B880ED4A25BBCA77006C5266 /* MetaJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED4925BBCA77006C5266 /* MetaJSONModel.swift */; };
+		B880ED4D25BBCC46006C5266 /* LoadMoreActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED4C25BBCC46006C5266 /* LoadMoreActivityIndicator.swift */; };
+		B880ED5025BBCF2E006C5266 /* AtomicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED4F25BBCF2E006C5266 /* AtomicValue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +135,9 @@
 		B880ED3625BBB3F7006C5266 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		B880ED4125BBBA3D006C5266 /* UISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBar.swift; sourceTree = "<group>"; };
 		B880ED4425BBBBF0006C5266 /* KeyboardNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardNotifications.swift; sourceTree = "<group>"; };
+		B880ED4925BBCA77006C5266 /* MetaJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaJSONModel.swift; sourceTree = "<group>"; };
+		B880ED4C25BBCC46006C5266 /* LoadMoreActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreActivityIndicator.swift; sourceTree = "<group>"; };
+		B880ED4F25BBCF2E006C5266 /* AtomicValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicValue.swift; sourceTree = "<group>"; };
 		C4B18B36154502DAF3A41980 /* Pods-Events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.release.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.release.xcconfig"; sourceTree = "<group>"; };
 		E90FD79328B62888CA80E4B9 /* Pods_Events.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Events.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -370,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				B880EC4125B8F224006C5266 /* ViewModelCellBasedTableView.swift */,
+				B880ED4C25BBCC46006C5266 /* LoadMoreActivityIndicator.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -419,6 +426,7 @@
 				B880ED0B25BB6B2C006C5266 /* DecodableDate */,
 				B880ECD725BA8B00006C5266 /* AppError.swift */,
 				B880ECCB25BA8334006C5266 /* CompactDecodableArray.swift */,
+				B880ED4F25BBCF2E006C5266 /* AtomicValue.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -430,6 +438,7 @@
 				B880ECD425BA85EC006C5266 /* EventJSONModel.swift */,
 				B880ED2325BB7E73006C5266 /* PerformerJSONModel.swift */,
 				B880ED0225BB4B15006C5266 /* VenueJSONModel.swift */,
+				B880ED4925BBCA77006C5266 /* MetaJSONModel.swift */,
 			);
 			path = JSONModels;
 			sourceTree = "<group>";
@@ -624,6 +633,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B880ED4A25BBCA77006C5266 /* MetaJSONModel.swift in Sources */,
 				B880EC2125B8EBCF006C5266 /* EventListService.swift in Sources */,
 				B880EB4425B71DAD006C5266 /* Core.swift in Sources */,
 				B880EC4225B8F224006C5266 /* ViewModelCellBasedTableView.swift in Sources */,
@@ -649,6 +659,7 @@
 				B880ECD125BA85DA006C5266 /* EventListJSONModel.swift in Sources */,
 				B880EB7A25B73109006C5266 /* ServiceFactory.swift in Sources */,
 				B880ED4525BBBBF0006C5266 /* KeyboardNotifications.swift in Sources */,
+				B880ED5025BBCF2E006C5266 /* AtomicValue.swift in Sources */,
 				B880EC7725B9F78E006C5266 /* TableViewCell.swift in Sources */,
 				B880ECD825BA8B00006C5266 /* AppError.swift in Sources */,
 				B880EC4A25B8F36E006C5266 /* ActivityIndicatorTableViewCellViewModel.swift in Sources */,
@@ -663,6 +674,7 @@
 				B880ED0D25BB6B47006C5266 /* DefaultDateFormatter.swift in Sources */,
 				B880ECE125BB1D17006C5266 /* Endpoint.swift in Sources */,
 				B880ECCC25BA8334006C5266 /* CompactDecodableArray.swift in Sources */,
+				B880ED4D25BBCC46006C5266 /* LoadMoreActivityIndicator.swift in Sources */,
 				B880EB4C25B71E3F006C5266 /* ViewControllerType.swift in Sources */,
 				B880ECDD25BB1D00006C5266 /* HTTPMethod.swift in Sources */,
 				B880ECF425BB2AB1006C5266 /* URL.swift in Sources */,

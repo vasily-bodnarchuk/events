@@ -8,5 +8,11 @@
 import Foundation
 
 protocol EventListService: class {
-    func getAll(searchBy keyword: String?, completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void)
+    func loadAll(searchBy keyword: String?, completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void)
+    func loadNextPageIfPossible(completion: @escaping (Result<LoadNextPageResult, Error>) -> Void)
+}
+
+enum LoadNextPageResult {
+    case viewModels(_ array: [TableViewCellViewModelInterface])
+    case alreadyLoadedLastPage
 }

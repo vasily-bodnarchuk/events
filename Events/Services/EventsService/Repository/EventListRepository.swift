@@ -8,5 +8,6 @@
 import Foundation
 
 protocol EventListRepository: class {
-    func getAll(searchBy keyword: String?, completion: @escaping (Result<EventListJSONModel, Error>) -> Void)
+    func _loadAll(searchBy keyword: String?, page: Int,
+                  completion: @escaping (Result<EventListJSONModel, Error>) -> Void)
 }

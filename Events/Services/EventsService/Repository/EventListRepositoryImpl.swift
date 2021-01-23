@@ -13,8 +13,11 @@ class EventListRepositoryImpl: EventListRepository {
         self.networkService = networkService
     }
 
-    func getAll(searchBy keyword: String?, completion: @escaping (Result<EventListJSONModel, Error>) -> Void) {
+    func _loadAll(searchBy keyword: String?, page: Int,
+                  completion: @escaping (Result<EventListJSONModel, Error>) -> Void) {
         var urlQuery = [String: Any]()
+        urlQuery["per_page"] = 20
+        urlQuery["page"] = page
         if let keyword  = keyword, !keyword.isEmpty { urlQuery["q"] = keyword.replacingOccurrences(of: " ", with: "+") }
         networkService.makeRequest(endpoint: .defaultApi(.v2(.events)),
                                    urlQuery: urlQuery) { (response: Result<EventListJSONModel, Error>) in
