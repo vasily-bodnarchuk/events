@@ -15,7 +15,7 @@ class CoreImpl {
         let core = CoreImpl()
         let router = RouterImpl(delegate: core)
         core.router = router
-        core.factory = FactoryImpl.create()
+        core.factory = FactoryImpl.create(router: router)
         return core
     }
 

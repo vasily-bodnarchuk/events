@@ -8,13 +8,15 @@
 import UIKit
 
 class FactoryImpl {
+    private weak var _router: Router!
     private var viewControllerFactory: ViewControllerFactory!
     private var _serviceFactory: ServiceFactory!
 
-    class func create() -> Factory {
+    class func create(router: Router) -> Factory {
         let factory = FactoryImpl()
         factory._serviceFactory = ServiceFactoryImpl()
         factory.viewControllerFactory = ViewControllerFactoryImpl(delegate: factory)
+        factory._router = router
         return factory
     }
 }
@@ -26,5 +28,7 @@ extension FactoryImpl: Factory {
 }
 
 extension FactoryImpl: ViewControllerFactoryDelegate {
+    var router: Router { _router }
+
     var serviceFactory: ServiceFactory { _serviceFactory }
 }

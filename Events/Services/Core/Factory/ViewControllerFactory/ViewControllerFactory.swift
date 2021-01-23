@@ -13,4 +13,5 @@ protocol ViewControllerFactory {
 
 protocol ViewControllerFactoryDelegate: class {
     var serviceFactory: ServiceFactory { get }
+    var router: Router { get }
 }

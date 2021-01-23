@@ -73,6 +73,7 @@
 		B880ED5625BBDC4F006C5266 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED5525BBDC4F006C5266 /* UIScrollView.swift */; };
 		B880ED5925BBDFD9006C5266 /* ReloadCompletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED5825BBDFD9006C5266 /* ReloadCompletable.swift */; };
 		B880ED5C25BC9D0F006C5266 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED5B25BC9D0F006C5266 /* EventViewController.swift */; };
+		B880ED6325BCBEE0006C5266 /* RouterImpl+VisibleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED6225BCBEE0006C5266 /* RouterImpl+VisibleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -146,6 +147,7 @@
 		B880ED5525BBDC4F006C5266 /* UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
 		B880ED5825BBDFD9006C5266 /* ReloadCompletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadCompletable.swift; sourceTree = "<group>"; };
 		B880ED5B25BC9D0F006C5266 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		B880ED6225BCBEE0006C5266 /* RouterImpl+VisibleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouterImpl+VisibleViewController.swift"; sourceTree = "<group>"; };
 		C4B18B36154502DAF3A41980 /* Pods-Events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.release.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.release.xcconfig"; sourceTree = "<group>"; };
 		E90FD79328B62888CA80E4B9 /* Pods_Events.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Events.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -244,6 +246,7 @@
 				B880EC5825B9D750006C5266 /* Models */,
 				B880EB3D25B71D43006C5266 /* Router.swift */,
 				B880EB4025B71D62006C5266 /* RouterImpl.swift */,
+				B880ED6225BCBEE0006C5266 /* RouterImpl+VisibleViewController.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -680,6 +683,7 @@
 				B880EC5A25B9D88F006C5266 /* RouteProperty.swift in Sources */,
 				B880ED5325BBDC2E006C5266 /* RefreshControl.swift in Sources */,
 				B880EC2B25B8EC30006C5266 /* EventListRepositoryImpl.swift in Sources */,
+				B880ED6325BCBEE0006C5266 /* RouterImpl+VisibleViewController.swift in Sources */,
 				B880ED2425BB7E73006C5266 /* PerformerJSONModel.swift in Sources */,
 				B880EB3E25B71D43006C5266 /* Router.swift in Sources */,
 				B880EC6225B9E5ED006C5266 /* UITableView.swift in Sources */,

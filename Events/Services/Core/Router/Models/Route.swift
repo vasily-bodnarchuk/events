@@ -17,7 +17,7 @@ enum Route {
 extension Route.Enums {
 
     enum WhenPush {
-        case always(type: ViewControllerType, completion: () -> Void, animated: Bool)
+        case always(type: ViewControllerType, animated: Bool)
     }
 
     enum WhenPresent {

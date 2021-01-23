@@ -17,5 +17,6 @@ enum ViewControllerType {
 extension ViewControllerType.Subtypes {
     enum Event {
         case all
+        case specific(id: Int)
     }
 }

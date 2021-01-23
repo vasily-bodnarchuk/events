@@ -9,12 +9,14 @@ import UIKit
 
 class EventsListViewController: TableViewBasedViewController {
 
+    private weak var router: Router!
     private let eventListService: EventListService
     private var keyboardNotifications: KeyboardNotifications!
     private var activityIndicator: LoadMoreActivityIndicator?
 
-    init(eventListService: EventListService) {
+    init(eventListService: EventListService, router: Router) {
         self.eventListService = eventListService
+        self.router = router
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -125,6 +127,6 @@ extension EventsListViewController {
 
 extension EventsListViewController: EventTableViewCellViewModelDelegate {
     func didSelect(cell: EventTableViewCell, with viewModel: EventTableViewCellViewModel) {
-        print("!!!!!!!")
+        router.route(to: .push(when: .always(type: ViewControllerType.events(.specific(id: viewModel.id)), animated: true)))
     }
 }

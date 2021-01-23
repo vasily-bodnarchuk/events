@@ -9,15 +9,10 @@ import UIKit
 
 class RouterImpl {
 
-    private lazy var window: UIWindow = {
-        UIWindow(frame: UIScreen.main.bounds)
-    }()
-
+    private(set) lazy var window: UIWindow = { UIWindow(frame: UIScreen.main.bounds) }()
     private weak var delegate: RouterDelegate!
 
-    init(delegate: RouterDelegate) {
-        self.delegate = delegate
-    }
+    init(delegate: RouterDelegate) { self.delegate = delegate }
 
     private func setRoot(_ viewController: UIViewController) {
         window.rootViewController = viewController
@@ -28,15 +23,17 @@ class RouterImpl {
                                       properties: [RouteProperty],
                                       completion: @escaping (UIViewController) -> Void) {
         delegate.create(viewController) { newViewController in
+            var resultViewController = newViewController
             for property in properties {
                 switch property {
                 case .embedIn(let type):
                     switch type {
                     case .defaultNavigationController:
-                        completion(UINavigationController(rootViewController: newViewController))
+                        resultViewController = UINavigationController(rootViewController: resultViewController)
                     }
                 }
             }
+            completion(resultViewController)
         }
     }
 }
@@ -49,7 +46,16 @@ extension RouterImpl: Router {
                 self?.setRoot(newViewController)
             }
         case .present(let when): break
-        case .push(let when): break
+        case .push(let when):
+            switch when {
+            case let .always(type, animated):
+                createViewController(type, properties: properties) { [weak self] newViewController in
+                    guard let self = self else { return }
+                    guard let visibleViewController = self.getVisibleViewController(),
+                          let navigationController = visibleViewController as? UINavigationController ?? visibleViewController.navigationController else { return }
+                    navigationController.pushViewController(newViewController, animated: animated)
+                }
+            }
         }
     }
 }
