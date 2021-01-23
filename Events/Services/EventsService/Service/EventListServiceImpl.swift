@@ -9,14 +9,40 @@ import UIKit
 
 class EventListServiceImpl {
     private let repository: EventListRepository
-    init(repository: EventListRepository) {
-        self.repository = repository
-    }
+    private lazy var semaphore = DispatchSemaphore(value: 1)
+    
+    private var _getAllRequestIsWaitingToBeExecuted = false
+    private var getAllRequestKeyword: String?
+    init(repository: EventListRepository) { self.repository = repository }
+    deinit { semaphore.signal() }
 }
 
 extension EventListServiceImpl: EventListService {
-    func getAll(completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
-        repository.getAll { result in
+    func getAll(searchBy keyword: String?, completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
+        var isItTimeToMakeRequest = false
+        DispatchQueue.main.async { completion(.success([ActivityIndicatorTableViewCellViewModel()])) }
+
+        semaphore.wait()
+        getAllRequestKeyword = keyword
+        if !_getAllRequestIsWaitingToBeExecuted { isItTimeToMakeRequest = true }
+        _getAllRequestIsWaitingToBeExecuted = true
+        semaphore.signal()
+
+        guard isItTimeToMakeRequest else { return }
+        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+            self?._getAll(completion: completion)
+        }
+    }
+
+    private func _getAll(completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
+        let keyword: String?
+        semaphore.wait()
+        _getAllRequestIsWaitingToBeExecuted = false
+        keyword = getAllRequestKeyword
+        getAllRequestKeyword = nil
+        semaphore.signal()
+
+        repository.getAll(searchBy: keyword) { result in
             switch result {
             case .failure(let error): DispatchQueue.main.async { completion(.failure(error)) }
             case .success(let value):

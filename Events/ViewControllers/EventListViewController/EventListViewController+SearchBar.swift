@@ -31,4 +31,8 @@ extension EventsListViewController: UISearchBarDelegate {
         searchBar.showsCancelButton = false
         return true
     }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        makeSearchRequest(keyword: searchText)
+    }
 }

@@ -99,4 +99,9 @@ class EventTableViewCell: TableViewCell {
         dateLabel.text = date
         Nuke.loadImage(with: imageUrl, into: eventImageView)
     }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        eventImageView.image = nil
+    }
 }

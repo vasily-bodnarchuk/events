@@ -26,16 +26,7 @@ class EventsListViewController: TableViewBasedViewController {
         if let navigationBar = navigationController?.navigationBar { setup(navigationBar: navigationBar) }
         navigationItem.titleView = createSearchBar()
         tableView.keyboardDismissMode = .interactive
-        eventListService.getAll { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .failure(let error): break
-            case .success(let viewModels):
-                self.tableView.registerOnlyUnknownCells(with: viewModels)
-                self.viewModels = viewModels
-                self.tableView.reloadData()
-            }
-        }
+        makeSearchRequest()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -55,6 +46,8 @@ class EventsListViewController: TableViewBasedViewController {
     }
 }
 
+// MARK: KeyboardNotificationsDelegate
+
 extension EventsListViewController: KeyboardNotificationsDelegate {
 
     func keyboardWillShow(notification: NSNotification) {
@@ -65,5 +58,23 @@ extension EventsListViewController: KeyboardNotificationsDelegate {
 
     func keyboardWillHide(notification: NSNotification) {
         tableView.contentInset.bottom = 0
+    }
+}
+
+// MARK: Work with data
+
+extension EventsListViewController {
+
+    func makeSearchRequest(keyword: String? = nil) {
+        eventListService.getAll(searchBy: keyword) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .failure(let error): break
+            case .success(let viewModels):
+                self.tableView.registerOnlyUnknownCells(with: viewModels)
+                self.viewModels = viewModels
+                self.tableView.reloadData()
+            }
+        }
     }
 }

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol EventListService: class {
-    func getAll(completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void)
+    func getAll(searchBy keyword: String?, completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void)
 }
