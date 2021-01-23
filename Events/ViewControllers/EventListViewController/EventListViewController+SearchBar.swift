@@ -19,7 +19,6 @@ import UIKit
 
 extension EventsListViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        print(searchBar.isFirstResponder)
         searchBar.endEditing(true)
     }
 

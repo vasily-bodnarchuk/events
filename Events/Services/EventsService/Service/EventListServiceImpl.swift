@@ -10,34 +10,24 @@ import UIKit
 class EventListServiceImpl {
     private let repository: EventListRepository
     private var _getAllRequestIsWaitingToBeExecuted = AtomicValue(value: false)
-    private var getAllRequestKeyword: String?
+    private var getAllRequestKeyword = AtomicValue<String?>(value: nil)
     private var hasNextPage = AtomicValue<Int?>(value: 1)
 
     init(repository: EventListRepository) { self.repository = repository }
 }
 
 extension EventListServiceImpl: EventListService {
-    func loadAll(searchBy keyword: String?, completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
-        completion(.success([ActivityIndicatorTableViewCellViewModel()]))
-        var isItTimeToMakeRequest = false
-        _getAllRequestIsWaitingToBeExecuted.waitSet { isWaiting -> Bool in
-            self.getAllRequestKeyword = keyword
-            if !isWaiting { isItTimeToMakeRequest = true }
-            return true
-        }
 
-        guard isItTimeToMakeRequest else { return }
-        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
-            self?._loadAll(page: 1, completion: completion)
-        }
+    func loadAll(searchBy keyword: String?, completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
+        hasNextPage.waitSet(value: 1)
+        getAllRequestKeyword.waitSet(value: keyword)
+        completion(.success([ActivityIndicatorTableViewCellViewModel()]))
+        reload(completion: completion)
     }
 
     private func _loadAll(page: Int, completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
-        var keyword: String?
-        _getAllRequestIsWaitingToBeExecuted.waitSet { _ -> Bool in
-            keyword = self.getAllRequestKeyword
-            return false
-        }
+        let keyword: String? = getAllRequestKeyword.waitGet().notQueueSafeValue
+        _getAllRequestIsWaitingToBeExecuted.waitSet(value: false)
 
         repository._loadAll(searchBy: keyword, page: page) { result in
             switch result {
@@ -84,6 +74,20 @@ extension EventListServiceImpl: EventListService {
                 case .success(let viewModels): completion(.success(.viewModels(viewModels)))
                 }
             }
+        }
+    }
+
+    func reload(completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
+        hasNextPage.waitSet(value: 1)
+        var isItTimeToMakeRequest = false
+        _getAllRequestIsWaitingToBeExecuted.waitSet { isWaiting -> Bool in
+            if !isWaiting { isItTimeToMakeRequest = true }
+            return true
+        }
+
+        guard isItTimeToMakeRequest else { return }
+        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+            self?._loadAll(page: 1, completion: completion)
         }
     }
 }

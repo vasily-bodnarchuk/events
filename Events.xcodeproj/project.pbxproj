@@ -69,6 +69,9 @@
 		B880ED4A25BBCA77006C5266 /* MetaJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED4925BBCA77006C5266 /* MetaJSONModel.swift */; };
 		B880ED4D25BBCC46006C5266 /* LoadMoreActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED4C25BBCC46006C5266 /* LoadMoreActivityIndicator.swift */; };
 		B880ED5025BBCF2E006C5266 /* AtomicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED4F25BBCF2E006C5266 /* AtomicValue.swift */; };
+		B880ED5325BBDC2E006C5266 /* RefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED5225BBDC2E006C5266 /* RefreshControl.swift */; };
+		B880ED5625BBDC4F006C5266 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED5525BBDC4F006C5266 /* UIScrollView.swift */; };
+		B880ED5925BBDFD9006C5266 /* ReloadCompletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED5825BBDFD9006C5266 /* ReloadCompletable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +141,9 @@
 		B880ED4925BBCA77006C5266 /* MetaJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaJSONModel.swift; sourceTree = "<group>"; };
 		B880ED4C25BBCC46006C5266 /* LoadMoreActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreActivityIndicator.swift; sourceTree = "<group>"; };
 		B880ED4F25BBCF2E006C5266 /* AtomicValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicValue.swift; sourceTree = "<group>"; };
+		B880ED5225BBDC2E006C5266 /* RefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshControl.swift; sourceTree = "<group>"; };
+		B880ED5525BBDC4F006C5266 /* UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
+		B880ED5825BBDFD9006C5266 /* ReloadCompletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadCompletable.swift; sourceTree = "<group>"; };
 		C4B18B36154502DAF3A41980 /* Pods-Events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.release.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.release.xcconfig"; sourceTree = "<group>"; };
 		E90FD79328B62888CA80E4B9 /* Pods_Events.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Events.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -368,6 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				B880EC3D25B8F1E7006C5266 /* Identifiable.swift */,
+				B880ED5825BBDFD9006C5266 /* ReloadCompletable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -377,6 +384,7 @@
 			children = (
 				B880EC4125B8F224006C5266 /* ViewModelCellBasedTableView.swift */,
 				B880ED4C25BBCC46006C5266 /* LoadMoreActivityIndicator.swift */,
+				B880ED5225BBDC2E006C5266 /* RefreshControl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -479,6 +487,7 @@
 				B880EC6125B9E5ED006C5266 /* UITableView.swift */,
 				B880ED3625BBB3F7006C5266 /* UIColor.swift */,
 				B880ED4125BBBA3D006C5266 /* UISearchBar.swift */,
+				B880ED5525BBDC4F006C5266 /* UIScrollView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -665,6 +674,7 @@
 				B880EC4A25B8F36E006C5266 /* ActivityIndicatorTableViewCellViewModel.swift in Sources */,
 				B880EC2E25B8EC4D006C5266 /* EventListServiceImpl.swift in Sources */,
 				B880EC5A25B9D88F006C5266 /* RouteProperty.swift in Sources */,
+				B880ED5325BBDC2E006C5266 /* RefreshControl.swift in Sources */,
 				B880EC2B25B8EC30006C5266 /* EventListRepositoryImpl.swift in Sources */,
 				B880ED2425BB7E73006C5266 /* PerformerJSONModel.swift in Sources */,
 				B880EB3E25B71D43006C5266 /* Router.swift in Sources */,
@@ -677,10 +687,12 @@
 				B880ED4D25BBCC46006C5266 /* LoadMoreActivityIndicator.swift in Sources */,
 				B880EB4C25B71E3F006C5266 /* ViewControllerType.swift in Sources */,
 				B880ECDD25BB1D00006C5266 /* HTTPMethod.swift in Sources */,
+				B880ED5625BBDC4F006C5266 /* UIScrollView.swift in Sources */,
 				B880ECF425BB2AB1006C5266 /* URL.swift in Sources */,
 				B880ECBF25BA7DCF006C5266 /* NetworkService.swift in Sources */,
 				B880EC5325B924FB006C5266 /* TableViewBasedViewController.swift in Sources */,
 				B880ECFA25BB2B33006C5266 /* URLQueryItem.swift in Sources */,
+				B880ED5925BBDFD9006C5266 /* ReloadCompletable.swift in Sources */,
 				B880EB6F25B72F92006C5266 /* CoreLaunchingViewController.swift in Sources */,
 				B880EB8125B7D5BC006C5266 /* EventListViewController.swift in Sources */,
 				B880ED0625BB64D8006C5266 /* DecodableDate.swift in Sources */,

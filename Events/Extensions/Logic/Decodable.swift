@@ -23,10 +23,6 @@ extension Decodable where Self: Encodable {
     }
 }
 
-// extension Encodable {
-//    func toJson() -> [String: Any] { return (try? DictionaryEncoder().encode(self)) ?? [:] }
-// }
-
 // MARK: - init Decodable element from dictionary
 
 extension Decodable {

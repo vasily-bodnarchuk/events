@@ -14,6 +14,11 @@ class TableViewBasedViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         tableView = createTableView(embedIn: view)
+        tableView.addRefreshControll(actionTarget: self, action: #selector(pullToRefreshHandler))
+    }
+    
+    @objc func pullToRefreshHandler(_ refreshControl: UIRefreshControl) {
+        tableView?.endRefreshing()
     }
 }
 

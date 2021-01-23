@@ -45,6 +45,12 @@ class EventsListViewController: TableViewBasedViewController {
         navigationBar.tintColor = UIColor.white
         navigationBar.isTranslucent = false
     }
+
+    @objc override func pullToRefreshHandler(_ refreshControl: UIRefreshControl) {
+        eventListService.reload { [weak self] response in
+            self?.setViewModels(from: response) { self?.tableView.endRefreshing() }
+        }
+    }
 }
 
 // MARK: KeyboardNotificationsDelegate
@@ -68,23 +74,27 @@ extension EventsListViewController: KeyboardNotificationsDelegate {
 
 extension EventsListViewController {
 
-    func makeSearchRequest(keyword: String? = nil) {
-        eventListService.loadAll(searchBy: keyword) { [weak self] result in
-            switch result {
-            case .failure(let error): break
-            case .success(let viewModels):
+    private func setViewModels(from response: Result<[TableViewCellViewModelInterface], Error>, completion: (() -> Void)? = nil) {
+        defer { completion?() }
+        switch response {
+        case .failure(let error): break
+        case .success(let viewModels):
+            tableView.registerOnlyUnknownCells(with: viewModels)
+            self.viewModels = viewModels
+            tableView.reloadData { [weak self] tableView in
                 guard let self = self else { return }
                 if self.activityIndicator == nil {
-                    self.activityIndicator = LoadMoreActivityIndicator(scrollView: self.tableView,
+                    self.activityIndicator = LoadMoreActivityIndicator(scrollView: tableView,
                                                                        spacingFromLastCell: 10,
                                                                        spacingFromLastCellWhenLoadMoreActionStart: 60)
                 }
-                print("!!!! \(viewModels)")
-                if viewModels.count == 1 && self.viewModels.count == 1 { return }
-                self.tableView.registerOnlyUnknownCells(with: viewModels)
-                self.viewModels = viewModels
-                self.tableView.reloadData()
             }
+        }
+    }
+
+    func makeSearchRequest(keyword: String? = nil, completion: (() -> Void)? = nil) {
+        eventListService.loadAll(searchBy: keyword) { [weak self] result in
+            self?.setViewModels(from: result, completion: completion)
         }
     }
 }
