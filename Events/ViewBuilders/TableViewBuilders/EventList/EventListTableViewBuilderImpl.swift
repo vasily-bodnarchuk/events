@@ -46,19 +46,27 @@ extension EventListTableViewBuilderImpl {
                 } else {
                     self.hasNextPage.waitSet(value: nil)
                 }
-                var viewModels = value.events.elements.flatMap { (event) -> [TableViewCellViewModelInterface] in
+                let events = value.events.elements
+                var viewModels = events.enumerated().flatMap { (index, event) -> [TableViewCellViewModelInterface] in
                     guard let date = event.datetime_utc.value,
                           let imageUrl = event.performers.elements.first?.image else { return [] }
                     let dateString = dateFormatter.string(from: date)
-                    return [
+                    var result: [TableViewCellViewModelInterface] = [
                         EventTableViewCellViewModel(id: event.id,
                                                     title: event.title,
                                                     location: event.venue.display_location,
                                                     date: dateString,
                                                     imageUrl: imageUrl,
-                                                    delegate: self.delegate),
-                        VerticalSpacingTableViewCellViewModel(height: verticalSpacing)
+                                                    delegate: self.delegate)
                     ]
+                    switch index {
+                    case 0: break
+                    default:
+                        result.insert(SeparatorTableViewCellViewModel(separatorViewColor: UIColor(r: 235, g: 235, b: 235),
+                                                                      separatorViewHeight: 1,
+                                                                      separatorViewEdgeInsets: .init(top: 24, left: 16, bottom: 24, right: 0)), at: 0)
+                    }
+                    return result
                 }
                 if value.meta.page == 1 {
                     viewModels.insert(VerticalSpacingTableViewCellViewModel(height: verticalSpacing), at: 0)

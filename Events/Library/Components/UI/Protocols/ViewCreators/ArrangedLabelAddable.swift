@@ -20,7 +20,7 @@ extension ArrangedLabelAddable {
         stackView.addArrangedSubview(label)
         return label
     }
-    
+
     func createLabel(font: UIFont,
                      textColor: UIColor = .black,
                      numberOfLines: Int = 0,

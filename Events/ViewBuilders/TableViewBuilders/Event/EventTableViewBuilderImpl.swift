@@ -29,7 +29,9 @@ extension EventTableViewBuilderImpl: EventTableViewBuilder {
     func getViewModels(completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
         completion(.success([
             EventHeaderTableViewCellViewModel(title: title, isFavorited: false, delegate: delegate),
-            VerticalSpacingTableViewCellViewModel(height: 40),
+            SeparatorTableViewCellViewModel(separatorViewColor: .lightGray,
+                                            separatorViewHeight: 2,
+                                            separatorViewEdgeInsets: .init(top: 20, left: 16, bottom: 20, right: 16)),
             MaxWidthImageTableViewCellViewModel(imageURL: imageUrl),
             VerticalSpacingTableViewCellViewModel(height: 20),
             LabelTableViewCellViewModel(text: date, configureLabel: { label in

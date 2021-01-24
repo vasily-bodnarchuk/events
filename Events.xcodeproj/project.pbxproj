@@ -87,6 +87,7 @@
 		B880EDA825BD0B48006C5266 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDA725BD0B48006C5266 /* Images.swift */; };
 		B880EDB825BD263F006C5266 /* MaxWidthImageTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDB725BD263F006C5266 /* MaxWidthImageTableViewCellViewModel.swift */; };
 		B880EDBB25BDBF91006C5266 /* LabelTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDBA25BDBF91006C5266 /* LabelTableViewCellViewModel.swift */; };
+		B880EDBE25BDC555006C5266 /* SeparatorTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDBD25BDC555006C5266 /* SeparatorTableViewCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -174,6 +175,7 @@
 		B880EDA725BD0B48006C5266 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		B880EDB725BD263F006C5266 /* MaxWidthImageTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxWidthImageTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		B880EDBA25BDBF91006C5266 /* LabelTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		B880EDBD25BDC555006C5266 /* SeparatorTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		C4B18B36154502DAF3A41980 /* Pods-Events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.release.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.release.xcconfig"; sourceTree = "<group>"; };
 		E90FD79328B62888CA80E4B9 /* Pods_Events.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Events.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -382,6 +384,7 @@
 				B880ED8D25BCE9B3006C5266 /* EventHeaderTableViewCellViewModel.swift */,
 				B880EDB725BD263F006C5266 /* MaxWidthImageTableViewCellViewModel.swift */,
 				B880EDBA25BDBF91006C5266 /* LabelTableViewCellViewModel.swift */,
+				B880EDBD25BDC555006C5266 /* SeparatorTableViewCellViewModel.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -807,6 +810,7 @@
 				B880ED8A25BCE555006C5266 /* EventTableViewBuilderImpl.swift in Sources */,
 				B880ED6A25BCD504006C5266 /* EventService.swift in Sources */,
 				B880ED4A25BBCA77006C5266 /* MetaJSONModel.swift in Sources */,
+				B880EDBE25BDC555006C5266 /* SeparatorTableViewCellViewModel.swift in Sources */,
 				B880EC2125B8EBCF006C5266 /* EventListService.swift in Sources */,
 				B880EB4425B71DAD006C5266 /* Core.swift in Sources */,
 				B880EC4225B8F224006C5266 /* ViewModelCellBasedTableView.swift in Sources */,

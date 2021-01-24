@@ -32,7 +32,7 @@ class MaxWidthImageTableViewCellViewModel: TableViewCellViewModel<MaxWidthImageT
 // MARK: View
 
 class MaxWidthImageTableViewCell: TableViewCell {
-    private(set) weak var eventImageView: UIImageView!
+    private weak var eventImageView: UIImageView!
     override func setup() {
         super.setup()
         let imageView = UIImageView()

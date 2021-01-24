@@ -30,7 +30,7 @@ class LabelTableViewCellViewModel: TableViewCellViewModel<LabelTableViewCell> {
 // MARK: View
 
 class LabelTableViewCell: TableViewCell {
-    private(set) weak var label: UILabel!
+    private weak var label: UILabel!
     override func setup() {
         super.setup()
         let label = createLabel(font: .systemFont(ofSize: 17))
