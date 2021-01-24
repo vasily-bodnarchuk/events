@@ -99,7 +99,18 @@ extension EventsListViewController {
 
     func makeSearchRequest(keyword: String? = nil, completion: (() -> Void)? = nil) {
         tableViewBuilder.getViewModelsForTheFirstPage(searchEventsBy: keyword) { [weak self] result in
-            self?.setViewModels(from: result, completion: completion)
+            guard let self = self else { return }
+            var _result: Result<[TableViewCellViewModelInterface], Error>!
+            switch result {
+            case .failure(let error): _result = .failure(error)
+            case let .success(value):
+                switch value {
+                case let .viewModels(array, tableViewProperties):
+                    _result = .success(array)
+                    self.setTableView(properties: tableViewProperties)
+                }
+            }
+            self.setViewModels(from: _result, completion: completion)
         }
     }
 }

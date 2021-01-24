@@ -18,6 +18,15 @@ class TableViewBasedViewController: UIViewController {
     }
 
     @objc func pullToRefreshHandler(_ refreshControl: UIRefreshControl) { tableView?.endRefreshing() }
+    
+    func setTableView(properties: [TableViewProperty]) {
+        properties.forEach {
+            switch $0 {
+            case .isScrollEnabled(let isEnabled): tableView.isScrollEnabled = isEnabled
+            case .contentOffset(let offset): tableView.contentOffset = offset
+            }
+        }
+    }
 }
 
 extension TableViewBasedViewController {

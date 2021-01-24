@@ -88,6 +88,7 @@
 		B880EDB825BD263F006C5266 /* MaxWidthImageTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDB725BD263F006C5266 /* MaxWidthImageTableViewCellViewModel.swift */; };
 		B880EDBB25BDBF91006C5266 /* LabelTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDBA25BDBF91006C5266 /* LabelTableViewCellViewModel.swift */; };
 		B880EDBE25BDC555006C5266 /* SeparatorTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDBD25BDC555006C5266 /* SeparatorTableViewCellViewModel.swift */; };
+		B880EDC125BDE537006C5266 /* TableViewProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDC025BDE537006C5266 /* TableViewProperty.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -176,6 +177,7 @@
 		B880EDB725BD263F006C5266 /* MaxWidthImageTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxWidthImageTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		B880EDBA25BDBF91006C5266 /* LabelTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		B880EDBD25BDC555006C5266 /* SeparatorTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		B880EDC025BDE537006C5266 /* TableViewProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewProperty.swift; sourceTree = "<group>"; };
 		C4B18B36154502DAF3A41980 /* Pods-Events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.release.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.release.xcconfig"; sourceTree = "<group>"; };
 		E90FD79328B62888CA80E4B9 /* Pods_Events.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Events.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -602,6 +604,7 @@
 		B880ED8225BCE501006C5266 /* TableViewBuilders */ = {
 			isa = PBXGroup;
 			children = (
+				B880EDC025BDE537006C5266 /* TableViewProperty.swift */,
 				B880ED8425BCE527006C5266 /* Event */,
 				B880ED7025BCDBE7006C5266 /* EventList */,
 			);
@@ -862,6 +865,7 @@
 				B880ECDD25BB1D00006C5266 /* HTTPMethod.swift in Sources */,
 				B880ED6D25BCD523006C5266 /* EventServiceImpl.swift in Sources */,
 				B880ED5625BBDC4F006C5266 /* UIScrollView.swift in Sources */,
+				B880EDC125BDE537006C5266 /* TableViewProperty.swift in Sources */,
 				B880ECF425BB2AB1006C5266 /* URL.swift in Sources */,
 				B880ECBF25BA7DCF006C5266 /* NetworkService.swift in Sources */,
 				B880EDA825BD0B48006C5266 /* Images.swift in Sources */,
