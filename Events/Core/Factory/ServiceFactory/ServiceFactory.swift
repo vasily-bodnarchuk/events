@@ -9,5 +9,7 @@ import Foundation
 
 protocol ServiceFactory: class {
     var networkService: NetworkService { get }
+    var dbService: DBService { get }
     func createEventListService() -> EventListService
+    func createEventService(eventId: Int) -> EventService
 }

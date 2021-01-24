@@ -28,13 +28,10 @@ extension ViewControllerFactoryImpl: ViewControllerFactory {
                                                                                                     delegate: eventsListViewController)
                 eventsListViewController.set(eventListTableViewBuilder: tableViewBuilder)
                 newViewController = eventsListViewController
-            case let .alreadyLoadedEvent(id, title, location, date, imageUrl):
-                let eventViewController = EventViewController(router: delegate.router)
-                let tableViewBuilder = delegate!.viewBuilderFactory.createEventTableViewBuilder(id: id,
-                                                                                                title: title,
-                                                                                                location: location,
-                                                                                                date: date,
-                                                                                                imageUrl: imageUrl,
+            case .alreadyLoaded(let event):
+                let eventViewController = EventViewController(router: delegate.router,
+                                                              eventService: delegate.serviceFactory.createEventService(eventId: event.id))
+                let tableViewBuilder = delegate!.viewBuilderFactory.createEventTableViewBuilder(event: event,
                                                                                                 delegate: eventViewController)
                 eventViewController.set(eventTableViewBuilder: tableViewBuilder)
                 newViewController = eventViewController

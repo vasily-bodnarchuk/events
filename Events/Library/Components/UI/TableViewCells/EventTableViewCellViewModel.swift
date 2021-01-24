@@ -19,20 +19,11 @@ protocol EventTableViewCellViewModelDelegate: ViewModelDelegate {
 class EventTableViewCellViewModel: TableViewCellViewModel<EventTableViewCell> {
 
     private weak var delegate: EventTableViewCellViewModelDelegate!
-    let id: Int
-    let title: String
-    let location: String
-    let date: String
-    let imageUrl: URL
+    let event: EventModel
 
-    init(id: Int, title: String,
-         location: String, date: String, imageUrl: URL,
+    init(event: EventModel,
          delegate: EventTableViewCellViewModelDelegate) {
-        self.id = id
-        self.title = title
-        self.location = location
-        self.date = date
-        self.imageUrl = imageUrl
+        self.event = event
         self.delegate = delegate
     }
 
@@ -40,7 +31,12 @@ class EventTableViewCellViewModel: TableViewCellViewModel<EventTableViewCell> {
         tableView.dequeueReusableCell(forceUnwrap: TableViewCell.self,
                                       for: indexPath) { [weak self] cell in
             guard let self = self else { return }
-            cell.set(id: self.id, title: self.title, location: self.location, date: self.date, imageUrl: self.imageUrl)
+            cell.set(id: self.event.id,
+                     title: self.event.title,
+                     location: self.event.location,
+                     date: self.event.visibleDate,
+                     imageUrl: self.event.imageUrl,
+                     isFavorite: self.event.isFavorite)
         }
     }
 
@@ -58,6 +54,7 @@ class EventTableViewCell: TableViewCell {
     private weak var locationLabel: UILabel!
     private weak var dateLabel: UILabel!
     private weak var eventImageView: UIImageView!
+    private weak var favoriteIconImageView: UIImageView!
 
     override func setup() {
         super.setup()
@@ -68,12 +65,13 @@ class EventTableViewCell: TableViewCell {
         contentView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         let leftRightSpacing: CGFloat = 16
-        stackView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor,
+                                       constant: 17).isActive = true
         stackView.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor, constant: leftRightSpacing).isActive = true
         stackView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor).isActive = true
         contentView.safeAreaLayoutGuide.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: leftRightSpacing).isActive = true
 
-        let imageView = UIImageView()
+        var imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         stackView.addArrangedSubview(imageView)
         imageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
@@ -96,13 +94,27 @@ class EventTableViewCell: TableViewCell {
         dateLabel = addArrangedLabel(to: verticalStackView,
                                      font: .systemFont(ofSize: 14, weight: .regular),
                                      textColor: .lightGray)
+
+        imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = Asset.favoriteIcon.image
+        contentView.addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        let imageSide: CGFloat = 34
+        imageView.widthAnchor.constraint(equalToConstant: imageSide).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: imageSide).isActive = true
+        imageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 4).isActive = true
+        imageView.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor, constant: 4).isActive = true
+        favoriteIconImageView = imageView
     }
 
-    func set(id: Int, title: String, location: String, date: String, imageUrl: URL) {
+    func set(id: Int, title: String, location: String,
+             date: String, imageUrl: URL, isFavorite: Bool) {
         tag = id
         titleLabel.text = title
         locationLabel.text = location
         dateLabel.text = date
+        favoriteIconImageView.isHidden = !isFavorite
         Nuke.loadImage(with: imageUrl, into: eventImageView)
     }
 

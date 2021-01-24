@@ -136,11 +136,7 @@ extension EventsListViewController {
 
 extension EventsListViewController: EventTableViewCellViewModelDelegate {
     func didSelect(cell: EventTableViewCell, viewModel: EventTableViewCellViewModel) {
-        router.route(to: .push(when: .always(type: .events(.alreadyLoadedEvent(id: viewModel.id,
-                                                                               title: viewModel.title,
-                                                                               location: viewModel.location,
-                                                                               date: viewModel.date,
-                                                                               imageUrl: viewModel.imageUrl)),
+        router.route(to: .push(when: .always(type: .events(.alreadyLoaded(event: viewModel.event)),
                                              animated: true)))
     }
 }

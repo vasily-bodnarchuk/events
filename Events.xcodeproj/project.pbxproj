@@ -90,6 +90,14 @@
 		B880EDBE25BDC555006C5266 /* SeparatorTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDBD25BDC555006C5266 /* SeparatorTableViewCellViewModel.swift */; };
 		B880EDC125BDE537006C5266 /* TableViewProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDC025BDE537006C5266 /* TableViewProperty.swift */; };
 		B880EDC925BE0371006C5266 /* DefaultNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDC825BE0371006C5266 /* DefaultNavigationController.swift */; };
+		B880EDCD25BE1234006C5266 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDCC25BE1234006C5266 /* DBService.swift */; };
+		B880EDD125BE1245006C5266 /* DBServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDD025BE1245006C5266 /* DBServiceImpl.swift */; };
+		B880EDD525BE1272006C5266 /* DBAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDD425BE1272006C5266 /* DBAction.swift */; };
+		B880EDD925BE1289006C5266 /* DBValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDD825BE1289006C5266 /* DBValue.swift */; };
+		B880EDDE25BE1377006C5266 /* DBUserDefaultsValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDDD25BE1377006C5266 /* DBUserDefaultsValue.swift */; };
+		B880EDE325BE17FB006C5266 /* EventListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDE225BE17FB006C5266 /* EventListModel.swift */; };
+		B880EDE725BE18F3006C5266 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDE625BE18F3006C5266 /* EventModel.swift */; };
+		B880EDEA25BE1902006C5266 /* MetaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDE925BE1902006C5266 /* MetaModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -180,6 +188,14 @@
 		B880EDBD25BDC555006C5266 /* SeparatorTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		B880EDC025BDE537006C5266 /* TableViewProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewProperty.swift; sourceTree = "<group>"; };
 		B880EDC825BE0371006C5266 /* DefaultNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNavigationController.swift; sourceTree = "<group>"; };
+		B880EDCC25BE1234006C5266 /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
+		B880EDD025BE1245006C5266 /* DBServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceImpl.swift; sourceTree = "<group>"; };
+		B880EDD425BE1272006C5266 /* DBAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBAction.swift; sourceTree = "<group>"; };
+		B880EDD825BE1289006C5266 /* DBValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBValue.swift; sourceTree = "<group>"; };
+		B880EDDD25BE1377006C5266 /* DBUserDefaultsValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUserDefaultsValue.swift; sourceTree = "<group>"; };
+		B880EDE225BE17FB006C5266 /* EventListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListModel.swift; sourceTree = "<group>"; };
+		B880EDE625BE18F3006C5266 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		B880EDE925BE1902006C5266 /* MetaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaModel.swift; sourceTree = "<group>"; };
 		C4B18B36154502DAF3A41980 /* Pods-Events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.release.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.release.xcconfig"; sourceTree = "<group>"; };
 		E90FD79328B62888CA80E4B9 /* Pods_Events.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Events.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -260,6 +276,7 @@
 		B880EB3A25B71CEF006C5266 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B880EDCB25BE11F1006C5266 /* DB */,
 				B880ECE325BB2365006C5266 /* Configuration */,
 				B880ECBC25BA7DA7006C5266 /* Network */,
 				B880EB3C25B71D21006C5266 /* Factory */,
@@ -343,6 +360,7 @@
 		B880EC1E25B8EB86006C5266 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				B880EDE125BE17EA006C5266 /* Models */,
 				B880EC2025B8EBCF006C5266 /* EventListService.swift */,
 				B880EC2D25B8EC4D006C5266 /* EventListServiceImpl.swift */,
 			);
@@ -659,6 +677,44 @@
 			path = Generated;
 			sourceTree = "<group>";
 		};
+		B880EDCB25BE11F1006C5266 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				B880EDDC25BE136B006C5266 /* ValueTypes */,
+				B880EDD325BE1258006C5266 /* Models */,
+				B880EDCC25BE1234006C5266 /* DBService.swift */,
+				B880EDD025BE1245006C5266 /* DBServiceImpl.swift */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
+		B880EDD325BE1258006C5266 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B880EDD425BE1272006C5266 /* DBAction.swift */,
+				B880EDD825BE1289006C5266 /* DBValue.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B880EDDC25BE136B006C5266 /* ValueTypes */ = {
+			isa = PBXGroup;
+			children = (
+				B880EDDD25BE1377006C5266 /* DBUserDefaultsValue.swift */,
+			);
+			path = ValueTypes;
+			sourceTree = "<group>";
+		};
+		B880EDE125BE17EA006C5266 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B880EDE225BE17FB006C5266 /* EventListModel.swift */,
+				B880EDE625BE18F3006C5266 /* EventModel.swift */,
+				B880EDE925BE1902006C5266 /* MetaModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -842,15 +898,18 @@
 				B880EC1B25B8E88D006C5266 /* EventListViewController+SearchBar.swift in Sources */,
 				B880ECC325BA7DE1006C5266 /* NetworkServiceImpl.swift in Sources */,
 				B880ECD125BA85DA006C5266 /* EventListJSONModel.swift in Sources */,
+				B880EDEA25BE1902006C5266 /* MetaModel.swift in Sources */,
 				B880EB7A25B73109006C5266 /* ServiceFactory.swift in Sources */,
 				B880ED5C25BC9D0F006C5266 /* EventViewController.swift in Sources */,
 				B880ED4525BBBBF0006C5266 /* KeyboardNotifications.swift in Sources */,
+				B880EDDE25BE1377006C5266 /* DBUserDefaultsValue.swift in Sources */,
 				B880ED5025BBCF2E006C5266 /* AtomicValue.swift in Sources */,
 				B880EDBB25BDBF91006C5266 /* LabelTableViewCellViewModel.swift in Sources */,
 				B880EC7725B9F78E006C5266 /* TableViewCell.swift in Sources */,
 				B880ECD825BA8B00006C5266 /* AppError.swift in Sources */,
 				B880EC4A25B8F36E006C5266 /* ActivityIndicatorTableViewCellViewModel.swift in Sources */,
 				B880ED8E25BCE9B3006C5266 /* EventHeaderTableViewCellViewModel.swift in Sources */,
+				B880EDD125BE1245006C5266 /* DBServiceImpl.swift in Sources */,
 				B880EC2E25B8EC4D006C5266 /* EventListServiceImpl.swift in Sources */,
 				B880EC5A25B9D88F006C5266 /* RouteProperty.swift in Sources */,
 				B880ED5325BBDC2E006C5266 /* RefreshControl.swift in Sources */,
@@ -875,18 +934,23 @@
 				B880EC5325B924FB006C5266 /* TableViewBasedViewController.swift in Sources */,
 				B880EDC925BE0371006C5266 /* DefaultNavigationController.swift in Sources */,
 				B880ED8625BCE53C006C5266 /* EventTableViewBuilder.swift in Sources */,
+				B880EDD525BE1272006C5266 /* DBAction.swift in Sources */,
 				B880ECFA25BB2B33006C5266 /* URLQueryItem.swift in Sources */,
 				B880ED5925BBDFD9006C5266 /* ReloadCompletable.swift in Sources */,
 				B880EB6F25B72F92006C5266 /* CoreLaunchingViewController.swift in Sources */,
+				B880EDCD25BE1234006C5266 /* DBService.swift in Sources */,
 				B880EDB825BD263F006C5266 /* MaxWidthImageTableViewCellViewModel.swift in Sources */,
 				B880EB8125B7D5BC006C5266 /* EventListViewController.swift in Sources */,
 				B880ED0625BB64D8006C5266 /* DecodableDate.swift in Sources */,
+				B880EDE725BE18F3006C5266 /* EventModel.swift in Sources */,
 				B880ED9325BCEB81006C5266 /* ArrangedLabelAddable.swift in Sources */,
+				B880EDE325BE17FB006C5266 /* EventListModel.swift in Sources */,
 				B880EB7325B73050006C5266 /* Factory.swift in Sources */,
 				B880ECE925BB2383006C5266 /* ConfigurationServiceImpl.swift in Sources */,
 				B880EB4125B71D62006C5266 /* RouterImpl.swift in Sources */,
 				B880EB2425B69B65006C5266 /* AppDelegate.swift in Sources */,
 				B880ED7225BCDC71006C5266 /* EventListTableViewBuilder.swift in Sources */,
+				B880EDD925BE1289006C5266 /* DBValue.swift in Sources */,
 				B880EB7625B7305F006C5266 /* FactoryImpl.swift in Sources */,
 				B880EB7D25B731AC006C5266 /* ServiceFactoryImpl.swift in Sources */,
 				B880EB4F25B71EC1006C5266 /* ViewControllerFactoryImpl.swift in Sources */,

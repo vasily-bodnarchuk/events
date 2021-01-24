@@ -8,4 +8,5 @@
 import Foundation
 
 protocol EventService: class {
+    var isFavorite: Bool { get set }
 }

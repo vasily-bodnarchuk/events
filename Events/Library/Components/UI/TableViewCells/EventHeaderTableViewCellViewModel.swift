@@ -20,7 +20,7 @@ class EventHeaderTableViewCellViewModel: TableViewCellViewModel<EventHeaderTable
 
     private weak var delegate: EventHeaderTableViewCellViewModelDelegate!
     private let title: String
-    private let isFavorited: Bool
+    let isFavorited: Bool
 
     init(title: String, isFavorited: Bool, delegate: EventHeaderTableViewCellViewModelDelegate) {
         self.title = title
@@ -101,8 +101,12 @@ class EventHeaderTableViewCell: TableViewCell {
 
     func set(title: String, isFavorited: Bool, delegate: EventHeaderTableViewCellDelegate) {
         titleLabel.text = title
-        favoriteImageView.image = isFavorited ? Asset.favoriteIcon.image : Asset.notFavoriteIcon.image
+        set(isFavorited: isFavorited)
         self.delegate = delegate
+    }
+
+    func set(isFavorited: Bool) {
+        favoriteImageView.image = isFavorited ? Asset.favoriteIcon.image : Asset.notFavoriteIcon.image
     }
 }
 

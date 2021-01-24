@@ -61,27 +61,16 @@ extension EventListTableViewBuilderImpl {
             switch result {
             case .failure(let error): DispatchQueue.main.async { completion(.failure(error)) }
             case .success(let value):
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat =  "EEEE, dd MMM yyyy hh:mm a"
                 let verticalSpacing: CGFloat = 24
-                if (value.meta.page * value.meta.per_page) < value.meta.total {
+                if (value.meta.page * value.meta.perPage) < value.meta.total {
                     self.hasNextPage.waitSet(value: value.meta.page + 1)
                 } else {
                     self.hasNextPage.waitSet(value: nil)
                 }
-                let events = value.events.elements
 
-                var viewModels = events.enumerated().flatMap { (index, event) -> [TableViewCellViewModelInterface] in
-                    guard let date = event.datetime_utc.value,
-                          let imageUrl = event.performers.elements.first?.image else { return [] }
-                    let dateString = dateFormatter.string(from: date)
+                var viewModels = value.events.enumerated().flatMap { (index, event) -> [TableViewCellViewModelInterface] in
                     var result = [TableViewCellViewModelInterface]()
-                    result.append(EventTableViewCellViewModel(id: event.id,
-                                                              title: event.title,
-                                                              location: event.venue.display_location,
-                                                              date: dateString,
-                                                              imageUrl: imageUrl,
-                                                              delegate: self.delegate))
+                    result.append(EventTableViewCellViewModel(event: event, delegate: self.delegate))
                     switch index {
                     case 0: break
                     default: result.insert(self.createSeparatorViewModel(), at: 0)

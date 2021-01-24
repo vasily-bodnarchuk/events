@@ -9,18 +9,10 @@ import UIKit
 
 class EventTableViewBuilderImpl {
     private(set) weak var delegate: Delegate!
-    private let id: Int
-    private let title: String
-    private let location: String
-    private let date: String
-    private let imageUrl: URL
+    private let event: EventModel
 
-    init(id: Int, title: String, location: String, date: String, imageUrl: URL, delegate: Delegate) {
-        self.id = id
-        self.title = title
-        self.location = location
-        self.date = date
-        self.imageUrl = imageUrl
+    init(event: EventModel, delegate: Delegate) {
+        self.event = event
         self.delegate = delegate
     }
 }
@@ -28,17 +20,19 @@ class EventTableViewBuilderImpl {
 extension EventTableViewBuilderImpl: EventTableViewBuilder {
     func getViewModels(completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
         completion(.success([
-            EventHeaderTableViewCellViewModel(title: title, isFavorited: false, delegate: delegate),
+            EventHeaderTableViewCellViewModel(title: event.title,
+                                              isFavorited: event.isFavorite,
+                                              delegate: delegate),
             SeparatorTableViewCellViewModel(separatorViewColor: .lightGray,
                                             separatorViewHeight: 2,
                                             separatorViewEdgeInsets: .init(top: 20, left: 16, bottom: 20, right: 16)),
-            MaxWidthImageTableViewCellViewModel(imageURL: imageUrl),
+            MaxWidthImageTableViewCellViewModel(imageURL: event.imageUrl),
             VerticalSpacingTableViewCellViewModel(height: 20),
-            LabelTableViewCellViewModel(text: date, configureLabel: { label in
+            LabelTableViewCellViewModel(text: event.visibleDate, configureLabel: { label in
                 label.font = .systemFont(ofSize: 19, weight: .semibold)
             }),
             VerticalSpacingTableViewCellViewModel(height: 16),
-            LabelTableViewCellViewModel(text: location, configureLabel: { label in
+            LabelTableViewCellViewModel(text: event.location, configureLabel: { label in
                 label.font = .systemFont(ofSize: 17, weight: .regular)
                 label.textColor = .lightGray
             })

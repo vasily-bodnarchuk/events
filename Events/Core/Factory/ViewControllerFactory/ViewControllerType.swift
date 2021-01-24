@@ -18,7 +18,7 @@ enum ViewControllerType {
 extension ViewControllerType.Subtypes {
     enum Event {
         case all
-        case alreadyLoadedEvent(id: Int, title: String, location: String, date: String, imageUrl: URL)
+        case alreadyLoaded(event: EventModel)
     }
 
     enum Alert {
