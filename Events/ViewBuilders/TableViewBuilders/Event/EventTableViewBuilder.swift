@@ -8,5 +8,6 @@
 import Foundation
 
 protocol EventTableViewBuilder: class {
+    typealias Delegate = EventHeaderTableViewCellViewModelDelegate
     func getViewModels(completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void)
 }

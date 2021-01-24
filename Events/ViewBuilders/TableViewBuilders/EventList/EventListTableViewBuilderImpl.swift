@@ -14,8 +14,7 @@ class EventListTableViewBuilderImpl: EventListTableViewBuilder {
     private var getAllRequestKeyword = AtomicValue<String?>(value: nil)
     private var hasNextPage = AtomicValue<Int?>(value: 1)
 
-    init(eventListService: EventListService,
-         delegate: EventListTableViewBuilder.Delegate) {
+    init(eventListService: EventListService, delegate: Delegate) {
         self.eventListService = eventListService
         self.delegate = delegate
     }

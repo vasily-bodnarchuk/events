@@ -13,6 +13,7 @@ import UIKit
         searchBar.delegate = self
         searchBar.placeholder = "Search event"
         searchBar.set(textColor: .white)
+        searchBar.setSearchImage(color: UIColor.white.withAlphaComponent(0.7))
         return searchBar
     }
  }

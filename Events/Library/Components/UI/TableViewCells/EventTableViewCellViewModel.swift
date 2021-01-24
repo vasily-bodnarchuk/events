@@ -8,11 +8,13 @@
 import UIKit
 import Nuke
 
-// MARK: ViewModel
+// MARK: ViewModel Delegate
 
 protocol EventTableViewCellViewModelDelegate: ViewModelDelegate {
-    func didSelect(cell: EventTableViewCell, with viewModel: EventTableViewCellViewModel)
+    func didSelect(cell: EventTableViewCell, viewModel: EventTableViewCellViewModel)
 }
+
+// MARK: ViewModel
 
 class EventTableViewCellViewModel: TableViewCellViewModel<EventTableViewCell> {
 
@@ -44,7 +46,7 @@ class EventTableViewCellViewModel: TableViewCellViewModel<EventTableViewCell> {
 
     override func didSelect(rowAt indexPath: IndexPath, in tableView: ViewModelCellBasedTableView) {
         guard let cell = tableView.cellForRow(at: indexPath) as? EventTableViewCell else { return }
-        delegate?.didSelect(cell: cell, with: self)
+        delegate?.didSelect(cell: cell, viewModel: self)
     }
 }
 
@@ -109,5 +111,7 @@ class EventTableViewCell: TableViewCell {
         eventImageView.image = nil
     }
 }
+
+// MARK: ArrangedLabelAddable
 
 extension EventTableViewCell: ArrangedLabelAddable { }

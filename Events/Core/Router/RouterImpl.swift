@@ -29,7 +29,9 @@ class RouterImpl {
                 case .embedIn(let type):
                     switch type {
                     case .defaultNavigationController:
-                        resultViewController = UINavigationController(rootViewController: resultViewController)
+                        let navigationViewController = UINavigationController(rootViewController: resultViewController)
+                        navigationViewController.view.backgroundColor = .white
+                        resultViewController = navigationViewController
                     }
                 }
             }
@@ -54,6 +56,14 @@ extension RouterImpl: Router {
                     guard let visibleViewController = self.getVisibleViewController(),
                           let navigationController = visibleViewController as? UINavigationController ?? visibleViewController.navigationController else { return }
                     navigationController.pushViewController(newViewController, animated: animated)
+                }
+            }
+        case .back(let when):
+            switch when {
+            case .always(let route):
+                switch route {
+                case .popViewController(let animated):
+                    getVisibleViewController()?.navigationController?.popViewController(animated: animated)
                 }
             }
         }

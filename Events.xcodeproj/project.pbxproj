@@ -651,12 +651,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B880EB3425B69B66006C5266 /* Build configuration list for PBXNativeTarget "Events" */;
 			buildPhases = (
+				B880ED9725BD0931006C5266 /* SwiftGen */,
 				0705549F274C1D3D38B9A89A /* [CP] Check Pods Manifest.lock */,
 				B880EB1C25B69B65006C5266 /* Sources */,
 				B880EB1D25B69B65006C5266 /* Frameworks */,
 				B880EB1E25B69B65006C5266 /* Resources */,
 				3958A6B600A49FAC92DE624C /* [CP] Embed Pods Frameworks */,
-				B880ED9725BD0931006C5266 /* SwiftGen */,
 				B880ED1C25BB7A47006C5266 /* SwiftLint */,
 			);
 			buildRules = (

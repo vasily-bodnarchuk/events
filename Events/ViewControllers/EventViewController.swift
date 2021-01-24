@@ -9,11 +9,16 @@ import UIKit
 
 class EventViewController: TableViewBasedViewController {
 
-    private let tableViewBuilder: EventTableViewBuilder
+    private weak var router: Router!
+    private var tableViewBuilder: EventTableViewBuilder!
 
-    init(eventTableViewBuilder: EventTableViewBuilder) {
-        self.tableViewBuilder = eventTableViewBuilder
+    init(router: Router) {
+        self.router = router
         super.init(nibName: nil, bundle: nil)
+    }
+
+    func set(eventTableViewBuilder: EventTableViewBuilder) {
+        self.tableViewBuilder = eventTableViewBuilder
     }
 
     @available(*, unavailable)
@@ -35,5 +40,23 @@ class EventViewController: TableViewBasedViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        navigationController?.navigationBar.isHidden = false
+    }
+}
+
+// MARK: EventHeaderTableViewCellViewModelDelegate
+
+extension EventViewController: EventHeaderTableViewCellViewModelDelegate {
+    func backIconTapped(in cell: EventHeaderTableViewCell, viewModel: EventHeaderTableViewCellViewModel) {
+        router.route(to: .back(when: .always(route: .popViewController(animated: true))))
+    }
+
+    func favoriteIconTapped(in cell: EventHeaderTableViewCell, viewModel: EventHeaderTableViewCellViewModel) {
+        print("!!!!! favoriteIconTapped")
     }
 }
