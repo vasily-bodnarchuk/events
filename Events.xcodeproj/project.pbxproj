@@ -85,6 +85,7 @@
 		B880ED9325BCEB81006C5266 /* ArrangedLabelAddable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED9225BCEB81006C5266 /* ArrangedLabelAddable.swift */; };
 		B880ED9F25BD09C1006C5266 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = B880ED9E25BD09C1006C5266 /* swiftgen.yml */; };
 		B880EDA825BD0B48006C5266 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDA725BD0B48006C5266 /* Images.swift */; };
+		B880EDB825BD263F006C5266 /* MaxWidthImageTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDB725BD263F006C5266 /* MaxWidthImageTableViewCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,6 +171,7 @@
 		B880ED9225BCEB81006C5266 /* ArrangedLabelAddable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrangedLabelAddable.swift; sourceTree = "<group>"; };
 		B880ED9E25BD09C1006C5266 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		B880EDA725BD0B48006C5266 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		B880EDB725BD263F006C5266 /* MaxWidthImageTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxWidthImageTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		C4B18B36154502DAF3A41980 /* Pods-Events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.release.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.release.xcconfig"; sourceTree = "<group>"; };
 		E90FD79328B62888CA80E4B9 /* Pods_Events.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Events.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -376,6 +378,7 @@
 				B880ED2625BB8288006C5266 /* VerticalSpacingTableViewCellViewModel.swift */,
 				B880ED1225BB7089006C5266 /* EventTableViewCellViewModel.swift */,
 				B880ED8D25BCE9B3006C5266 /* EventHeaderTableViewCellViewModel.swift */,
+				B880EDB725BD263F006C5266 /* MaxWidthImageTableViewCellViewModel.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -859,6 +862,7 @@
 				B880ECFA25BB2B33006C5266 /* URLQueryItem.swift in Sources */,
 				B880ED5925BBDFD9006C5266 /* ReloadCompletable.swift in Sources */,
 				B880EB6F25B72F92006C5266 /* CoreLaunchingViewController.swift in Sources */,
+				B880EDB825BD263F006C5266 /* MaxWidthImageTableViewCellViewModel.swift in Sources */,
 				B880EB8125B7D5BC006C5266 /* EventListViewController.swift in Sources */,
 				B880ED0625BB64D8006C5266 /* DecodableDate.swift in Sources */,
 				B880ED9325BCEB81006C5266 /* ArrangedLabelAddable.swift in Sources */,

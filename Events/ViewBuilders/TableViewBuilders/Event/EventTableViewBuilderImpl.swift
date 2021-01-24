@@ -27,6 +27,10 @@ class EventTableViewBuilderImpl {
 
 extension EventTableViewBuilderImpl: EventTableViewBuilder {
     func getViewModels(completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
-        completion(.success([EventHeaderTableViewCellViewModel(title: title, isFavorited: false, delegate: delegate)]))
+        completion(.success([
+            EventHeaderTableViewCellViewModel(title: title, isFavorited: false, delegate: delegate),
+            VerticalSpacingTableViewCellViewModel(height: 40),
+            MaxWidthImageTableViewCellViewModel(imageURL: imageUrl)
+        ]))
     }
 }

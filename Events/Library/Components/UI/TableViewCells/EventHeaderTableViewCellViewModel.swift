@@ -35,10 +35,6 @@ class EventHeaderTableViewCellViewModel: TableViewCellViewModel<EventHeaderTable
             cell.set(title: self.title, isFavorited: self.isFavorited, delegate: self)
         }
     }
-
-    override func getRowHight(for tableView: ViewModelCellBasedTableView, at indexPath: IndexPath) -> CGFloat {
-        tableView.bounds.height
-    }
 }
 
 extension EventHeaderTableViewCellViewModel: EventHeaderTableViewCellDelegate {
