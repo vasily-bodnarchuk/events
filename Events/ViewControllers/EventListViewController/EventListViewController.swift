@@ -121,9 +121,8 @@ extension EventsListViewController {
             guard let self = self else { return }
             self.tableViewBuilder.getViewModelsForTheNextPage { [weak self] result in
                 guard let self = self else { return }
-                defer { self.activityIndicator?.stop() }
                 switch result {
-                case .failure(let error): break
+                case .failure(let error): self.activityIndicator?.stop()
                 case .success(let value):
                     switch value {
                     case .alreadyLoadedLastPage:
@@ -131,7 +130,10 @@ extension EventsListViewController {
                     case .viewModels(let array):
                         self.tableView.registerOnlyUnknownCells(with: array)
                         self.viewModels += array
-                        self.tableView.reloadData()
+                        self.activityIndicator?.stop()
+                        let numberOfRows = self.tableView.numberOfRows(inSection: 0)
+                        let indexPaths = (numberOfRows...numberOfRows+array.count-1).map { IndexPath(row: $0, section: 0) }
+                        self.tableView.insertRows(at: indexPaths, with: .automatic)
                     }
                 }
             }
