@@ -10,7 +10,7 @@ import UIKit
 protocol EventListTableViewBuilder: class {
     typealias Delegate = EventTableViewCellViewModelDelegate
     func getViewModelsForTheFirstPage(searchEventsBy keyword: String?,
-                                      completion: @escaping (Result<EventListTableViewBuilderResult.FirstPage, Error>) -> Void)
+                                      completion: @escaping (EventListTableViewBuilderResult.FirstPage) -> Void)
     func getViewModelsForTheNextPage(completion: @escaping (Result<EventListTableViewBuilderResult.NextPage, Error>) -> Void)
     func reloadViewModels(completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void)
 }

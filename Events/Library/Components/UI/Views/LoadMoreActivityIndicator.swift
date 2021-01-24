@@ -86,7 +86,6 @@ class LoadMoreActivityIndicator {
 
     func stop() {
         guard let scrollView = scrollView, let activityIndicatorView = activityIndicatorView else { return }
-        let contentDelta = scrollView.contentSize.height - scrollView.frame.size.height
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: defaultBottomContentInset, right: 0)
         activityIndicatorView.stopAnimating()
     }

@@ -9,22 +9,13 @@ import UIKit
 
 class EventsListViewController: TableViewBasedViewController {
 
-    private weak var router: Router!
     private var tableViewBuilder: EventListTableViewBuilder!
     private var keyboardNotifications: KeyboardNotifications!
     private var activityIndicator: LoadMoreActivityIndicator?
 
-    init(router: Router) {
-        self.router = router
-        super.init(nibName: nil, bundle: nil)
-    }
-
     func set(eventListTableViewBuilder: EventListTableViewBuilder) {
         self.tableViewBuilder = eventListTableViewBuilder
     }
-
-    @available(*, unavailable)
-    required init?(coder: NSCoder) { fatalError() }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +73,7 @@ extension EventsListViewController {
     private func setViewModels(from response: Result<[TableViewCellViewModelInterface], Error>, completion: (() -> Void)? = nil) {
         defer { completion?() }
         switch response {
-        case .failure(let error): break
+        case .failure(let error): self.showAlert(error: error)
         case .success(let viewModels):
             tableView.registerOnlyUnknownCells(with: viewModels)
             self.viewModels = viewModels
@@ -102,13 +93,9 @@ extension EventsListViewController {
             guard let self = self else { return }
             var _result: Result<[TableViewCellViewModelInterface], Error>!
             switch result {
-            case .failure(let error): _result = .failure(error)
-            case let .success(value):
-                switch value {
-                case let .viewModels(array, tableViewProperties):
-                    _result = .success(array)
-                    self.setTableView(properties: tableViewProperties)
-                }
+            case let .viewModels(array, tableViewProperties):
+                _result = .success(array)
+                self.setTableView(properties: tableViewProperties)
             }
             self.setViewModels(from: _result, completion: completion)
         }
@@ -122,7 +109,9 @@ extension EventsListViewController {
             self.tableViewBuilder.getViewModelsForTheNextPage { [weak self] result in
                 guard let self = self else { return }
                 switch result {
-                case .failure(let error): self.activityIndicator?.stop()
+                case .failure(let error):
+                    self.showAlert(error: error)
+                    self.activityIndicator?.stop()
                 case .success(let value):
                     switch value {
                     case .alreadyLoadedLastPage:

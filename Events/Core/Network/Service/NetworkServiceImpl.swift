@@ -31,6 +31,7 @@ extension NetworkServiceImpl: NetworkService {
         urlComponents.queryItems = urlQuery.toURLQueryItems()
         guard let url = urlComponents.url else { return }
         var request = URLRequest(url: url)
+        request.timeoutInterval = TimeInterval(20)
         print("-- \(httpMethod.rawValue) \(url)")
         request.httpMethod = httpMethod.rawValue
         let task = session.dataTask(with: request) { data, response, error in

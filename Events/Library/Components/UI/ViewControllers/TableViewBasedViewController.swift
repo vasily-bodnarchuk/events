@@ -9,7 +9,17 @@ import UIKit
 
 class TableViewBasedViewController: UIViewController {
     var viewModels = [TableViewCellViewModelInterface]()
+    private(set) weak var router: Router!
     private(set) weak var tableView: ViewModelCellBasedTableView!
+
+    init(router: Router) {
+        self.router = router
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) { fatalError() }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -18,7 +28,7 @@ class TableViewBasedViewController: UIViewController {
     }
 
     @objc func pullToRefreshHandler(_ refreshControl: UIRefreshControl) { tableView?.endRefreshing() }
-    
+
     func setTableView(properties: [TableViewProperty]) {
         properties.forEach {
             switch $0 {
@@ -26,6 +36,12 @@ class TableViewBasedViewController: UIViewController {
             case .contentOffset(let offset): tableView.contentOffset = offset
             }
         }
+    }
+}
+
+extension TableViewBasedViewController {
+    func showAlert(error: Error) {
+        router.route(to: .present(when: .always(type: .alert(type: .error(error)), animated: true)))
     }
 }
 

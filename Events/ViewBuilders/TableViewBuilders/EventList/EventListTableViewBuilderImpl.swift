@@ -22,31 +22,34 @@ class EventListTableViewBuilderImpl: EventListTableViewBuilder {
 
 extension EventListTableViewBuilderImpl {
     func getViewModelsForTheFirstPage(searchEventsBy keyword: String?,
-                                      completion: @escaping (Result<EventListTableViewBuilderResult.FirstPage, Error>) -> Void) {
+                                      completion: @escaping (EventListTableViewBuilderResult.FirstPage) -> Void) {
         hasNextPage.waitSet(value: 1)
         getAllRequestKeyword.waitSet(value: keyword)
-        completion(.success(.viewModels([ActivityIndicatorTableViewCellViewModel()],
-                                        tableViewProperties: [.isScrollEnabled(false), .contentOffset(.zero)])))
+        completion(.viewModels([ActivityIndicatorTableViewCellViewModel()],
+                                tableViewProperties: [.isScrollEnabled(false), .contentOffset(.zero)]))
         reloadViewModels { result in
             switch result {
-            case .failure(let error): completion(.failure(error))
+            case .failure(let error): completion(.viewModels(self.createViewModelsForProblemState(message: error.localizedDescription),
+                                                             tableViewProperties: [.isScrollEnabled(true)]))
             case .success(let viewModels):
                 if viewModels.isEmpty {
-                    completion(.success(.viewModels(
-                                            [
-                                                VerticalSpacingTableViewCellViewModel(height: 20),
-                                                LabelTableViewCellViewModel(text: "Nothing found",
-                                                                            configureLabel: { label in
-                                                                                label.font = .systemFont(ofSize: 18, weight: .semibold)
-                                                                                label.textAlignment = .center })
-                                            ],
-                                            tableViewProperties: [.isScrollEnabled(false)])))
+                    completion(.viewModels(self.createViewModelsForProblemState(message: "Nothing found"),
+                                           tableViewProperties: [.isScrollEnabled(false)]))
                 } else {
-                    completion(.success(.viewModels(viewModels,
-                                                    tableViewProperties: [.isScrollEnabled(true)])))
+                    completion(.viewModels(viewModels, tableViewProperties: [.isScrollEnabled(true)]))
                 }
             }
         }
+    }
+
+    private func createViewModelsForProblemState(message: String) -> [TableViewCellViewModelInterface] {
+        [
+            VerticalSpacingTableViewCellViewModel(height: 20),
+            LabelTableViewCellViewModel(text: message,
+                                        configureLabel: { label in
+                                            label.font = .systemFont(ofSize: 18, weight: .semibold)
+                                            label.textAlignment = .center })
+        ]
     }
 
     private func _loadAll(page: Int,
@@ -67,7 +70,7 @@ extension EventListTableViewBuilderImpl {
                     self.hasNextPage.waitSet(value: nil)
                 }
                 let events = value.events.elements
-   
+
                 var viewModels = events.enumerated().flatMap { (index, event) -> [TableViewCellViewModelInterface] in
                     guard let date = event.datetime_utc.value,
                           let imageUrl = event.performers.elements.first?.image else { return [] }

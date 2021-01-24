@@ -47,7 +47,15 @@ extension RouterImpl: Router {
             createViewController(type, properties: properties) { [weak self] newViewController  in
                 self?.setRoot(newViewController)
             }
-        case .present(let when): break
+        case .present(let when):
+            switch when {
+            case let .always(type, animated):
+                createViewController(type, properties: properties) { [weak self] newViewController in
+                    guard let self = self else { return }
+                    guard let visibleViewController = self.getVisibleViewController() else { return }
+                    visibleViewController.present(newViewController, animated: animated)
+                }
+            }
         case .push(let when):
             switch when {
             case let .always(type, animated):

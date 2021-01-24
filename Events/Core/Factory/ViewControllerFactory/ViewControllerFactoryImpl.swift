@@ -39,6 +39,15 @@ extension ViewControllerFactoryImpl: ViewControllerFactory {
                 eventViewController.set(eventTableViewBuilder: tableViewBuilder)
                 newViewController = eventViewController
             }
+        case .alert(let type):
+            switch type {
+            case .error(let error):
+                let alertController = UIAlertController(title: "Error",
+                                                        message: error.localizedDescription,
+                                                        preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                newViewController = alertController
+            }
         }
         completion(newViewController)
     }
