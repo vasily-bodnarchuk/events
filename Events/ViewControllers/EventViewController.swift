@@ -11,6 +11,8 @@ class EventViewController: TableViewBasedViewController {
 
     private var tableViewBuilder: EventTableViewBuilder!
 
+    override var preferredStatusBarStyle: UIStatusBarStyle { .default }
+
     func set(eventTableViewBuilder: EventTableViewBuilder) {
         self.tableViewBuilder = eventTableViewBuilder
     }

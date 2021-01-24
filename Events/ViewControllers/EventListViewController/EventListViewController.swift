@@ -17,6 +17,8 @@ class EventsListViewController: TableViewBasedViewController {
         self.tableViewBuilder = eventListTableViewBuilder
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         if let navigationBar = navigationController?.navigationBar { setup(navigationBar: navigationBar) }
@@ -29,6 +31,7 @@ class EventsListViewController: TableViewBasedViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardNotifications.isEnabled = true
+        setNeedsStatusBarAppearanceUpdate()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -37,6 +40,7 @@ class EventsListViewController: TableViewBasedViewController {
     }
 
     private func setup(navigationBar: UINavigationBar) {
+      //  navigationBar. = .black
         navigationBar.barTintColor = UIColor(r: 38, g: 54, b: 68)
         navigationBar.tintColor = UIColor.white
         navigationBar.isTranslucent = false

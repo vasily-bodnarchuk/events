@@ -89,6 +89,7 @@
 		B880EDBB25BDBF91006C5266 /* LabelTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDBA25BDBF91006C5266 /* LabelTableViewCellViewModel.swift */; };
 		B880EDBE25BDC555006C5266 /* SeparatorTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDBD25BDC555006C5266 /* SeparatorTableViewCellViewModel.swift */; };
 		B880EDC125BDE537006C5266 /* TableViewProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDC025BDE537006C5266 /* TableViewProperty.swift */; };
+		B880EDC925BE0371006C5266 /* DefaultNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDC825BE0371006C5266 /* DefaultNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -178,6 +179,7 @@
 		B880EDBA25BDBF91006C5266 /* LabelTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		B880EDBD25BDC555006C5266 /* SeparatorTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		B880EDC025BDE537006C5266 /* TableViewProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewProperty.swift; sourceTree = "<group>"; };
+		B880EDC825BE0371006C5266 /* DefaultNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNavigationController.swift; sourceTree = "<group>"; };
 		C4B18B36154502DAF3A41980 /* Pods-Events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.release.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.release.xcconfig"; sourceTree = "<group>"; };
 		E90FD79328B62888CA80E4B9 /* Pods_Events.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Events.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -433,6 +435,7 @@
 			isa = PBXGroup;
 			children = (
 				B880EC5225B924FB006C5266 /* TableViewBasedViewController.swift */,
+				B880EDC825BE0371006C5266 /* DefaultNavigationController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -870,6 +873,7 @@
 				B880ECBF25BA7DCF006C5266 /* NetworkService.swift in Sources */,
 				B880EDA825BD0B48006C5266 /* Images.swift in Sources */,
 				B880EC5325B924FB006C5266 /* TableViewBasedViewController.swift in Sources */,
+				B880EDC925BE0371006C5266 /* DefaultNavigationController.swift in Sources */,
 				B880ED8625BCE53C006C5266 /* EventTableViewBuilder.swift in Sources */,
 				B880ECFA25BB2B33006C5266 /* URLQueryItem.swift in Sources */,
 				B880ED5925BBDFD9006C5266 /* ReloadCompletable.swift in Sources */,

@@ -29,9 +29,7 @@ class RouterImpl {
                 case .embedIn(let type):
                     switch type {
                     case .defaultNavigationController:
-                        let navigationViewController = UINavigationController(rootViewController: resultViewController)
-                        navigationViewController.view.backgroundColor = .white
-                        resultViewController = navigationViewController
+                        resultViewController = DefaultNavigationController(rootViewController: resultViewController)
                     }
                 }
             }
