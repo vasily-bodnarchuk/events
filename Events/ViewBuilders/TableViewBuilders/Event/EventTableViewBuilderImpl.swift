@@ -5,7 +5,7 @@
 //  Created by Vasily Bodnarchuk on 1/23/21.
 //
 
-import Foundation
+import UIKit
 
 class EventTableViewBuilderImpl {
     private(set) weak var delegate: Delegate!
@@ -30,7 +30,16 @@ extension EventTableViewBuilderImpl: EventTableViewBuilder {
         completion(.success([
             EventHeaderTableViewCellViewModel(title: title, isFavorited: false, delegate: delegate),
             VerticalSpacingTableViewCellViewModel(height: 40),
-            MaxWidthImageTableViewCellViewModel(imageURL: imageUrl)
+            MaxWidthImageTableViewCellViewModel(imageURL: imageUrl),
+            VerticalSpacingTableViewCellViewModel(height: 20),
+            LabelTableViewCellViewModel(text: date, configureLabel: { label in
+                label.font = .systemFont(ofSize: 19, weight: .semibold)
+            }),
+            VerticalSpacingTableViewCellViewModel(height: 16),
+            LabelTableViewCellViewModel(text: location, configureLabel: { label in
+                label.font = .systemFont(ofSize: 17, weight: .regular)
+                label.textColor = .lightGray
+            })
         ]))
     }
 }

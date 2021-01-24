@@ -76,19 +76,13 @@ class EventHeaderTableViewCell: TableViewCell {
 
         stackView.addArrangedSubview(createInteractiveImageView(image: Asset.navigationBackIcon.image,
                                                                 action: #selector(backIconTapped)))
-
-        let stackView2 = UIStackView()
-        stackView2.distribution = .fill
-        stackView2.alignment = .center
-        stackView2.spacing = 16
-        stackView.addArrangedSubview(stackView2)
-        titleLabel = addArrangedLabel(to: stackView2,
-                                      font: .systemFont(ofSize: 20, weight: .semibold),
+        titleLabel = addArrangedLabel(to: stackView,
+                                      font: .systemFont(ofSize: 24, weight: .semibold),
                                       textColor: .black,
                                       textAlignment: .center)
 
         let imageView = createInteractiveImageView(image: nil, action: #selector(favoriteIconTapped))
-        stackView2.addArrangedSubview(imageView)
+        stackView.addArrangedSubview(imageView)
         favoriteImageView = imageView
     }
 

@@ -33,7 +33,6 @@ class MaxWidthImageTableViewCellViewModel: TableViewCellViewModel<MaxWidthImageT
 
 class MaxWidthImageTableViewCell: TableViewCell {
     private(set) weak var eventImageView: UIImageView!
-    private weak var imageHeightConstraint: NSLayoutConstraint!
     override func setup() {
         super.setup()
         let imageView = UIImageView()
@@ -57,8 +56,5 @@ class MaxWidthImageTableViewCell: TableViewCell {
         eventImageView.image = nil
     }
 
-    func set(imageUrl: URL) {
-        print(imageUrl)
-        Nuke.loadImage(with: imageUrl, into: eventImageView)
-    }
+    func set(imageUrl: URL) { Nuke.loadImage(with: imageUrl, into: eventImageView) }
 }

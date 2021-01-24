@@ -14,12 +14,22 @@ extension ArrangedLabelAddable {
                           font: UIFont, textColor: UIColor,
                           numberOfLines: Int = 0,
                           textAlignment: NSTextAlignment = .left) -> UILabel {
+        let label = createLabel(font: font, textColor: textColor,
+                                numberOfLines: numberOfLines,
+                                textAlignment: textAlignment)
+        stackView.addArrangedSubview(label)
+        return label
+    }
+    
+    func createLabel(font: UIFont,
+                     textColor: UIColor = .black,
+                     numberOfLines: Int = 0,
+                     textAlignment: NSTextAlignment = .left) -> UILabel {
         let label = UILabel()
         label.font = font
         label.numberOfLines = numberOfLines
         label.textColor = textColor
         label.textAlignment = textAlignment
-        stackView.addArrangedSubview(label)
         return label
     }
 }
