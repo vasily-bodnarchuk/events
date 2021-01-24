@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		97A012E9057315A075A7A587 /* Pods_Events.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90FD79328B62888CA80E4B9 /* Pods_Events.framework */; };
 		B880EB2425B69B65006C5266 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EB2325B69B65006C5266 /* AppDelegate.swift */; };
-		B880EB2825B69B65006C5266 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EB2725B69B65006C5266 /* ViewController.swift */; };
 		B880EB2D25B69B66006C5266 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B880EB2C25B69B66006C5266 /* Assets.xcassets */; };
 		B880EB3025B69B66006C5266 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B880EB2E25B69B66006C5266 /* LaunchScreen.storyboard */; };
 		B880EB3E25B71D43006C5266 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EB3D25B71D43006C5266 /* Router.swift */; };
@@ -80,6 +79,10 @@
 		B880ED7625BCDCEB006C5266 /* EventListTableViewBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED7525BCDCEB006C5266 /* EventListTableViewBuilderImpl.swift */; };
 		B880ED7C25BCDF12006C5266 /* ViewBuilderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED7B25BCDF12006C5266 /* ViewBuilderFactory.swift */; };
 		B880ED8025BCDF1B006C5266 /* ViewBuilderFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED7F25BCDF1B006C5266 /* ViewBuilderFactoryImpl.swift */; };
+		B880ED8625BCE53C006C5266 /* EventTableViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED8525BCE53C006C5266 /* EventTableViewBuilder.swift */; };
+		B880ED8A25BCE555006C5266 /* EventTableViewBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED8925BCE555006C5266 /* EventTableViewBuilderImpl.swift */; };
+		B880ED8E25BCE9B3006C5266 /* EventHeaderTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED8D25BCE9B3006C5266 /* EventHeaderTableViewCellViewModel.swift */; };
+		B880ED9325BCEB81006C5266 /* ArrangedLabelAddable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED9225BCEB81006C5266 /* ArrangedLabelAddable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,7 +91,6 @@
 		A1E0941CD8CBAFC02A8EC3EA /* Pods-FetchRewards.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FetchRewards.release.xcconfig"; path = "Target Support Files/Pods-FetchRewards/Pods-FetchRewards.release.xcconfig"; sourceTree = "<group>"; };
 		B880EB2025B69B65006C5266 /* Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B880EB2325B69B65006C5266 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B880EB2725B69B65006C5266 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B880EB2C25B69B66006C5266 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B880EB2F25B69B66006C5266 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B880EB3125B69B66006C5266 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -160,6 +162,10 @@
 		B880ED7525BCDCEB006C5266 /* EventListTableViewBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListTableViewBuilderImpl.swift; sourceTree = "<group>"; };
 		B880ED7B25BCDF12006C5266 /* ViewBuilderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilderFactory.swift; sourceTree = "<group>"; };
 		B880ED7F25BCDF1B006C5266 /* ViewBuilderFactoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilderFactoryImpl.swift; sourceTree = "<group>"; };
+		B880ED8525BCE53C006C5266 /* EventTableViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewBuilder.swift; sourceTree = "<group>"; };
+		B880ED8925BCE555006C5266 /* EventTableViewBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewBuilderImpl.swift; sourceTree = "<group>"; };
+		B880ED8D25BCE9B3006C5266 /* EventHeaderTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHeaderTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		B880ED9225BCEB81006C5266 /* ArrangedLabelAddable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrangedLabelAddable.swift; sourceTree = "<group>"; };
 		C4B18B36154502DAF3A41980 /* Pods-Events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.release.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.release.xcconfig"; sourceTree = "<group>"; };
 		E90FD79328B62888CA80E4B9 /* Pods_Events.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Events.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -224,7 +230,6 @@
 				B880EC3425B8F17B006C5266 /* Components */,
 				B880EC6025B9E5D7006C5266 /* Extensions */,
 				B880EB2325B69B65006C5266 /* AppDelegate.swift */,
-				B880EB2725B69B65006C5266 /* ViewController.swift */,
 				B880EB2C25B69B66006C5266 /* Assets.xcassets */,
 				B880EB2E25B69B66006C5266 /* LaunchScreen.storyboard */,
 				B880EB3125B69B66006C5266 /* Info.plist */,
@@ -368,6 +373,7 @@
 				B880EC4925B8F36E006C5266 /* ActivityIndicatorTableViewCellViewModel.swift */,
 				B880ED2625BB8288006C5266 /* VerticalSpacingTableViewCellViewModel.swift */,
 				B880ED1225BB7089006C5266 /* EventTableViewCellViewModel.swift */,
+				B880ED8D25BCE9B3006C5266 /* EventHeaderTableViewCellViewModel.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -393,6 +399,7 @@
 		B880EC6625B9E686006C5266 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				B880ED9125BCEB32006C5266 /* ViewCreators */,
 				B880EC3D25B8F1E7006C5266 /* Identifiable.swift */,
 				B880ED5825BBDFD9006C5266 /* ReloadCompletable.swift */,
 			);
@@ -549,18 +556,18 @@
 		B880ED6F25BCDBB2006C5266 /* ViewBuilders */ = {
 			isa = PBXGroup;
 			children = (
-				B880ED7025BCDBE7006C5266 /* EventListTableViewBuilder */,
+				B880ED8225BCE501006C5266 /* TableViewBuilders */,
 			);
 			path = ViewBuilders;
 			sourceTree = "<group>";
 		};
-		B880ED7025BCDBE7006C5266 /* EventListTableViewBuilder */ = {
+		B880ED7025BCDBE7006C5266 /* EventList */ = {
 			isa = PBXGroup;
 			children = (
 				B880ED7125BCDC71006C5266 /* EventListTableViewBuilder.swift */,
 				B880ED7525BCDCEB006C5266 /* EventListTableViewBuilderImpl.swift */,
 			);
-			path = EventListTableViewBuilder;
+			path = EventList;
 			sourceTree = "<group>";
 		};
 		B880ED7825BCDD0A006C5266 /* Data */ = {
@@ -581,6 +588,32 @@
 			path = ViewBuilderFactory;
 			sourceTree = "<group>";
 		};
+		B880ED8225BCE501006C5266 /* TableViewBuilders */ = {
+			isa = PBXGroup;
+			children = (
+				B880ED8425BCE527006C5266 /* Event */,
+				B880ED7025BCDBE7006C5266 /* EventList */,
+			);
+			path = TableViewBuilders;
+			sourceTree = "<group>";
+		};
+		B880ED8425BCE527006C5266 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				B880ED8525BCE53C006C5266 /* EventTableViewBuilder.swift */,
+				B880ED8925BCE555006C5266 /* EventTableViewBuilderImpl.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		B880ED9125BCEB32006C5266 /* ViewCreators */ = {
+			isa = PBXGroup;
+			children = (
+				B880ED9225BCEB81006C5266 /* ArrangedLabelAddable.swift */,
+			);
+			path = ViewCreators;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -589,6 +622,7 @@
 			buildConfigurationList = B880EB3425B69B66006C5266 /* Build configuration list for PBXNativeTarget "Events" */;
 			buildPhases = (
 				0705549F274C1D3D38B9A89A /* [CP] Check Pods Manifest.lock */,
+				B880ED9725BD0931006C5266 /* SwiftGen */,
 				B880EB1C25B69B65006C5266 /* Sources */,
 				B880EB1D25B69B65006C5266 /* Frameworks */,
 				B880EB1E25B69B65006C5266 /* Resources */,
@@ -707,6 +741,24 @@
 			shellPath = /bin/sh;
 			shellScript = "if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n  \"${PODS_ROOT}/SwiftLint/swiftlint\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		B880ED9725BD0931006C5266 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ -f \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" ]]; then\n  \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" …\nelse\n  echo \"warning: SwiftGen is not installed. Run 'pod install --repo-update' to install it.\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -715,6 +767,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B880ED7625BCDCEB006C5266 /* EventListTableViewBuilderImpl.swift in Sources */,
+				B880ED8A25BCE555006C5266 /* EventTableViewBuilderImpl.swift in Sources */,
 				B880ED6A25BCD504006C5266 /* EventService.swift in Sources */,
 				B880ED4A25BBCA77006C5266 /* MetaJSONModel.swift in Sources */,
 				B880EC2125B8EBCF006C5266 /* EventListService.swift in Sources */,
@@ -749,6 +802,7 @@
 				B880EC7725B9F78E006C5266 /* TableViewCell.swift in Sources */,
 				B880ECD825BA8B00006C5266 /* AppError.swift in Sources */,
 				B880EC4A25B8F36E006C5266 /* ActivityIndicatorTableViewCellViewModel.swift in Sources */,
+				B880ED8E25BCE9B3006C5266 /* EventHeaderTableViewCellViewModel.swift in Sources */,
 				B880EC2E25B8EC4D006C5266 /* EventListServiceImpl.swift in Sources */,
 				B880EC5A25B9D88F006C5266 /* RouteProperty.swift in Sources */,
 				B880ED5325BBDC2E006C5266 /* RefreshControl.swift in Sources */,
@@ -757,7 +811,6 @@
 				B880ED2425BB7E73006C5266 /* PerformerJSONModel.swift in Sources */,
 				B880EB3E25B71D43006C5266 /* Router.swift in Sources */,
 				B880EC6225B9E5ED006C5266 /* UITableView.swift in Sources */,
-				B880EB2825B69B65006C5266 /* ViewController.swift in Sources */,
 				B880ECD525BA85EC006C5266 /* EventJSONModel.swift in Sources */,
 				B880ED0D25BB6B47006C5266 /* DefaultDateFormatter.swift in Sources */,
 				B880ECE125BB1D17006C5266 /* Endpoint.swift in Sources */,
@@ -770,11 +823,13 @@
 				B880ECF425BB2AB1006C5266 /* URL.swift in Sources */,
 				B880ECBF25BA7DCF006C5266 /* NetworkService.swift in Sources */,
 				B880EC5325B924FB006C5266 /* TableViewBasedViewController.swift in Sources */,
+				B880ED8625BCE53C006C5266 /* EventTableViewBuilder.swift in Sources */,
 				B880ECFA25BB2B33006C5266 /* URLQueryItem.swift in Sources */,
 				B880ED5925BBDFD9006C5266 /* ReloadCompletable.swift in Sources */,
 				B880EB6F25B72F92006C5266 /* CoreLaunchingViewController.swift in Sources */,
 				B880EB8125B7D5BC006C5266 /* EventListViewController.swift in Sources */,
 				B880ED0625BB64D8006C5266 /* DecodableDate.swift in Sources */,
+				B880ED9325BCEB81006C5266 /* ArrangedLabelAddable.swift in Sources */,
 				B880EB7325B73050006C5266 /* Factory.swift in Sources */,
 				B880ECE925BB2383006C5266 /* ConfigurationServiceImpl.swift in Sources */,
 				B880EB4125B71D62006C5266 /* RouterImpl.swift in Sources */,

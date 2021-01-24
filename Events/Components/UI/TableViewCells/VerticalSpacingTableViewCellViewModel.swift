@@ -10,7 +10,7 @@ import UIKit
 // MARK: ViewModel
 
 class VerticalSpacingTableViewCellViewModel: TableViewCellViewModel<VerticalSpacingTableViewCell> {
-    let height: CGFloat
+    private let height: CGFloat
 
     init(height: CGFloat) { self.height = height }
 

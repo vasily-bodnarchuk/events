@@ -8,25 +8,29 @@
 import UIKit
 
 class EventListTableViewBuilderImpl: EventListTableViewBuilder {
+    private(set) weak var delegate: Delegate!
     private let eventListService: EventListService
     private var _getAllRequestIsWaitingToBeExecuted = AtomicValue(value: false)
     private var getAllRequestKeyword = AtomicValue<String?>(value: nil)
     private var hasNextPage = AtomicValue<Int?>(value: 1)
 
-    init(eventListService: EventListService) { self.eventListService = eventListService }
+    init(eventListService: EventListService,
+         delegate: EventListTableViewBuilder.Delegate) {
+        self.eventListService = eventListService
+        self.delegate = delegate
+    }
 }
 
 extension EventListTableViewBuilderImpl {
-    func getViewModelsForTheFirstPage(searchEventsBy keyword: String?, delegate: Delegate,
+    func getViewModelsForTheFirstPage(searchEventsBy keyword: String?,
                                       completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
         hasNextPage.waitSet(value: 1)
         getAllRequestKeyword.waitSet(value: keyword)
         completion(.success([ActivityIndicatorTableViewCellViewModel()]))
-        reloadViewModels(delegate: delegate, completion: completion)
+        reloadViewModels(completion: completion)
     }
 
     private func _loadAll(page: Int,
-                          delegate: Delegate,
                           completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
         let keyword: String? = getAllRequestKeyword.waitGet().notQueueSafeValue
         _getAllRequestIsWaitingToBeExecuted.waitSet(value: false)
@@ -48,11 +52,12 @@ extension EventListTableViewBuilderImpl {
                           let imageUrl = event.performers.elements.first?.image else { return [] }
                     let dateString = dateFormatter.string(from: date)
                     return [
-                        EventTableViewCellViewModel.init(id: event.id,
-                                                         title: event.title,
-                                                         location: event.venue.display_location,
-                                                         date: dateString,
-                                                         imageUrl: imageUrl, delegate: delegate),
+                        EventTableViewCellViewModel(id: event.id,
+                                                    title: event.title,
+                                                    location: event.venue.display_location,
+                                                    date: dateString,
+                                                    imageUrl: imageUrl,
+                                                    delegate: self.delegate),
                         VerticalSpacingTableViewCellViewModel(height: verticalSpacing)
                     ]
                 }
@@ -64,12 +69,12 @@ extension EventListTableViewBuilderImpl {
         }
     }
 
-    func getViewModelsForTheNextPage(delegate: Delegate, completion: @escaping (Result<LoadNextPageResult, Error>) -> Void) {
+    func getViewModelsForTheNextPage(completion: @escaping (Result<LoadNextPageResult, Error>) -> Void) {
         guard let page = hasNextPage.waitGet().notQueueSafeValue else {
             DispatchQueue.main.async { completion(.success(.alreadyLoadedLastPage)) }
             return
         }
-        _loadAll(page: page, delegate: delegate) { result in
+        _loadAll(page: page) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error): completion(.failure(error))
@@ -79,7 +84,7 @@ extension EventListTableViewBuilderImpl {
         }
     }
 
-    func reloadViewModels(delegate: Delegate, completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
+    func reloadViewModels(completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
         hasNextPage.waitSet(value: 1)
         var isItTimeToMakeRequest = false
         _getAllRequestIsWaitingToBeExecuted.waitSet { isWaiting -> Bool in
@@ -89,7 +94,7 @@ extension EventListTableViewBuilderImpl {
 
         guard isItTimeToMakeRequest else { return }
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
-            self?._loadAll(page: 1, delegate: delegate, completion: completion)
+            self?._loadAll(page: 1, completion: completion)
         }
     }
 }

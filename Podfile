@@ -8,4 +8,5 @@ target 'Events' do
   # Pods for FetchRewards
   pod 'Nuke'
   pod 'SwiftLint'
+  pod 'SwiftGen'
 end

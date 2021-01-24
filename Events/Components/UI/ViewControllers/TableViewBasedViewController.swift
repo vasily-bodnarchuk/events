@@ -17,9 +17,7 @@ class TableViewBasedViewController: UIViewController {
         tableView.addRefreshControll(actionTarget: self, action: #selector(pullToRefreshHandler))
     }
 
-    @objc func pullToRefreshHandler(_ refreshControl: UIRefreshControl) {
-        tableView?.endRefreshing()
-    }
+    @objc func pullToRefreshHandler(_ refreshControl: UIRefreshControl) { tableView?.endRefreshing() }
 }
 
 extension TableViewBasedViewController {

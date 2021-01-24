@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ViewControllerFactory {
+protocol ViewControllerFactory: class {
     func create(_ viewController: ViewControllerType, completion: @escaping ((UIViewController) -> Void))
 }
 

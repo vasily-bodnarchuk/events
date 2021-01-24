@@ -23,7 +23,9 @@ class EventTableViewCellViewModel: TableViewCellViewModel<EventTableViewCell> {
     let date: String
     let imageUrl: URL
 
-    init(id: Int, title: String, location: String, date: String, imageUrl: URL, delegate: EventTableViewCellViewModelDelegate) {
+    init(id: Int, title: String,
+         location: String, date: String, imageUrl: URL,
+         delegate: EventTableViewCellViewModelDelegate) {
         self.id = id
         self.title = title
         self.location = location
@@ -94,15 +96,6 @@ class EventTableViewCell: TableViewCell {
                                      textColor: .lightGray)
     }
 
-    private func addArrangedLabel(to stackView: UIStackView, font: UIFont, textColor: UIColor) -> UILabel {
-        let label = UILabel()
-        label.font = font
-        label.numberOfLines = 0
-        label.textColor = textColor
-        stackView.addArrangedSubview(label)
-        return label
-    }
-
     func set(id: Int, title: String, location: String, date: String, imageUrl: URL) {
         tag = id
         titleLabel.text = title
@@ -116,3 +109,5 @@ class EventTableViewCell: TableViewCell {
         eventImageView.image = nil
     }
 }
+
+extension EventTableViewCell: ArrangedLabelAddable { }
