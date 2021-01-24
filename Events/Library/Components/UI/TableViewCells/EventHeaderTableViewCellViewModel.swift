@@ -49,6 +49,22 @@ class EventHeaderTableViewCell: TableViewCell {
         stackView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor).isActive = true
         contentView.safeAreaLayoutGuide.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: leftRightSpacing).isActive = true
 
+        let imageViewContainer = UIView()
+        imageViewContainer.backgroundColor = .lightGray
+        stackView.addArrangedSubview(imageViewContainer)
+        imageViewContainer.heightAnchor.constraint(equalToConstant: 34).isActive = true
+        imageViewContainer.widthAnchor.constraint(equalToConstant: 34).isActive = true
+        
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = Asset.navigationBackIcon.image
+        imageViewContainer.addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.centerYAnchor.constraint(equalTo: imageViewContainer.centerYAnchor).isActive = true
+        imageView.centerXAnchor.constraint(equalTo: imageViewContainer.centerXAnchor).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 24).isActive = true
+
         titleLabel = addArrangedLabel(to: stackView,
                                       font: .systemFont(ofSize: 18, weight: .semibold),
                                       textColor: .black)

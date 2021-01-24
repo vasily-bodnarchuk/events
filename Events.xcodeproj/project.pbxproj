@@ -83,6 +83,8 @@
 		B880ED8A25BCE555006C5266 /* EventTableViewBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED8925BCE555006C5266 /* EventTableViewBuilderImpl.swift */; };
 		B880ED8E25BCE9B3006C5266 /* EventHeaderTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED8D25BCE9B3006C5266 /* EventHeaderTableViewCellViewModel.swift */; };
 		B880ED9325BCEB81006C5266 /* ArrangedLabelAddable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880ED9225BCEB81006C5266 /* ArrangedLabelAddable.swift */; };
+		B880ED9F25BD09C1006C5266 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = B880ED9E25BD09C1006C5266 /* swiftgen.yml */; };
+		B880EDA825BD0B48006C5266 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDA725BD0B48006C5266 /* Images.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -166,6 +168,8 @@
 		B880ED8925BCE555006C5266 /* EventTableViewBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewBuilderImpl.swift; sourceTree = "<group>"; };
 		B880ED8D25BCE9B3006C5266 /* EventHeaderTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHeaderTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		B880ED9225BCEB81006C5266 /* ArrangedLabelAddable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrangedLabelAddable.swift; sourceTree = "<group>"; };
+		B880ED9E25BD09C1006C5266 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		B880EDA725BD0B48006C5266 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		C4B18B36154502DAF3A41980 /* Pods-Events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.release.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.release.xcconfig"; sourceTree = "<group>"; };
 		E90FD79328B62888CA80E4B9 /* Pods_Events.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Events.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -205,10 +209,11 @@
 			isa = PBXGroup;
 			children = (
 				B880EB2225B69B65006C5266 /* Events */,
-				B880EB2125B69B65006C5266 /* Products */,
 				59C2B60CEF22619FF9C851A5 /* Pods */,
 				AEB98E3DF615850CB8B7436F /* Frameworks */,
+				B880EB2125B69B65006C5266 /* Products */,
 				B880ED1F25BB7B94006C5266 /* .swiftlint.yml */,
+				B880ED9E25BD09C1006C5266 /* swiftgen.yml */,
 			);
 			sourceTree = "<group>";
 		};
@@ -223,16 +228,13 @@
 		B880EB2225B69B65006C5266 /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				B880EB6C25B72F43006C5266 /* ViewControllers */,
+				B880EB2325B69B65006C5266 /* AppDelegate.swift */,
+				B880EB3A25B71CEF006C5266 /* Core */,
 				B880EB3925B71CC6006C5266 /* Services */,
 				B880ED6F25BCDBB2006C5266 /* ViewBuilders */,
-				B880EB3A25B71CEF006C5266 /* Core */,
-				B880EC3425B8F17B006C5266 /* Components */,
-				B880EC6025B9E5D7006C5266 /* Extensions */,
-				B880EB2325B69B65006C5266 /* AppDelegate.swift */,
-				B880EB2C25B69B66006C5266 /* Assets.xcassets */,
-				B880EB2E25B69B66006C5266 /* LaunchScreen.storyboard */,
-				B880EB3125B69B66006C5266 /* Info.plist */,
+				B880EB6C25B72F43006C5266 /* ViewControllers */,
+				B880EDA425BD0A85006C5266 /* Library */,
+				B880EDA125BD09EA006C5266 /* Resources */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -614,6 +616,34 @@
 			path = ViewCreators;
 			sourceTree = "<group>";
 		};
+		B880EDA125BD09EA006C5266 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B880EDA625BD0B39006C5266 /* Generated */,
+				B880EB3125B69B66006C5266 /* Info.plist */,
+				B880EB2C25B69B66006C5266 /* Assets.xcassets */,
+				B880EB2E25B69B66006C5266 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B880EDA425BD0A85006C5266 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				B880EC3425B8F17B006C5266 /* Components */,
+				B880EC6025B9E5D7006C5266 /* Extensions */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		B880EDA625BD0B39006C5266 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				B880EDA725BD0B48006C5266 /* Images.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -622,11 +652,11 @@
 			buildConfigurationList = B880EB3425B69B66006C5266 /* Build configuration list for PBXNativeTarget "Events" */;
 			buildPhases = (
 				0705549F274C1D3D38B9A89A /* [CP] Check Pods Manifest.lock */,
-				B880ED9725BD0931006C5266 /* SwiftGen */,
 				B880EB1C25B69B65006C5266 /* Sources */,
 				B880EB1D25B69B65006C5266 /* Frameworks */,
 				B880EB1E25B69B65006C5266 /* Resources */,
 				3958A6B600A49FAC92DE624C /* [CP] Embed Pods Frameworks */,
+				B880ED9725BD0931006C5266 /* SwiftGen */,
 				B880ED1C25BB7A47006C5266 /* SwiftLint */,
 			);
 			buildRules = (
@@ -678,6 +708,7 @@
 				B880ED2025BB7B94006C5266 /* .swiftlint.yml in Resources */,
 				B880EB3025B69B66006C5266 /* LaunchScreen.storyboard in Resources */,
 				B880EB2D25B69B66006C5266 /* Assets.xcassets in Resources */,
+				B880ED9F25BD09C1006C5266 /* swiftgen.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,7 +788,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ -f \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" ]]; then\n  \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" …\nelse\n  echo \"warning: SwiftGen is not installed. Run 'pod install --repo-update' to install it.\"\nfi\n";
+			shellScript = "if [[ -f \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" ]]; then\n  \"${PODS_ROOT}/SwiftGen/bin/swiftgen\"\nelse\n  echo \"warning: SwiftGen is not installed. Run 'pod install --repo-update' to install it.\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -822,6 +853,7 @@
 				B880ED5625BBDC4F006C5266 /* UIScrollView.swift in Sources */,
 				B880ECF425BB2AB1006C5266 /* URL.swift in Sources */,
 				B880ECBF25BA7DCF006C5266 /* NetworkService.swift in Sources */,
+				B880EDA825BD0B48006C5266 /* Images.swift in Sources */,
 				B880EC5325B924FB006C5266 /* TableViewBasedViewController.swift in Sources */,
 				B880ED8625BCE53C006C5266 /* EventTableViewBuilder.swift in Sources */,
 				B880ECFA25BB2B33006C5266 /* URLQueryItem.swift in Sources */,
@@ -978,7 +1010,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Events/Info.plist;
+				INFOPLIST_FILE = Events/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -998,7 +1030,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Events/Info.plist;
+				INFOPLIST_FILE = Events/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

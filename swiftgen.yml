@@ -1,0 +1,6 @@
+xcassets:
+  inputs:
+    - Events/Resources/Assets.xcassets
+  outputs:
+    - templateName: swift5
+      output: Events/Resources/Generated/Images.swift
