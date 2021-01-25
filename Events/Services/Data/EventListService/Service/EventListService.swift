@@ -10,4 +10,5 @@ import Foundation
 protocol EventListService: class {
     func load(searchBy keyword: String?, page: Int,
               completion: @escaping (Result<EventListModel, Error>) -> Void)
+    func getIdOfFavoriteItems() -> [Int]
 }

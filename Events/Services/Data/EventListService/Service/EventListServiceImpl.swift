@@ -36,14 +36,7 @@ extension EventListServiceImpl: EventListService {
                                      page: eventList.meta.page,
                                      perPage: eventList.meta.per_page)
 
-                let dispatchGroup = DispatchGroup()
-                dispatchGroup.enter()
-                var favoriteEventIds = [Int]()
-                self.dbService.action(value: .favoritedEvents(action: .get(completion: { ids in
-                    if let ids = ids { favoriteEventIds = ids }
-                    dispatchGroup.leave()
-                })))
-                dispatchGroup.wait()
+                let favoriteEventIds = self.getIdOfFavoriteItems()
 
                 let events = eventList.events.elements.compactMap { event -> EventModel? in
                     guard let imageUrl = event.performers.elements.first?.image,
@@ -59,5 +52,19 @@ extension EventListServiceImpl: EventListService {
                 completion(.success(.init(events: events, meta: meta)))
             }
         }
+    }
+}
+
+extension EventListServiceImpl {
+    func getIdOfFavoriteItems() -> [Int] {
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        var favoriteEventIds = [Int]()
+        self.dbService.action(value: .favoritedEvents(action: .get(completion: { ids in
+            if let ids = ids { favoriteEventIds = ids }
+            dispatchGroup.leave()
+        })))
+        dispatchGroup.wait()
+        return favoriteEventIds
     }
 }

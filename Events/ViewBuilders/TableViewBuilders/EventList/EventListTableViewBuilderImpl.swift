@@ -151,3 +151,35 @@ extension EventListTableViewBuilderImpl {
         }
     }
 }
+
+extension EventListTableViewBuilderImpl {
+
+    func syncViewModelsWithDB(completion: @escaping (Result<EventListTableViewBuilderResult.SyncWithDB, Error>) -> Void) {
+        let ids = eventListService.getIdOfFavoriteItems()
+        let rowsToReload = viewModels.enumerated().compactMap { (index, viewModel) -> Int? in
+            guard let viewModel = viewModel as? EventTableViewCellViewModel else { return nil }
+            if viewModel.event.isFavorite {
+                if ids.contains(viewModel.event.id) { return nil }
+                self.setEventTableViewCellViewModel(isFavorite: false, at: index)
+                return index
+            } else {
+                guard ids.contains(viewModel.event.id) else { return nil }
+                self.setEventTableViewCellViewModel(isFavorite: true, at: index)
+                return index
+            }
+        }
+        DispatchQueue.main.async { completion(.success(.reloadViewModels(atRows: rowsToReload))) }
+    }
+
+    private func setEventTableViewCellViewModel(isFavorite: Bool, at index: Int) {
+        guard let event = (viewModels[index] as? EventTableViewCellViewModel)?.event else { return }
+        let newEvent = EventModel(id: event.id,
+                                  title: event.title,
+                                  location: event.location,
+                                  date: event.date,
+                                  visibleDate: event.visibleDate,
+                                  imageUrl: event.imageUrl,
+                                  isFavorite: isFavorite)
+        viewModels[index] = EventTableViewCellViewModel(event: newEvent, delegate: delegate)
+    }
+}

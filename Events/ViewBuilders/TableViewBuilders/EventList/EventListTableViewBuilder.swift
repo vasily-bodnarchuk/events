@@ -13,6 +13,7 @@ protocol EventListTableViewBuilder: TableViewBuilder {
                                        completion: @escaping (EventListTableViewBuilderResult.FirstPage) -> Void)
     func loadViewModelsForTheNextPage(completion: @escaping (Result<EventListTableViewBuilderResult.NextPage, Error>) -> Void)
     func reloadViewModels(completion: @escaping (Result<EventListTableViewBuilderResult.FirstPage, Error>) -> Void)
+    func syncViewModelsWithDB(completion: @escaping (Result<EventListTableViewBuilderResult.SyncWithDB, Error>) -> Void)
 }
 
 class EventListTableViewBuilderResult {
@@ -23,5 +24,9 @@ class EventListTableViewBuilderResult {
 
     enum FirstPage {
         case reloadTableView(properties: [TableViewProperty])
+    }
+
+    enum SyncWithDB {
+        case reloadViewModels(atRows: [Int])
     }
 }

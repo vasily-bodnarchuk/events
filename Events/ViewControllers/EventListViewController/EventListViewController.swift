@@ -12,7 +12,7 @@ class EventsListViewController: TableViewBasedViewController {
     private var tableViewBuilder: EventListTableViewBuilder!
     private var keyboardNotifications: KeyboardNotifications!
     private var activityIndicator: LoadMoreActivityIndicator?
-
+    private var isFirstLoading = true
     override var tableViewBuilderReference: TableViewBuilder { tableViewBuilder }
 
     func set(eventListTableViewBuilder: EventListTableViewBuilder) {
@@ -33,6 +33,21 @@ class EventsListViewController: TableViewBasedViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardNotifications.isEnabled = true
+        if isFirstLoading {
+            isFirstLoading = false
+            return
+        }
+        tableViewBuilder.syncViewModelsWithDB { [weak self] result in
+            switch result {
+            case .failure(let error): self?.showAlert(error: error)
+            case .success(let response):
+                switch response {
+                case .reloadViewModels(let rows):
+                    let indexPaths = rows.map { IndexPath(row: $0, section: 0) }
+                    self?.tableView.reloadRows(at: indexPaths, with: .none)
+                }
+            }
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
