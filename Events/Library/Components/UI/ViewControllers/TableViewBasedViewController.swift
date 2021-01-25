@@ -8,7 +8,7 @@
 import UIKit
 
 class TableViewBasedViewController: UIViewController {
-    var viewModels: [TableViewCellViewModelInterface] { [] }
+    var tableViewBuilderReference: TableViewBuilder { fatalError("tableViewBuilderReference must be overriden") }
     private(set) weak var router: Router!
     private(set) weak var tableView: ViewModelCellBasedTableView!
 
@@ -24,6 +24,7 @@ class TableViewBasedViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         tableView = createTableView(embedIn: view)
+        tableViewBuilderReference.tableView = tableView
         tableView.addRefreshControll(actionTarget: self, action: #selector(pullToRefreshHandler))
     }
 
@@ -40,6 +41,8 @@ class TableViewBasedViewController: UIViewController {
 }
 
 extension TableViewBasedViewController {
+    var viewModels: [TableViewCellViewModelInterface] { tableViewBuilderReference.viewModels }
+
     func showAlert(error: Error) {
         router.route(to: .present(when: .always(type: .alert(type: .error(error)), animated: true)))
     }

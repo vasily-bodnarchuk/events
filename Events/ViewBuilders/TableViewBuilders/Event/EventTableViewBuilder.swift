@@ -7,9 +7,16 @@
 
 import Foundation
 
-protocol EventTableViewBuilder: class {
+protocol EventTableViewBuilder: TableViewBuilder {
     typealias Delegate = EventHeaderTableViewCellViewModelDelegate
-    func getViewModels(completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void)
+    func loadViewModels(completion: @escaping (Result<EventTableViewBuilderResult.Result, Error>) -> Void)
     func setEvent(isFavorite: Bool,
-                  completion: @escaping (Result<(viewModelToReload: TableViewCellViewModelInterface, atIndex: Int), Error>) -> Void)
+                  completion: @escaping (Result<EventTableViewBuilderResult.Result, Error>) -> Void)
+}
+
+class EventTableViewBuilderResult {
+    enum Result {
+        case reloadTableView
+        case reload(rowIndex: Int)
+    }
 }

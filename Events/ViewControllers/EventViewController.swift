@@ -12,6 +12,7 @@ class EventViewController: TableViewBasedViewController {
     private var tableViewBuilder: EventTableViewBuilder!
 
     override var preferredStatusBarStyle: UIStatusBarStyle { .default }
+    override var tableViewBuilderReference: TableViewBuilder { tableViewBuilder }
 
     func set(eventTableViewBuilder: EventTableViewBuilder) {
         self.tableViewBuilder = eventTableViewBuilder
@@ -19,13 +20,20 @@ class EventViewController: TableViewBasedViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableViewBuilder.getViewModels { [weak self] result in
+        tableViewBuilder.loadViewModels { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .failure(let error): self.showAlert(error: error)
-            case .success(let viewModels):
-                self.tableView.reloadData()
+            case .success(let result): self.handle(result: result)
             }
+        }
+    }
+
+    private func handle(result: EventTableViewBuilderResult.Result) {
+        switch result {
+        case .reloadTableView: self.tableView.reloadData()
+        case .reload(let rowIndex):
+            self.tableView.reloadRows(at: [IndexPath(row: rowIndex, section: 0)], with: .none)
         }
     }
 
@@ -52,9 +60,7 @@ extension EventViewController: EventHeaderTableViewCellViewModelDelegate {
             guard let self = self else { return }
             switch result {
             case .failure(let error): self.showAlert(error: error)
-            case let .success((viewModelToReload, index)):
-               // self.viewModels[index] = viewModelToReload
-                self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+            case .success(let result): self.handle(result: result)
             }
         }
         cell.set(isFavorited: !viewModel.isFavorited)

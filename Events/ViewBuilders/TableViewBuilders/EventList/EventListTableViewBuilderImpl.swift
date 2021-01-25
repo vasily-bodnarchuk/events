@@ -132,7 +132,7 @@ extension EventListTableViewBuilderImpl {
         }
     }
 
-    func reloadViewModels(completion: @escaping (Result<Void, Error>) -> Void) {
+    func reloadViewModels(completion: @escaping (Result<EventListTableViewBuilderResult.FirstPage, Error>) -> Void) {
         hasNextPage.waitSet(value: 1)
         var isItTimeToMakeRequest = false
         _getAllRequestIsWaitingToBeExecuted.waitSet { isWaiting -> Bool in
@@ -145,7 +145,7 @@ extension EventListTableViewBuilderImpl {
             self?._loadAll(page: 1) { result in
                 switch result {
                 case .failure(let error): completion(.failure(error))
-                case .success: completion(.success(Void()))
+                case .success: completion(.success(.reloadTableView(properties: [])))
                 }
             }
         }

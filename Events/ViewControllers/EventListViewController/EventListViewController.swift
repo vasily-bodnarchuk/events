@@ -12,7 +12,8 @@ class EventsListViewController: TableViewBasedViewController {
     private var tableViewBuilder: EventListTableViewBuilder!
     private var keyboardNotifications: KeyboardNotifications!
     private var activityIndicator: LoadMoreActivityIndicator?
-    override var viewModels: [TableViewCellViewModelInterface] { tableViewBuilder.viewModels }
+
+    override var tableViewBuilderReference: TableViewBuilder { tableViewBuilder }
 
     func set(eventListTableViewBuilder: EventListTableViewBuilder) {
         self.tableViewBuilder = eventListTableViewBuilder
@@ -22,7 +23,6 @@ class EventsListViewController: TableViewBasedViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableViewBuilder.tableView = tableView
         if let navigationBar = navigationController?.navigationBar { setup(navigationBar: navigationBar) }
         navigationItem.titleView = createSearchBar()
         tableView.keyboardDismissMode = .interactive

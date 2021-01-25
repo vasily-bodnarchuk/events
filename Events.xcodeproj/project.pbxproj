@@ -98,6 +98,7 @@
 		B880EDE325BE17FB006C5266 /* EventListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDE225BE17FB006C5266 /* EventListModel.swift */; };
 		B880EDE725BE18F3006C5266 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDE625BE18F3006C5266 /* EventModel.swift */; };
 		B880EDEA25BE1902006C5266 /* MetaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDE925BE1902006C5266 /* MetaModel.swift */; };
+		B880EDED25BE5F8D006C5266 /* TableViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880EDEC25BE5F8D006C5266 /* TableViewBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -196,6 +197,7 @@
 		B880EDE225BE17FB006C5266 /* EventListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListModel.swift; sourceTree = "<group>"; };
 		B880EDE625BE18F3006C5266 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		B880EDE925BE1902006C5266 /* MetaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaModel.swift; sourceTree = "<group>"; };
+		B880EDEC25BE5F8D006C5266 /* TableViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewBuilder.swift; sourceTree = "<group>"; };
 		C4B18B36154502DAF3A41980 /* Pods-Events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.release.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.release.xcconfig"; sourceTree = "<group>"; };
 		E90FD79328B62888CA80E4B9 /* Pods_Events.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Events.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -626,6 +628,7 @@
 			isa = PBXGroup;
 			children = (
 				B880EDC025BDE537006C5266 /* TableViewProperty.swift */,
+				B880EDEC25BE5F8D006C5266 /* TableViewBuilder.swift */,
 				B880ED8425BCE527006C5266 /* Event */,
 				B880ED7025BCDBE7006C5266 /* EventList */,
 			);
@@ -887,6 +890,7 @@
 				B880EB4925B71E25006C5266 /* ViewControllerFactory.swift in Sources */,
 				B880ED8025BCDF1B006C5266 /* ViewBuilderFactoryImpl.swift in Sources */,
 				B880ED0325BB4B15006C5266 /* VenueJSONModel.swift in Sources */,
+				B880EDED25BE5F8D006C5266 /* TableViewBuilder.swift in Sources */,
 				B880EC3725B8F1A0006C5266 /* ViewModel.swift in Sources */,
 				B880ED7C25BCDF12006C5266 /* ViewBuilderFactory.swift in Sources */,
 				B880EC3B25B8F1AC006C5266 /* TableViewCellViewModelInterface.swift in Sources */,

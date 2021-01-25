@@ -12,6 +12,11 @@ class EventTableViewBuilderImpl {
     private var event: EventModel
     private var eventService: EventService!
 
+    weak var tableView: ViewModelCellBasedTableView!
+    private(set) var viewModels = [TableViewCellViewModelInterface]() {
+        didSet { tableView?.registerOnlyUnknownCells(with: viewModels) }
+    }
+
     init(event: EventModel, eventService: EventService, delegate: Delegate) {
         self.event = event
         self.delegate = delegate
@@ -20,8 +25,9 @@ class EventTableViewBuilderImpl {
 }
 
 extension EventTableViewBuilderImpl: EventTableViewBuilder {
-    func getViewModels(completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
-        completion(.success([
+
+    func loadViewModels(completion: @escaping (Result<EventTableViewBuilderResult.Result, Error>) -> Void) {
+        viewModels = [
             EventHeaderTableViewCellViewModel(title: event.title,
                                               isFavorited: event.isFavorite,
                                               delegate: delegate),
@@ -38,11 +44,12 @@ extension EventTableViewBuilderImpl: EventTableViewBuilder {
                 label.font = .systemFont(ofSize: 17, weight: .regular)
                 label.textColor = .lightGray
             })
-        ]))
+        ]
+        completion(.success(.reloadTableView))
     }
 
     func setEvent(isFavorite: Bool,
-                  completion: @escaping (Result<(viewModelToReload: TableViewCellViewModelInterface, atIndex: Int), Error>) -> Void) {
+                  completion: @escaping (Result<EventTableViewBuilderResult.Result, Error>) -> Void) {
         eventService.isFavorite = isFavorite
         event = .init(id: event.id, title: event.title,
                       location: event.location,
@@ -50,11 +57,9 @@ extension EventTableViewBuilderImpl: EventTableViewBuilder {
                       visibleDate: event.visibleDate,
                       imageUrl: event.imageUrl,
                       isFavorite: isFavorite)
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            completion(.success(((EventHeaderTableViewCellViewModel(title: self.event.title,
-                                                                    isFavorited: self.event.isFavorite,
-                                                                    delegate: self.delegate)), 0)))
-        }
+        viewModels[0] = EventHeaderTableViewCellViewModel(title: event.title,
+                                                          isFavorited: event.isFavorite,
+                                                          delegate: delegate)
+        DispatchQueue.main.async { completion(.success(.reload(rowIndex: 0))) }
     }
 }
