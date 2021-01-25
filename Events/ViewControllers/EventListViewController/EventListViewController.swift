@@ -12,6 +12,7 @@ class EventsListViewController: TableViewBasedViewController {
     private var tableViewBuilder: EventListTableViewBuilder!
     private var keyboardNotifications: KeyboardNotifications!
     private var activityIndicator: LoadMoreActivityIndicator?
+    override var viewModels: [TableViewCellViewModelInterface] { tableViewBuilder.viewModels }
 
     func set(eventListTableViewBuilder: EventListTableViewBuilder) {
         self.tableViewBuilder = eventListTableViewBuilder
@@ -21,6 +22,7 @@ class EventsListViewController: TableViewBasedViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableViewBuilder.tableView = tableView
         if let navigationBar = navigationController?.navigationBar { setup(navigationBar: navigationBar) }
         navigationItem.titleView = createSearchBar()
         tableView.keyboardDismissMode = .interactive
@@ -31,7 +33,6 @@ class EventsListViewController: TableViewBasedViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardNotifications.isEnabled = true
-        setNeedsStatusBarAppearanceUpdate()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -40,7 +41,6 @@ class EventsListViewController: TableViewBasedViewController {
     }
 
     private func setup(navigationBar: UINavigationBar) {
-      //  navigationBar. = .black
         navigationBar.barTintColor = UIColor(r: 38, g: 54, b: 68)
         navigationBar.tintColor = UIColor.white
         navigationBar.isTranslucent = false
@@ -48,7 +48,10 @@ class EventsListViewController: TableViewBasedViewController {
 
     @objc override func pullToRefreshHandler(_ refreshControl: UIRefreshControl) {
         tableViewBuilder.reloadViewModels { [weak self] response in
-            self?.setViewModels(from: response) { self?.tableView.endRefreshing() }
+            switch response {
+            case .failure(let error): self?.showAlert(error: error)
+            case .success: self?.reloadTableView { self?.tableView.endRefreshing() }
+            }
         }
     }
 }
@@ -74,34 +77,25 @@ extension EventsListViewController: KeyboardNotificationsDelegate {
 
 extension EventsListViewController {
 
-    private func setViewModels(from response: Result<[TableViewCellViewModelInterface], Error>, completion: (() -> Void)? = nil) {
-        defer { completion?() }
-        switch response {
-        case .failure(let error): self.showAlert(error: error)
-        case .success(let viewModels):
-            tableView.registerOnlyUnknownCells(with: viewModels)
-            self.viewModels = viewModels
-            tableView.reloadData { [weak self] tableView in
-                guard let self = self else { return }
-                if self.activityIndicator == nil {
-                    self.activityIndicator = LoadMoreActivityIndicator(scrollView: tableView,
-                                                                       spacingFromLastCell: 10,
-                                                                       spacingFromLastCellWhenLoadMoreActionStart: 60)
-                }
+    private func reloadTableView(completion: (() -> Void)? = nil) {
+        tableView.reloadData { [weak self] tableView in
+            guard let self = self else { return }
+            if self.activityIndicator == nil {
+                self.activityIndicator = LoadMoreActivityIndicator(scrollView: tableView,
+                                                                   spacingFromLastCell: 10,
+                                                                   spacingFromLastCellWhenLoadMoreActionStart: 60)
             }
+            completion?()
         }
     }
 
     func makeSearchRequest(keyword: String? = nil, completion: (() -> Void)? = nil) {
-        tableViewBuilder.getViewModelsForTheFirstPage(searchEventsBy: keyword) { [weak self] result in
+        tableViewBuilder.loadViewModelsForTheFirstPage(searchEventsBy: keyword) { [weak self] result in
             guard let self = self else { return }
-            var _result: Result<[TableViewCellViewModelInterface], Error>!
             switch result {
-            case let .viewModels(array, tableViewProperties):
-                _result = .success(array)
-                self.setTableView(properties: tableViewProperties)
+            case .reloadTableView(let properties): self.setTableView(properties: properties)
             }
-            self.setViewModels(from: _result, completion: completion)
+            self.reloadTableView()
         }
     }
 }
@@ -110,7 +104,7 @@ extension EventsListViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         activityIndicator?.start { [weak self] in
             guard let self = self else { return }
-            self.tableViewBuilder.getViewModelsForTheNextPage { [weak self] result in
+            self.tableViewBuilder.loadViewModelsForTheNextPage { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .failure(let error):
@@ -120,12 +114,10 @@ extension EventsListViewController {
                     switch value {
                     case .alreadyLoadedLastPage:
                         self.activityIndicator = nil
-                    case .viewModels(let array):
-                        self.tableView.registerOnlyUnknownCells(with: array)
-                        self.viewModels += array
+                    case .addedMoreViewModels(let count):
                         self.activityIndicator?.stop()
                         let numberOfRows = self.tableView.numberOfRows(inSection: 0)
-                        let indexPaths = (numberOfRows...numberOfRows+array.count-1).map { IndexPath(row: $0, section: 0) }
+                        let indexPaths = (numberOfRows...numberOfRows+count-1).map { IndexPath(row: $0, section: 0) }
                         self.tableView.insertRows(at: indexPaths, with: .automatic)
                     }
                 }

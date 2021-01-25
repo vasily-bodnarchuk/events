@@ -10,14 +10,8 @@ import UIKit
 class EventViewController: TableViewBasedViewController {
 
     private var tableViewBuilder: EventTableViewBuilder!
-    private var eventService: EventService!
 
     override var preferredStatusBarStyle: UIStatusBarStyle { .default }
-    
-    init(router: Router, eventService: EventService!) {
-        self.eventService = eventService
-        super.init(router: router)
-    }
 
     func set(eventTableViewBuilder: EventTableViewBuilder) {
         self.tableViewBuilder = eventTableViewBuilder
@@ -30,8 +24,6 @@ class EventViewController: TableViewBasedViewController {
             switch result {
             case .failure(let error): self.showAlert(error: error)
             case .success(let viewModels):
-                self.tableView.registerOnlyUnknownCells(with: viewModels)
-                self.viewModels = viewModels
                 self.tableView.reloadData()
             }
         }
@@ -56,7 +48,15 @@ extension EventViewController: EventHeaderTableViewCellViewModelDelegate {
     }
 
     func favoriteIconTapped(in cell: EventHeaderTableViewCell, viewModel: EventHeaderTableViewCellViewModel) {
-        eventService!.isFavorite = !viewModel.isFavorited
+        tableViewBuilder!.setEvent(isFavorite: !viewModel.isFavorited) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .failure(let error): self.showAlert(error: error)
+            case let .success((viewModelToReload, index)):
+               // self.viewModels[index] = viewModelToReload
+                self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+            }
+        }
         cell.set(isFavorited: !viewModel.isFavorited)
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ViewBuilderFactory: class {
-    func createEventTableViewBuilder(event: EventModel,
+    func createEventTableViewBuilder(event: EventModel, eventService: EventService,
                                      delegate: EventTableViewBuilder.Delegate) -> EventTableViewBuilder
     func createEventListTableViewBuilder(eventListService: EventListService,
                                          delegate: EventListTableViewBuilder.Delegate) -> EventListTableViewBuilder

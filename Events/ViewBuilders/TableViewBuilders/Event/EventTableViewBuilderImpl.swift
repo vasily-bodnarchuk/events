@@ -9,11 +9,13 @@ import UIKit
 
 class EventTableViewBuilderImpl {
     private(set) weak var delegate: Delegate!
-    private let event: EventModel
+    private var event: EventModel
+    private var eventService: EventService!
 
-    init(event: EventModel, delegate: Delegate) {
+    init(event: EventModel, eventService: EventService, delegate: Delegate) {
         self.event = event
         self.delegate = delegate
+        self.eventService = eventService
     }
 }
 
@@ -37,5 +39,22 @@ extension EventTableViewBuilderImpl: EventTableViewBuilder {
                 label.textColor = .lightGray
             })
         ]))
+    }
+
+    func setEvent(isFavorite: Bool,
+                  completion: @escaping (Result<(viewModelToReload: TableViewCellViewModelInterface, atIndex: Int), Error>) -> Void) {
+        eventService.isFavorite = isFavorite
+        event = .init(id: event.id, title: event.title,
+                      location: event.location,
+                      date: event.date,
+                      visibleDate: event.visibleDate,
+                      imageUrl: event.imageUrl,
+                      isFavorite: isFavorite)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            completion(.success(((EventHeaderTableViewCellViewModel(title: self.event.title,
+                                                                    isFavorited: self.event.isFavorite,
+                                                                    delegate: self.delegate)), 0)))
+        }
     }
 }

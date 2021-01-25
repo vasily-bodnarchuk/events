@@ -8,7 +8,7 @@
 import UIKit
 
 class TableViewBasedViewController: UIViewController {
-    var viewModels = [TableViewCellViewModelInterface]()
+    var viewModels: [TableViewCellViewModelInterface] { [] }
     private(set) weak var router: Router!
     private(set) weak var tableView: ViewModelCellBasedTableView!
 

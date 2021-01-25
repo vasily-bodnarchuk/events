@@ -9,6 +9,10 @@ import UIKit
 
 class EventListTableViewBuilderImpl: EventListTableViewBuilder {
     private(set) weak var delegate: Delegate!
+    weak var tableView: ViewModelCellBasedTableView!
+    private(set) var viewModels = [TableViewCellViewModelInterface]() {
+        didSet { tableView?.registerOnlyUnknownCells(with: viewModels) }
+    }
     private let eventListService: EventListService
     private var _getAllRequestIsWaitingToBeExecuted = AtomicValue(value: false)
     private var getAllRequestKeyword = AtomicValue<String?>(value: nil)
@@ -20,24 +24,36 @@ class EventListTableViewBuilderImpl: EventListTableViewBuilder {
     }
 }
 
+private enum RequestType {
+    case loadFirstPage
+    case loadNextPage
+    case reload
+}
+
 extension EventListTableViewBuilderImpl {
-    func getViewModelsForTheFirstPage(searchEventsBy keyword: String?,
-                                      completion: @escaping (EventListTableViewBuilderResult.FirstPage) -> Void) {
+    func loadViewModelsForTheFirstPage(searchEventsBy keyword: String?,
+                                       completion: @escaping (EventListTableViewBuilderResult.FirstPage) -> Void) {
         hasNextPage.waitSet(value: 1)
         getAllRequestKeyword.waitSet(value: keyword)
-        completion(.viewModels([ActivityIndicatorTableViewCellViewModel()],
-                                tableViewProperties: [.isScrollEnabled(false), .contentOffset(.zero)]))
-        reloadViewModels { result in
+
+        viewModels = [ActivityIndicatorTableViewCellViewModel()]
+        completion(.reloadTableView(properties: [.isScrollEnabled(false), .contentOffset(.zero)]))
+
+        reloadViewModels { [weak self] result in
+            guard let self = self else { return }
             switch result {
-            case .failure(let error): completion(.viewModels(self.createViewModelsForProblemState(message: error.localizedDescription),
-                                                             tableViewProperties: [.isScrollEnabled(true)]))
-            case .success(let viewModels):
-                if viewModels.isEmpty {
-                    completion(.viewModels(self.createViewModelsForProblemState(message: "Nothing found"),
-                                           tableViewProperties: [.isScrollEnabled(false)]))
+            case .failure(let error):
+                self.viewModels = self.createViewModelsForProblemState(message: error.localizedDescription)
+                completion(.reloadTableView(properties: [.isScrollEnabled(true)]))
+            case .success:
+                var tableViewProperties = [TableViewProperty]()
+                if self.viewModels.isEmpty {
+                    self.viewModels = self.createViewModelsForProblemState(message: "Nothing found")
+                    tableViewProperties = [.isScrollEnabled(false)]
                 } else {
-                    completion(.viewModels(viewModels, tableViewProperties: [.isScrollEnabled(true)]))
+                    tableViewProperties = [.isScrollEnabled(true)]
                 }
+                completion(.reloadTableView(properties: tableViewProperties))
             }
         }
     }
@@ -68,7 +84,7 @@ extension EventListTableViewBuilderImpl {
                     self.hasNextPage.waitSet(value: nil)
                 }
 
-                var viewModels = value.events.enumerated().flatMap { (index, event) -> [TableViewCellViewModelInterface] in
+                var newViewModels = value.events.enumerated().flatMap { (index, event) -> [TableViewCellViewModelInterface] in
                     var result = [TableViewCellViewModelInterface]()
                     result.append(EventTableViewCellViewModel(event: event, delegate: self.delegate))
                     switch index {
@@ -78,15 +94,19 @@ extension EventListTableViewBuilderImpl {
                     return result
                 }
 
-                if !viewModels.isEmpty {
+                if !newViewModels.isEmpty {
                     if value.meta.page == 1 {
-                        viewModels.insert(VerticalSpacingTableViewCellViewModel(height: verticalSpacing), at: 0)
+                        newViewModels.insert(VerticalSpacingTableViewCellViewModel(height: verticalSpacing), at: 0)
                     } else {
-                        viewModels.insert(self.createSeparatorViewModel(), at: 0)
+                        newViewModels.insert(self.createSeparatorViewModel(), at: 0)
                     }
                 }
 
-                DispatchQueue.main.async { completion(.success(viewModels)) }
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.viewModels = page == 1 ? newViewModels : self.viewModels + newViewModels
+                    completion(.success(newViewModels))
+                }
             }
         }
     }
@@ -97,7 +117,7 @@ extension EventListTableViewBuilderImpl {
                                         separatorViewEdgeInsets: .init(top: 24, left: 16, bottom: 24, right: 0))
     }
 
-    func getViewModelsForTheNextPage(completion: @escaping (Result<EventListTableViewBuilderResult.NextPage, Error>) -> Void) {
+    func loadViewModelsForTheNextPage(completion: @escaping (Result<EventListTableViewBuilderResult.NextPage, Error>) -> Void) {
         guard let page = hasNextPage.waitGet().notQueueSafeValue else {
             DispatchQueue.main.async { completion(.success(.alreadyLoadedLastPage)) }
             return
@@ -106,13 +126,13 @@ extension EventListTableViewBuilderImpl {
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error): completion(.failure(error))
-                case .success(let viewModels): completion(.success(.viewModels(viewModels)))
+                case .success(let viewModels): completion(.success(.addedMoreViewModels(count: viewModels.count)))
                 }
             }
         }
     }
 
-    func reloadViewModels(completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void) {
+    func reloadViewModels(completion: @escaping (Result<Void, Error>) -> Void) {
         hasNextPage.waitSet(value: 1)
         var isItTimeToMakeRequest = false
         _getAllRequestIsWaitingToBeExecuted.waitSet { isWaiting -> Bool in
@@ -122,7 +142,12 @@ extension EventListTableViewBuilderImpl {
 
         guard isItTimeToMakeRequest else { return }
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
-            self?._loadAll(page: 1, completion: completion)
+            self?._loadAll(page: 1) { result in
+                switch result {
+                case .failure(let error): completion(.failure(error))
+                case .success: completion(.success(Void()))
+                }
+            }
         }
     }
 }

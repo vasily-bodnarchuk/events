@@ -10,9 +10,9 @@ import Foundation
 class ViewBuilderFactoryImpl {}
 
 extension ViewBuilderFactoryImpl: ViewBuilderFactory {
-    func createEventTableViewBuilder(event: EventModel,
+    func createEventTableViewBuilder(event: EventModel, eventService: EventService,
                                      delegate: EventTableViewBuilder.Delegate) -> EventTableViewBuilder {
-        EventTableViewBuilderImpl(event: event, delegate: delegate)
+        EventTableViewBuilderImpl(event: event, eventService: eventService, delegate: delegate)
     }
 
     func createEventListTableViewBuilder(eventListService: EventListService,

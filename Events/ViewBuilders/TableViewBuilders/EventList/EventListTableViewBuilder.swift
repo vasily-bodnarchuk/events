@@ -9,19 +9,21 @@ import UIKit
 
 protocol EventListTableViewBuilder: class {
     typealias Delegate = EventTableViewCellViewModelDelegate
-    func getViewModelsForTheFirstPage(searchEventsBy keyword: String?,
-                                      completion: @escaping (EventListTableViewBuilderResult.FirstPage) -> Void)
-    func getViewModelsForTheNextPage(completion: @escaping (Result<EventListTableViewBuilderResult.NextPage, Error>) -> Void)
-    func reloadViewModels(completion: @escaping (Result<[TableViewCellViewModelInterface], Error>) -> Void)
+    var tableView: ViewModelCellBasedTableView! { get set }
+    var viewModels: [TableViewCellViewModelInterface] { get }
+    func loadViewModelsForTheFirstPage(searchEventsBy keyword: String?,
+                                       completion: @escaping (EventListTableViewBuilderResult.FirstPage) -> Void)
+    func loadViewModelsForTheNextPage(completion: @escaping (Result<EventListTableViewBuilderResult.NextPage, Error>) -> Void)
+    func reloadViewModels(completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 class EventListTableViewBuilderResult {
     enum NextPage {
-        case viewModels(_ array: [TableViewCellViewModelInterface])
+        case addedMoreViewModels(count: Int)
         case alreadyLoadedLastPage
     }
 
     enum FirstPage {
-        case viewModels(_ array: [TableViewCellViewModelInterface], tableViewProperties: [TableViewProperty])
+        case reloadTableView(properties: [TableViewProperty])
     }
 }
